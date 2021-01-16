@@ -1,13 +1,88 @@
 #!/usr/bin/env node
 
+const parser = require("@babel/parser");
+const generator = require("@babel/generator");
+const traverse = require("@babel/traverse").default;
+const template = require("@babel/template").default;
+const t = require("@babel/types");
+
 const program = process.argv[2];
 const end = process.argv[3];
 
+function parse (js, replacements) {
+    if (replacements) {
+        const builder = template(js, {
+            placeholderPattern: false,
+            placeholderWhitelist: new Set(Object.keys(replacements)),
+        });
+        return builder(replacements);
+
+    } else {
+        return parser.parse(js);
+    }
+}
+
+function createFunction (js) {
+
+    const ast = parser.parse(js);
+
+    var hasDollar = false;
+    traverse(ast, {
+        enter (path) {
+            if (path.node.type == "Identifier") {
+                if (path.node.name == "$") {
+                    hasDollar = true;
+                    // path.stop();
+                }
+            }
+        }
+    });
+
+    if (hasDollar) {
+        const preamble = parse("const $ = _.split(' ');").program.body;
+        ast.program.body = preamble.concat(ast.program.body);
+    }
+
+    const lastStatement = ast.program.body[ast.program.body.length-1];
+    if (t.isExpressionStatement(lastStatement)) {
+        ast.program.body.pop();
+        ast.program.body = ast.program.body.concat(parse(`
+            const output = EXPR;
+            if (output) {
+                process.stdout.write(_+"\\n");
+            }
+        `, {
+            EXPR: lastStatement.expression,
+        }));
+    }
+
+    const wrapper = parse(`
+        (async function () {
+            const iterator = require("readline").createInterface({input: process.stdin});
+            BEFORE;
+            for await (const _ of iterator) {
+                LINE;
+            }
+            AFTER;
+        })();
+    `, {
+        BEFORE: null,
+        LINE: ast.program.body,
+        AFTER: null,
+    });
+
+    var output = generator.default(wrapper, {}, js);
+    // console.log(output.code);
+    eval(output.code);
+    // return new Function(output.code);
+}
+var fn = createFunction(program);
+// console.log(fn.toString());
+// fn();
+process.exit(0);
+
 (async function () {
     const readline = require("readline");
-
-    var x = new Number(0), y = new Number(0), z = new Number(0);
-    var arr = [];
 
     const $d = " ";
     const pattern = new RegExp($d, "g");
