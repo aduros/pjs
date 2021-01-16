@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+const program = process.argv[2];
+const end = process.argv[3];
+
+(async function () {
+    const readline = require("readline");
+
+    var x = new Number(0), y = new Number(0), z = new Number(0);
+    var arr = [];
+
+    const $d = " ";
+    const pattern = new RegExp($d, "g");
+
+    function conditionalPrint (output, line) {
+        if (output === true) {
+            print(line);
+        } else if (output === false || output == null) {
+            // Skip
+        // } else if (line != null && output.constructor == RegExp) {
+        //     if (output.test(line)) {
+        //         process.stdout.write(line+"\n");
+        //     }
+        } else {
+            print(output);
+        }
+    }
+
+    function print (msg) {
+        if (Array.isArray(msg)) {
+            msg = msg.join($d);
+        } else if (typeof msg == "object") {
+            msg = JSON.stringify(msg);
+        }
+        process.stdout.write(msg+"\n");
+    }
+
+    var count = 0;
+    for await (const _ of readline.createInterface({input: process.stdin})) {
+        const $ = _.split(pattern);
+        const $0 = $[0], $1 = $[1], $2 = $[2];
+
+        var output = eval(program);
+        conditionalPrint(output, _);
+        ++count;
+    }
+
+    if (end != null) {
+        const output = eval(end);
+        conditionalPrint(output);
+    }
+    // console.log(x);
+})();
