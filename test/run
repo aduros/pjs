@@ -2,6 +2,10 @@
 #
 # pjs unit tests.
 
+pjs () {
+    ../bin/pjs "$@"
+}
+
 equals () {
     tmp="/tmp/test-pjs"
     echo -n "$1" | tail -n +2 > "$tmp"
