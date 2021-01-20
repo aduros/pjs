@@ -1,0 +1,309 @@
+---
+title: PJS(1) pjs
+author: Bruno Garcia <b@aduros.com>
+date: January 19, 2021
+---
+
+# NAME
+
+pjs - pipe to JavaScript
+
+# SYNOPSIS
+
+**pjs** [*OPTIONS*] [\--] *SCRIPT* ...
+
+# DESCRIPTION
+
+**pjs** is a tool for processing text, CSV, and JSON.
+
+pjs lets you write small and powerful JavaScript programs, similar to awk/sed/grep. It works by
+generating a complete JS program from the provided script(s), and feeding it each line of standard
+input. See the EXAMPLES section below to see what pjs can do.
+
+The latest version of pjs can be installed by running:
+
+```sh
+npm install -g @aduros/pjs
+```
+
+pjs is not meant to replace awk/sed/grep, but aims to be useful to seasoned JS developers who may
+not yet have learned all the intricacies of GNU coreutils.
+
+# OPTIONS
+
+-x, \--explain
+: Print the generated JS program instead of running it. This is useful for debugging or simply
+understanding what pjs is doing. The outputted program can be run directly in NodeJS.
+
+-b, \--before *SCRIPT*
+: Run a script before the input data is read. This can be used to initialize variables, or do
+anything else that should be done on startup. Can be specified multiple times.
+
+-a, \--after *SCRIPT*
+: Run a script after all the input data is read. This can be used to aggregate a summary, or
+perform anything else that should be done on completion. Can be specified multiple times.
+
+-d, \--delimiter *DELIMITER*
+: The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
+used to split each line of input data into fields. The fields can be accessed by the `$` array
+variable. Defaults to `\w+`.
+
+\--csv
+: Parse the input data as CSV (comma separated values). This correctly parses quoting and escaping
+in the input. When using this option, the `_` variable is unavailable.
+
+\--csv-header
+: Like \--csv, but the first row is considered a column header. When using this option, the `$`
+variable is unavailable, and the `_` variable is a mapping of column names to the row's values.
+
+\--json *FILTER*
+: Parse the input data as JSON (JavaScript object notation). When using this option, the `_`
+variable contains a JSON object. The filter defines which objects will be iterated over. The filter
+is a list of JSON fields, separated by a period, and can contain wildcard characters. For example:
+`--json 'rows.*'`. The full filter format is specified by
+[JSONStream](https://www.npmjs.com/package/JSONStream).
+
+-V, \--version
+: Print the version number.
+
+-h, \--help
+: Print command-line options. The output of this option is less detailed than this document.
+
+# JAVASCRIPT REFERENCE
+
+## Built-in Variables
+
+`_` (underscore)
+: The current line or object being processed. With `--json` or `--csv-header`, this is an object,
+otherwise it is a string.
+
+`$` (dollar)
+: An array containing the fields of the current line. The field delimiter can be set with
+`--delimiter`.  As a convenience, any references to `$N` where N is a number are translated to
+`$[N]`.
+
+`COUNT`
+: A numeric counter that is incremented with each line.
+
+`LINES`
+: An array containing all the lines that were processed.
+
+`print()`
+: Prints a value to standard output. Objects are converted to JSON.
+
+## Last Expression Handling
+
+If the last statement in the script is an expression, it will be used to filter or transform the
+output. If the last expression is `true`, the line is printed unmodified. If the last expression is
+a value, that value is printed instead. If the last expression is false or null, nothing is output.
+
+Sometimes output is never desired. In those cases either make sure the last expression is false or
+null (by appending a literal "`;null`"), or an empty statement (by appending a literal "`;;`").
+
+## Implicit Imports
+
+Using any built-in NodeJS module (eg: `fs`) will automatically import it with `require()`.
+
+## Implicit Variable Initialization
+
+Assigning to an undeclared variable will automatically insert a variable declaration. The initial
+value of these implicit variables is always 0. For other values or types, declare them explicitly in
+`--before`.
+
+# EXAMPLES
+
+**Remember**: You can run any of these examples with `--explain` to inspect the generated program.
+
+## Transforming
+
+Convert a file to upper-case:
+
+```sh
+cat document.txt | pjs '_.toUpperCase()'
+```
+
+Remove trailing whitespace from each line in a file:
+
+```sh
+cat document.txt | pjs '_.replace(/\s*$/, "")'
+```
+
+Print the second field of each line (in this example, the PIDs):
+
+```sh
+ps aux | pjs '$1'
+```
+
+Print all fields after the 10th (in this example, the process names):
+
+```sh
+ps aux | pjs '$.slice(10).join(" ")'
+```
+
+## Filtering
+
+Given a list of numbers, print all numbers greater than 500:
+
+```sh
+cat numbers.txt | pjs '_ > 500'
+```
+
+Given a list of filenames, print the files that actually exist:
+
+```sh
+cat files.txt | pjs 'fs.existsSync(_)'
+```
+
+Given a list of filenames, print the files that are under one kilobyte in size:
+
+```sh
+cat files.txt | pjs 'fs.statSync(_).size < 1000'
+```
+
+Print the last 10 lines of a file (like `tail`):
+
+```sh
+cat document.txt | pjs --after 'LINES.slice(-10)'
+```
+
+## Summarizing
+
+Manually count the lines in the input (like `wc -l`):
+
+```sh
+cat files.txt | pjs 'count++ ;;' --after 'count'
+```
+
+Same as above, but using the built-in `COUNT` variable:
+
+```sh
+cat files.txt | pjs --after 'COUNT'
+```
+
+Count the *unique* lines in the input:
+
+```sh
+cat files.txt | pjs --before 'let s = new Set()' 's.add(_)' --after 's.size'
+```
+
+Manually sort the lines of the input (like `sort`)
+
+```sh
+cat files.txt | pjs --before 'let lines = []' 'lines.push(_)' --after 'lines.sort().join("\n")'
+```
+
+Same as above, but using the built-in `LINES` variable:
+
+```sh
+cat files.txt | pjs --after 'LINES.sort().join("\n")'
+```
+
+## Advanced
+
+Bulk rename \*.jpeg files to \*.jpg:
+
+```sh
+find -name '*.jpeg' | pjs 'let f = path.parse(_);
+    fs.renameSync(_, path.join(f.dir, f.name+".jpg"))'
+```
+
+Print the longest line in the input:
+
+```sh
+cat document.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' --after 'longest'
+```
+
+Count the words in the input:
+
+```sh
+cat document.txt | pjs 'words += $.length ;;' --after 'words'
+```
+
+Count the *unique* words in the input:
+
+```sh
+cat document.txt | pjs --before 'let words = new Set()' \
+    'for (let word of $) words.add(word)' --after 'words.size'
+```
+
+## Parsing CSV
+
+Given a `grades.csv` file that looks like this:
+
+```csv
+name,subject,grade
+Bob,physics,43
+Alice,biology,75
+Alice,physics,90
+David,biology,85
+Clara,physics,78
+```
+
+Print only the third column:
+
+```sh
+cat grades.csv | pjs --csv '$2'
+```
+
+Print the grades using the column header:
+
+```sh
+cat grades.csv | pjs --csv-header '_.grade'
+```
+
+Print only the rows from Biology:
+
+```sh
+cat grades.csv | pjs --csv-header '_.subject == "biology"'
+```
+
+Print the average grade across all courses:
+
+```sh
+cat grades.csv | pjs --csv-header 'sum += Number(_.grade) ;;' --after 'sum/COUNT'
+```
+
+## Parsing JSON
+
+Given a `users.json` file that looks like this:
+
+```json
+{
+  "version": 123,
+  "items": [
+    {"name": {"first": "Winifred", "last": "Frost"}, "age": 42},
+    {"name": {"first": "Miles", "last": "Fernandez"}, "age": 15},
+    {"name": {"first": "Kennard", "last": "Floyd"}, "age": 20},
+    {"name": {"first": "Lonnie", "last": "Davis"}, "age": 78},
+    {"name": {"first": "Duncan", "last": "Poole"}, "age": 36}
+  ]
+}
+```
+
+Print the value of the "version" field:
+
+```sh
+cat users.json | pjs --json 'version' _
+```
+
+Print the full name of each user:
+
+```sh
+cat users.json | pjs --json 'items.*.name' '_.first+" "+_.last'
+```
+
+Print the users that are older than 21:
+
+```sh
+cat users.json | pjs --json 'items.*' '_.age >= 21'
+```
+
+# BUGS
+
+Bugs can be reported on GitHub: https://github.com/aduros/pjs/issues
+
+# SEE ALSO
+
+Website: https://github.com/aduros/pjs
+
+Related projects: [pyp](https://github.com/hauntsaninja/pyp), [nip](https://github.com/kolodny/nip), awk.

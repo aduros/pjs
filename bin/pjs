@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-"use strict";
+// Disable strict mode
+// "use strict";
 
 const commander = require("commander");
-const pkg = require("./package.json");
+const pkg = require("../package.json");
 
 function collect (value, previous) {
     if (previous == null) {
@@ -14,8 +15,7 @@ function collect (value, previous) {
 
 const program = new commander.Command()
     .description(pkg.description)
-    .version(pkg.version)
-    .arguments("<script...>")
+    .arguments("[script...]")
     .option("-x, --explain", "Print generated program instead of running it")
     .option("-b, --before <script>", "Run script before parsing", collect)
     .option("-a, --after <script>", "Run script after parsing", collect)
@@ -23,8 +23,14 @@ const program = new commander.Command()
     .option("--csv", "Parse input as CSV")
     .option("--csv-header", "Parse input as CSV with a column header")
     .option("--json <filter>", "Parse input as JSON")
+    .version(pkg.version)
     .action(async (script, options, command) => {
-        const pjs = require(".");
+        // Must include at least one script
+        if (options.before == null && script.length == 0 && options.after == null) {
+            program.help({error: true});
+        }
+
+        const generate = require("../lib/generate");
         var generated;
         try {
             let mode = null;
@@ -33,14 +39,15 @@ const program = new commander.Command()
             } else if (options.json) {
                 mode = "json";
             }
-            generated = pjs.generate({
+            generated = generate({
                 mode,
-                beforeJs: options.before ? options.before.join("\n") : null,
-                lineJs: script.join("\n"),
-                afterJs: options.after ? options.after.join("\n") : null,
+                beforeJs: options.before ? options.before.join("\n;") : null,
+                lineJs: script.join("\n;"),
+                afterJs: options.after ? options.after.join("\n;") : null,
                 textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
                 csvHeader: options.csvHeader,
                 jsonFilter: options.json,
+                pjsModule: !options.explain ? ".." : null,
             });
         } catch (error) {
             // console.error("Parse error: "+error.message);
@@ -53,6 +60,7 @@ const program = new commander.Command()
             try {
                 await eval(generated);
             } catch (error) {
+                console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
                 // TODO(2021-01-16): Better error handling
                 console.error(error);
                 process.exit(1);
