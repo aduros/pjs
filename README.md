@@ -1,9 +1,3 @@
----
-title: PJS(1) pjs
-author: Bruno Garcia <b@aduros.com>
-date: January 19, 2021
----
-
 # NAME
 
 pjs - pipe to JavaScript
