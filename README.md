@@ -50,17 +50,18 @@ variable. Defaults to `\w+`.
 
 \--csv
 : Parse the input data as CSV (comma separated values). This correctly parses quoting and escaping
-in the input. When using this option, the `_` variable is unavailable.
+in the input. When using this option, the `_` built-in variable is unavailable.
 
 \--csv-header
 : Like \--csv, but the first row is considered a column header. When using this option, the `$`
-variable is unavailable, and the `_` variable is a mapping of column names to the row's values.
+built-in variable is unavailable, and the `_` variable is a mapping of column names to the row's
+values.
 
 \--json *FILTER*
 : Parse the input data as JSON (JavaScript object notation). When using this option, the `_`
-variable contains a JSON object. The filter defines which objects will be iterated over. The filter
-is a list of JSON fields, separated by a period, and can contain wildcard characters. For example:
-`--json 'rows.*'`. The full filter format is specified by
+built-in variable contains a JSON object. The filter defines which objects will be iterated over.
+The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
+example: `--json 'rows.*'`. The full filter format is specified by
 [JSONStream](https://www.npmjs.com/package/JSONStream).
 
 -V, \--version

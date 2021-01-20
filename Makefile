@@ -1,2 +1,3 @@
-man/pjs.1: pjs.1.md
+man/pjs.1: README.md
+	mkdir -p man
 	pandoc --standalone -t man "$<" -o "$@"
