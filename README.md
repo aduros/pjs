@@ -196,7 +196,8 @@ cat filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' --after 's.si
 Manually sort the lines of the input (like `sort`)
 
 ```sh
-cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' --after 'lines.sort().join("\n")'
+cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' \
+    --after 'lines.sort().join("\n")'
 ```
 
 Same as above, but using the built-in `LINES` variable:
