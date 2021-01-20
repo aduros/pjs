@@ -16,6 +16,7 @@
     "type": "git",
     "url": "https://github.com/aduros/pjs.git"
   },
+  "keywords": ["shell", "cli", "pipe", "awk", "sort", "cut", "sed", "grep", "wc", "uniq"],
   "scripts": {
     "test": "test/run"
   },
