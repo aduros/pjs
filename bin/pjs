@@ -60,6 +60,9 @@ const program = new commander.Command()
         if (options.explain) {
             console.log(generated);
         } else {
+            process.stdout.on("error", error => {
+                // Ignore errors about closed pipes
+            });
             try {
                 await eval(generated);
             } catch (error) {
