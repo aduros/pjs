@@ -23,7 +23,7 @@ input. See the EXAMPLES section below to see what pjs can do.
 The latest version of pjs can be installed by running:
 
 ```sh
-npm install -g @aduros/pjs
+npm install -g pjs-tool
 ```
 
 pjs is not meant to replace awk/sed/grep, but aims to be useful to seasoned JS developers who may

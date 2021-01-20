@@ -1,5 +1,5 @@
 {
-  "name": "@aduros/pjs",
+  "name": "pjs-tool",
   "version": "1.0.0",
   "description": "An awk-like tool for processing text, CSV, and JSON.",
   "directories": {
