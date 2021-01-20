@@ -14,7 +14,7 @@ function collect (value, previous) {
 }
 
 const program = new commander.Command()
-    .description(pkg.description)
+    .description(pkg.description+"\n\nFor complete documentation, run `man pjs` or visit https://github.com/aduros/pjs")
     .arguments("[script...]")
     .option("-x, --explain", "Print generated program instead of running it")
     .option("-b, --before <script>", "Run script before parsing", collect)
