@@ -143,22 +143,28 @@ ps aux | pjs '$.slice(10).join(" ")'
 
 ## Filtering
 
-Given a list of numbers, print all numbers greater than 500:
+Given a list of numbers, print only numbers greater than 5:
 
 ```sh
-cat numbers.txt | pjs '_ > 500'
+seq 1 10 | pjs '_ > 5'
+```
+
+Given a list of numbers, print only even numbers:
+
+```sh
+seq 1 10 | pjs '_ % 2 == 0'
 ```
 
 Given a list of filenames, print the files that actually exist:
 
 ```sh
-cat files.txt | pjs 'fs.existsSync(_)'
+cat filenames.txt | pjs 'fs.existsSync(_)'
 ```
 
 Given a list of filenames, print the files that are under one kilobyte in size:
 
 ```sh
-cat files.txt | pjs 'fs.statSync(_).size < 1000'
+cat filenames.txt | pjs 'fs.statSync(_).size < 1000'
 ```
 
 Print the last 10 lines of a file (like `tail`):
@@ -172,31 +178,31 @@ cat document.txt | pjs --after 'LINES.slice(-10)'
 Manually count the lines in the input (like `wc -l`):
 
 ```sh
-cat files.txt | pjs 'count++ ;;' --after 'count'
+cat filenames.txt | pjs 'count++ ;;' --after 'count'
 ```
 
 Same as above, but using the built-in `COUNT` variable:
 
 ```sh
-cat files.txt | pjs --after 'COUNT'
+cat filenames.txt | pjs --after 'COUNT'
 ```
 
 Count the *unique* lines in the input:
 
 ```sh
-cat files.txt | pjs --before 'let s = new Set()' 's.add(_)' --after 's.size'
+cat filenames.txt | pjs --before 'let s = new Set()' 's.add(_)' --after 's.size'
 ```
 
 Manually sort the lines of the input (like `sort`)
 
 ```sh
-cat files.txt | pjs --before 'let lines = []' 'lines.push(_)' --after 'lines.sort().join("\n")'
+cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_)' --after 'lines.sort().join("\n")'
 ```
 
 Same as above, but using the built-in `LINES` variable:
 
 ```sh
-cat files.txt | pjs --after 'LINES.sort().join("\n")'
+cat filenames.txt | pjs --after 'LINES.sort().join("\n")'
 ```
 
 ## Advanced
