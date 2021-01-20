@@ -10,7 +10,7 @@ pjs - pipe to JavaScript
 
 # SYNOPSIS
 
-**pjs** [*OPTIONS*] [\--] *SCRIPT*...
+**pjs** [*options*] [\--] *script*...
 
 # DESCRIPTION
 
@@ -35,15 +35,15 @@ not yet have mastered all the intricacies of GNU coreutils.
 : Print the generated JS program instead of running it. This is useful for debugging or simply
 understanding what pjs is doing. The outputted program can be run directly in NodeJS.
 
-`-b, --before <SCRIPT>`
+`-b, --before <script>`
 : Run a script before the input data is read. This can be used to initialize variables, or do
 anything else that should be done on startup. Can be specified multiple times.
 
-`-a, --after <SCRIPT>`
+`-a, --after <script>`
 : Run a script after all the input data is read. This can be used to aggregate a summary, or
 perform anything else that should be done on completion. Can be specified multiple times.
 
-`-d, --delimiter <DELIMITER>`
+`-d, --delimiter <delimiter>`
 : The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
 used to split each line of input data into fields. The fields can be accessed by the `$` array
 variable. Defaults to `\w+`.
@@ -57,7 +57,7 @@ in the input. When using this option, the `_` built-in variable is unavailable.
 built-in variable is unavailable, and the `_` built-in variable is a mapping of column names to the
 row's values.
 
-`--json <FILTER>`
+`--json <filter>`
 : Parse the input data as JSON (JavaScript object notation). When using this option, the `_`
 built-in variable contains a JSON object. The filter defines which objects will be iterated over.
 The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
@@ -115,7 +115,7 @@ value of these implicit variables is always 0. For other values or types, declar
 
 **Remember**: You can run any of these examples with `--explain` to inspect the generated program.
 
-## Transforming
+## Transforming Examples
 
 Convert a file to upper-case:
 
@@ -141,7 +141,7 @@ Print all fields after the 10th (in this example, the process names):
 ps aux | pjs '$.slice(10).join(" ")'
 ```
 
-## Filtering
+## Filtering Examples
 
 Given a list of numbers, print only numbers greater than 5:
 
@@ -173,7 +173,7 @@ Print the last 10 lines of a file (like `tail`):
 cat document.txt | pjs --after 'LINES.slice(-10).join("\n")'
 ```
 
-## Summarizing
+## Summarizing Examples
 
 Manually count the lines in the input (like `wc -l`):
 
@@ -206,7 +206,7 @@ Same as above, but using the built-in `LINES` variable:
 cat filenames.txt | pjs --after 'LINES.sort().join("\n")'
 ```
 
-## Advanced
+## Advanced Examples
 
 Bulk rename \*.jpeg files to \*.jpg:
 
@@ -234,7 +234,7 @@ cat document.txt | pjs --before 'let words = new Set()' \
     'for (let word of $) words.add(word)' --after 'words.size'
 ```
 
-## Parsing CSV
+## CSV Examples
 
 Given a `grades.csv` file that looks like this:
 
@@ -271,7 +271,7 @@ Print the average grade across all courses:
 cat grades.csv | pjs --csv-header 'sum += Number(_.grade) ;;' --after 'sum/COUNT'
 ```
 
-## Parsing JSON
+## JSON Examples
 
 Given a `users.json` file that looks like this:
 
@@ -314,4 +314,5 @@ Bugs can be reported on GitHub: https://github.com/aduros/pjs/issues
 
 Website: https://github.com/aduros/pjs
 
-Related projects: [pyp](https://github.com/hauntsaninja/pyp), [nip](https://github.com/kolodny/nip), awk.
+Related projects: [pyp](https://github.com/hauntsaninja/pyp), [nip](https://github.com/kolodny/nip),
+awk. Pyp and its `--explain` was a major inspiration for this project.
