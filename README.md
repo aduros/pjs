@@ -10,7 +10,7 @@ pjs - pipe to JavaScript
 
 # SYNOPSIS
 
-**pjs** [*OPTIONS*] [\--] *SCRIPT* ...
+**pjs** [*OPTIONS*] [\--] *SCRIPT*...
 
 # DESCRIPTION
 
@@ -27,47 +27,47 @@ npm install -g @aduros/pjs
 ```
 
 pjs is not meant to replace awk/sed/grep, but aims to be useful to seasoned JS developers who may
-not yet have learned all the intricacies of GNU coreutils.
+not yet have mastered all the intricacies of GNU coreutils.
 
 # OPTIONS
 
--x, \--explain
+`-x, --explain`
 : Print the generated JS program instead of running it. This is useful for debugging or simply
 understanding what pjs is doing. The outputted program can be run directly in NodeJS.
 
--b, \--before *SCRIPT*
+`-b, --before <SCRIPT>`
 : Run a script before the input data is read. This can be used to initialize variables, or do
 anything else that should be done on startup. Can be specified multiple times.
 
--a, \--after *SCRIPT*
+`-a, --after <SCRIPT>`
 : Run a script after all the input data is read. This can be used to aggregate a summary, or
 perform anything else that should be done on completion. Can be specified multiple times.
 
--d, \--delimiter *DELIMITER*
+`-d, --delimiter <DELIMITER>`
 : The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
 used to split each line of input data into fields. The fields can be accessed by the `$` array
 variable. Defaults to `\w+`.
 
-\--csv
+`--csv`
 : Parse the input data as CSV (comma separated values). This correctly parses quoting and escaping
 in the input. When using this option, the `_` built-in variable is unavailable.
 
-\--csv-header
-: Like \--csv, but the first row is considered a column header. When using this option, the `$`
-built-in variable is unavailable, and the `_` variable is a mapping of column names to the row's
-values.
+`--csv-header`
+: Like `--csv`, but the first row is considered a column header. When using this option, the `$`
+built-in variable is unavailable, and the `_` built-in variable is a mapping of column names to the
+row's values.
 
-\--json *FILTER*
+`--json <FILTER>`
 : Parse the input data as JSON (JavaScript object notation). When using this option, the `_`
 built-in variable contains a JSON object. The filter defines which objects will be iterated over.
 The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
 example: `--json 'rows.*'`. The full filter format is specified by
 [JSONStream](https://www.npmjs.com/package/JSONStream).
 
--V, \--version
+`-V, --version`
 : Print the version number.
 
--h, \--help
+`-h, --help`
 : Print command-line options. The output of this option is less detailed than this document.
 
 # JAVASCRIPT REFERENCE
