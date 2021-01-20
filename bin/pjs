@@ -50,8 +50,11 @@ const program = new commander.Command()
                 pjsModule: !options.explain ? ".." : null,
             });
         } catch (error) {
-            // console.error("Parse error: "+error.message);
-            console.error(error);
+            if (process.env.PJS_DEBUG) {
+                console.error(error);
+            } else {
+                console.error("Parse error: "+error.message);
+            }
             process.exit(1);
         }
         if (options.explain) {
@@ -61,7 +64,6 @@ const program = new commander.Command()
                 await eval(generated);
             } catch (error) {
                 console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
-                // TODO(2021-01-16): Better error handling
                 console.error(error);
                 process.exit(1);
             }
