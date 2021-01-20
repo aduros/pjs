@@ -170,7 +170,7 @@ cat filenames.txt | pjs 'fs.statSync(_).size < 1000'
 Print the last 10 lines of a file (like `tail`):
 
 ```sh
-cat document.txt | pjs --after 'LINES.slice(-10)'
+cat document.txt | pjs --after 'LINES.slice(-10).join("\n")'
 ```
 
 ## Summarizing
@@ -190,13 +190,13 @@ cat filenames.txt | pjs --after 'COUNT'
 Count the *unique* lines in the input:
 
 ```sh
-cat filenames.txt | pjs --before 'let s = new Set()' 's.add(_)' --after 's.size'
+cat filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' --after 's.size'
 ```
 
 Manually sort the lines of the input (like `sort`)
 
 ```sh
-cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_)' --after 'lines.sort().join("\n")'
+cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' --after 'lines.sort().join("\n")'
 ```
 
 Same as above, but using the built-in `LINES` variable:
@@ -258,10 +258,10 @@ Print the grades using the column header:
 cat grades.csv | pjs --csv-header '_.grade'
 ```
 
-Print only the rows from Biology:
+Print the names of students taking biology:
 
 ```sh
-cat grades.csv | pjs --csv-header '_.subject == "biology"'
+cat grades.csv | pjs --csv-header '_.subject == "biology" && _.name'
 ```
 
 Print the average grade across all courses:

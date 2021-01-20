@@ -1,0 +1,169 @@
+#!/bin/sh -e
+#
+# pjs unit tests.
+
+equals () {
+    tmp="/tmp/test-pjs"
+    echo -n "$1" | tail -n +2 > "$tmp"
+    diff - "$tmp"
+    rm "$tmp"
+}
+
+cd `dirname $(realpath "$0")`
+set -v
+
+seq 1 10 | pjs '_ > 5' | equals '
+6
+7
+8
+9
+10
+'
+
+seq 1 10 | pjs '_ % 2 == 0' | equals '
+2
+4
+6
+8
+10
+'
+
+cat data/lorem.txt | pjs '_.toUpperCase()' | equals '
+LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. QUISQUE PULVINAR, ODIO
+A ULTRICES FACILISIS, NISI LOREM TEMPUS LECTUS, VEL RUTRUM DOLOR ODIO A VELIT.
+ALIQUAM PHARETRA MAXIMUS JUSTO, AC VESTIBULUM MASSA MOLESTIE NON. FUSCE EGET
+QUAM ALIQUAM, VIVERRA QUAM QUIS, MAXIMUS NULLA. MAURIS TINCIDUNT UT TELLUS AT
+TINCIDUNT. PROIN NEC EST MI. FUSCE SOLLICITUDIN ELIT ET CONSEQUAT VOLUTPAT. IN
+AC VEHICULA ENIM.
+'
+
+cat data/lorem.txt | pjs --after 'LINES.slice(-3).join("\n")' | equals '
+quam aliquam, viverra quam quis, maximus nulla. Mauris tincidunt ut tellus at
+tincidunt. Proin nec est mi. Fusce sollicitudin elit et consequat volutpat. In
+ac vehicula enim.
+'
+
+cat data/lorem.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' \
+    --after 'longest' | equals '
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar, odio
+'
+
+cat data/lorem.txt | pjs 'count++ ;;' --after 'count' | equals '
+6
+'
+
+cat data/lorem.txt | pjs --after 'COUNT' | equals '
+6
+'
+
+# Not technically correct because empty lines are counted as words
+cat data/lorem.txt | pjs 'words += $.length ;;' --after 'words' | equals '
+62
+'
+
+# Not technically correct because words include punctuation
+cat data/lorem.txt | pjs --before 'let words = new Set()' \
+    'for (let word of $) words.add(word)' --after 'words.size' | equals '
+55
+'
+
+cat data/whitespace.txt | pjs '_.replace(/\s*$/, "")' | equals '
+This
+  file has
+    trailing
+WHITESPACE !
+'
+
+cat data/passwd.txt | pjs -d : '$5' | equals '
+/root
+/usr/sbin
+/bin
+/dev
+'
+
+cat data/passwd.txt | pjs -d : '$.slice(0, 2)' | equals '
+["root","x"]
+["daemon","x"]
+["bin","x"]
+["sys","x"]
+'
+
+cat data/filenames.txt | pjs 'fs.existsSync(_)' | equals '
+run
+data/grades.csv
+data/users.json
+'
+
+cat data/filenames.txt | pjs 'fs.existsSync(_) && fs.statSync(_).size > 200' | equals '
+run
+data/users.json
+'
+
+cat data/filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' \
+    --after 's.size' | equals '
+4
+'
+
+cat data/filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' \
+    --after 'lines.sort().join("\n")' | equals '
+data/grades.csv
+data/not-found.txt
+data/not-found.txt
+data/users.json
+run
+'
+
+cat data/filenames.txt | pjs --after 'LINES.sort().join("\n")' | equals '
+data/grades.csv
+data/not-found.txt
+data/not-found.txt
+data/users.json
+run
+'
+
+cat data/grades.csv | pjs --csv '$2' | equals '
+grade
+43
+75
+90
+85
+78
+'
+
+cat data/grades.csv | pjs --csv-header '_.grade' | equals '
+43
+75
+90
+85
+78
+'
+
+cat data/grades.csv | pjs --csv-header '_.subject == "biology" && _.name' | equals '
+Alice
+David
+'
+
+cat data/grades.csv | pjs --csv-header 'sum += Number(_.grade) ;;' --after 'sum/COUNT' | equals '
+74.2
+'
+
+cat data/users.json | pjs --json 'version' _ | equals '
+123
+'
+
+cat data/users.json | pjs --json 'items.*.name' '_.first+" "+_.last' | equals '
+Winifred Frost
+Miles Fernandez
+Kennard Floyd
+Lonnie Davis
+Duncan Poole
+'
+
+cat data/users.json | pjs --json 'items.*' '_.age >= 21' | equals '
+{"name":{"first":"Winifred","last":"Frost"},"age":42}
+{"name":{"first":"Lonnie","last":"Davis"},"age":78}
+{"name":{"first":"Duncan","last":"Poole"},"age":36}
+'
+
+set +v
+echo "All tests passed."
