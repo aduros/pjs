@@ -6,4 +6,6 @@ module.exports = {
     eachLine: require("./lib/line-iterator"),
     eachCsv: require("./lib/csv-iterator"),
     eachJson: require("./lib/json-iterator"),
+    eachHtml: require("./lib/html-iterator"),
+    eachXml: require("./lib/xml-iterator"),
 };

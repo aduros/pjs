@@ -8,7 +8,7 @@ pjs - pipe to JavaScript
 
 # DESCRIPTION
 
-**pjs** is a tool for processing text, CSV, and JSON.
+**pjs** is a tool for processing text, CSV, JSON, HTML, and XML.
 
 pjs lets you write small and powerful JavaScript programs, similar to awk/sed/grep. It works by
 generating a complete JS program from the provided script(s), and feeding it each line of standard
@@ -57,6 +57,15 @@ built-in variable contains a JSON object. The filter defines which objects will 
 The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
 example: `--json 'rows.*'`. The full filter format is specified by
 [JSONStream](https://www.npmjs.com/package/JSONStream).
+
+`--html <selector>`
+: Parse the input data as HTML, picking elements using the given CSS3 selector. The parser is
+forgiving with malformed documents. The `_` built-in variable will contain an object with the keys:
+`type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
+`querySelector` and `querySelectorAll` further querying using another CSS selector.
+
+`--xml <selector>`
+: Same as `--html`, but tags and attributes are considered case-sensitive.
 
 `-V, --version`
 : Print the version number.
@@ -298,6 +307,39 @@ Print the users that are older than 21:
 
 ```sh
 cat users.json | pjs --json 'items.*' '_.age >= 21'
+```
+
+## HTML/XML Examples
+
+Print the text of all H1 and H2 elements on a web page:
+
+```sh
+curl https://aduros.com | pjs --html 'h1,h2' '_.text'
+```
+
+Print the URLs of all images on a web page:
+
+```sh
+curl https://aduros.com | pjs --html 'img' '_.attr.src'
+```
+
+Print the href of all external links using a complex CSS selector:
+
+```sh
+curl https://aduros.com | pjs --html 'ul.c-links a[target=_blank]' '_.attr.href'
+```
+
+Print all H2 links with URLs containing the word "blog":
+
+```sh
+curl https://aduros.com | pjs --html 'h2 a' '_.attr.href.includes("blog") ? _.attr.href : null'
+```
+
+Print a summary of an RSS feed:
+
+```sh
+curl https://aduros.com/index.xml | pjs --xml 'item' \
+    '_.querySelector("title").text + " --> " + _.querySelector("link").text'
 ```
 
 # BUGS

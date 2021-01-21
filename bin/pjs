@@ -23,6 +23,8 @@ const program = new commander.Command()
     .option("--csv", "Parse input as CSV")
     .option("--csv-header", "Parse input as CSV with a column header")
     .option("--json <filter>", "Parse input as JSON")
+    .option("--html <selector>", "Parse input as HTML")
+    .option("--xml <selector>", "Parse input as XML")
     .version(pkg.version)
     .action(async (script, options, command) => {
         // Must include at least one script
@@ -33,22 +35,32 @@ const program = new commander.Command()
         const generate = require("../lib/generate");
         var generated;
         try {
-            let mode = null;
+            let mode, markupSelector;
             if (options.csv || options.csvHeader) {
                 mode = "csv";
-            } else if (options.json) {
+            } else if (options.json != null) {
                 mode = "json";
+            } else if (options.html != null) {
+                mode = "html";
+                markupSelector = options.html;
+            } else if (options.xml != null) {
+                mode = "xml";
+                markupSelector = options.xml;
             }
+
             generated = generate({
                 mode,
                 beforeJs: options.before ? options.before.join("\n;") : null,
                 lineJs: script.join("\n;"),
                 afterJs: options.after ? options.after.join("\n;") : null,
+                pjsModule: !options.explain ? ".." : null,
+
                 textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
                 csvHeader: options.csvHeader,
                 jsonFilter: options.json,
-                pjsModule: !options.explain ? ".." : null,
+                markupSelector: markupSelector,
             });
+
         } catch (error) {
             if (process.env.PJS_DEBUG) {
                 console.error(error);

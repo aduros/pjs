@@ -16,7 +16,18 @@
     "type": "git",
     "url": "https://github.com/aduros/pjs.git"
   },
-  "keywords": ["shell", "cli", "pipe", "awk", "sort", "cut", "sed", "grep", "wc", "uniq"],
+  "keywords": [
+    "shell",
+    "cli",
+    "pipe",
+    "awk",
+    "sort",
+    "cut",
+    "sed",
+    "grep",
+    "wc",
+    "uniq"
+  ],
   "scripts": {
     "test": "test/run"
   },
@@ -25,8 +36,11 @@
     "acorn": "^8.0.4",
     "ast-types": "^0.14.2",
     "commander": "^7.0.0",
+    "css-select": "^3.1.2",
     "csv-parse": "^4.14.2",
+    "domutils": "^2.4.4",
     "escodegen": "^2.0.0",
-    "estraverse": "^5.2.0"
+    "estraverse": "^5.2.0",
+    "htmlparser2": "^6.0.0"
   }
 }
