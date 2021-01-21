@@ -26,7 +26,11 @@
     "sed",
     "grep",
     "wc",
-    "uniq"
+    "uniq",
+    "csv",
+    "json",
+    "html",
+    "xml"
   ],
   "scripts": {
     "test": "test/run"
