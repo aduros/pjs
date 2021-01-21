@@ -33,6 +33,7 @@
     "xml"
   ],
   "scripts": {
+    "prepare": "[ -z \"`git status --porcelain`\" ] && make",
     "test": "test/run"
   },
   "dependencies": {
