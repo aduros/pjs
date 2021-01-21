@@ -62,7 +62,7 @@ example: `--json 'rows.*'`. The full filter format is specified by
 : Parse the input data as HTML, picking elements using the given CSS3 selector. The parser is
 forgiving with malformed documents. The `_` built-in variable will contain an object with the keys:
 `type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
-`querySelector` and `querySelectorAll` further querying using another CSS selector.
+`querySelector()` and `querySelectorAll()` for further querying using another CSS selector.
 
 `--xml <selector>`
 : Same as `--html`, but tags and attributes are considered case-sensitive.
@@ -311,7 +311,7 @@ cat users.json | pjs --json 'items.*' '_.age >= 21'
 
 ## HTML/XML Examples
 
-Print the text of all H1 and H2 elements on a web page:
+Print the text of all `<h1>` and `<h2>` elements on a web page:
 
 ```sh
 curl https://aduros.com | pjs --html 'h1,h2' '_.text'
@@ -323,16 +323,22 @@ Print the URLs of all images on a web page:
 curl https://aduros.com | pjs --html 'img' '_.attr.src'
 ```
 
-Print a count of all external links using a complex CSS selector:
+Scrape links off a news site:
 
 ```sh
-curl https://aduros.com | pjs --html 'ul.c-links a[target=_blank]' --after COUNT
+curl https://news.ycombinator.com | pjs --html 'a.storylink' '_.text+": "+_.attr.href'
 ```
 
-Print all H2 links with URLs containing the word "blog":
+Print a count of all external links:
 
 ```sh
-curl https://aduros.com | pjs --html 'h2 a' '_.attr.href.includes("blog") ? _.attr.href : null'
+curl https://aduros.com | pjs --html 'a[target=_blank]' --after COUNT
+```
+
+Print all links in `<h2>` elements with URLs containing the word "blog":
+
+```sh
+curl https://aduros.com | pjs --html 'h2 a' '_.attr.href.includes("blog") && _.attr.href'
 ```
 
 Print a readable summary of an RSS feed:
