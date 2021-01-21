@@ -1,0 +1,9 @@
+<test>
+  <item kind="foo">xxx</item>
+  <item KIND="foo">yyy</item>
+  <item kind="bar">zzz</item>
+  <item kind="foo">abc</item>
+
+  <!-- xml tag names are case sensitive -->
+  <ITEM kind="foo">666</ITEM>
+</test>

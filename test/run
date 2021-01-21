@@ -108,65 +108,64 @@ cat data/filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' \
 4
 '
 
-cat data/filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' \
-    --after 'lines.sort().join("\n")' | equals '
-data/grades.csv
-data/not-found.txt
-data/not-found.txt
-data/users.json
-run
+cat data/website.html | pjs --html 'title' '_.text.trim()' | equals '
+Bob'\''s Homepage
 '
 
-cat data/filenames.txt | pjs --after 'LINES.sort().join("\n")' | equals '
-data/grades.csv
-data/not-found.txt
-data/not-found.txt
-data/users.json
-run
+cat data/website.html | pjs --html '#counter' '_.text' | equals '
+1234
 '
 
-cat data/grades.csv | pjs --csv '$2' | equals '
-grade
-43
-75
-90
-85
-78
+cat data/website.html | pjs --html 'img[src]' '_.attr.src' | equals '
+construction.gif
+dancing-baby.gif
 '
 
-cat data/grades.csv | pjs --csv-header '_.grade' | equals '
-43
-75
-90
-85
-78
+cat data/simple.xml | pjs --xml 'item[kind=foo]' --after COUNT | equals '
+2
 '
 
-cat data/grades.csv | pjs --csv-header '_.subject == "biology" && _.name' | equals '
-Alice
-David
+cat data/simple.xml | pjs --xml 'ITEM' --after COUNT | equals '
+1
 '
 
-cat data/grades.csv | pjs --csv-header 'sum += Number(_.grade) ;;' --after 'sum/COUNT' | equals '
-74.2
+cat data/aduros-website.html | pjs --html 'h1,h2' '_.text' | equals '
+aduros.com
+Hacking i3: Automatic Layout
+Introducing pjs
+Ramblings From a Dirty Apartment
+Returning to Text
+Hacking i3: Window Promoting
+A Blog Half Full
+Simple Clipboard Management
+Firefox Minimalism
+Media Companies are Complicit
+Access Recent Files From the Command Line
 '
 
-cat data/users.json | pjs --json 'version' _ | equals '
-123
+cat data/aduros-website.html | pjs --html 'img' '_.attr.src' | equals '
+/profile.jpg
 '
 
-cat data/users.json | pjs --json 'items.*.name' '_.first+" "+_.last' | equals '
-Winifred Frost
-Miles Fernandez
-Kennard Floyd
-Lonnie Davis
-Duncan Poole
+cat data/aduros-website.html | pjs --html 'ul.c-links a[target=_blank]' '_.attr.href' | equals '
+https://aduros.com/index.xml
+https://twitter.com/b_garcia
+https://github.com/aduros
+https://linkedin.com/in/bruno-garcia-38223415
 '
 
-cat data/users.json | pjs --json 'items.*' '_.age >= 21' | equals '
-{"name":{"first":"Winifred","last":"Frost"},"age":42}
-{"name":{"first":"Lonnie","last":"Davis"},"age":78}
-{"name":{"first":"Duncan","last":"Poole"},"age":36}
+cat data/aduros-website.html | pjs --html 'h2 a' \
+    '_.attr.href.includes("blog") ? _.attr.href : null' | equals '
+https://aduros.com/blog/hacking-i3-automatic-layout/
+https://aduros.com/blog/introducing-pjs/
+https://aduros.com/blog/ramblings-from-a-dirty-apartment/
+https://aduros.com/blog/returning-to-text/
+https://aduros.com/blog/hacking-i3-window-promoting/
+https://aduros.com/blog/a-blog-half-full/
+https://aduros.com/blog/simple-clipboard-management/
+https://aduros.com/blog/firefox-minimalism/
+https://aduros.com/blog/media-companies-are-complicit/
+https://aduros.com/blog/access-recent-files-from-the-command-line/
 '
 
 set +v

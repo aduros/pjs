@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>aduros.com</title>
+    <link>https://aduros.com/</link>
+    <description>Recent content on aduros.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>Bruno Garcia &lt;b@aduros.com&gt;</managingEditor>
+    <webMaster>Bruno Garcia &lt;b@aduros.com&gt;</webMaster>
+    <lastBuildDate>Wed, 20 Jan 2021 11:04:04 +0000</lastBuildDate><atom:link href="https://aduros.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hacking i3: Automatic Layout</title>
+      <link>https://aduros.com/blog/hacking-i3-automatic-layout/</link>
+      <pubDate>Wed, 20 Jan 2021 11:04:04 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/hacking-i3-automatic-layout/</guid>
+      <description>&lt;p&gt;(Day 20 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Another post about making a &lt;a href=&#34;https://i3wm.org&#34;&gt;good window manager&lt;/a&gt; even better!&lt;/p&gt;
+&lt;p&gt;Window layouts in i3 basically come in two types: horizontally or vertically stacked. By combining
+those two you can arrange windows however you want.&lt;/p&gt;
+&lt;p&gt;The default layout in i3 is horizontal, which means when you open up too many windows it ends up
+looking like this:&lt;/p&gt;
+&lt;video width=&#34;100%&#34; loop muted autoplay playsinline class=&#34;shadow&#34;&gt;
+  &lt;source src=&#34;before.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;source src=&#34;before.webm&#34; type=&#34;video/webm&#34;&gt;
+  &lt;p&gt;(The video could not be played)&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Of course what you&amp;rsquo;re supposed to prevent everything getting squished like that is to split windows
+to the opposite layout so they grow in the other direction. But that requires a &lt;em&gt;key press&lt;/em&gt;, and we
+don&amp;rsquo;t use tiling WMs to manually position windows, dammit!&lt;/p&gt;
+&lt;p&gt;Luckily i3 has a capable API and others have used it to automatically perform that splitting, such
+as &lt;a href=&#34;https://github.com/olemartinorg/i3-alternating-layout&#34;&gt;i3-alternating-layout&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/Chimrod/i3_workspaces&#34;&gt;i3_workspaces&lt;/a&gt;. After playing with those I didn&amp;rsquo;t
+really find the idea of binary tree layouts very practical. Maybe it&amp;rsquo;s my 13&amp;rdquo; laptop screen, but
+windows just get too small.&lt;/p&gt;
+&lt;p&gt;What I really wanted was a two-column layout that splits the screen in half, with a vertical stack
+of windows on each side. Well, after a lot of API struggling:&lt;/p&gt;
+&lt;video width=&#34;100%&#34; loop muted autoplay playsinline class=&#34;shadow&#34;&gt;
+  &lt;source src=&#34;after.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;source src=&#34;after.webm&#34; type=&#34;video/webm&#34;&gt;
+  &lt;p&gt;(The video could not be played)&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;p&gt;No windows were manually split in this video 😮 Just pure, sweet terminal spam. Moving windows
+between the columns works as you&amp;rsquo;d expect. You can still overload the screen with too many windows,
+but hey, a short and wide terminal is at least still readable.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the source for that:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python3&#34; data-lang=&#34;python3&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Automatically splits windows so workspaces are laid out in 2 columns.&lt;/span&gt;
+
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; i3ipc &lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; Connection, Event
+
+COLUMNS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;move_container&lt;/span&gt; (con1, con2):
+    con2&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;command(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;mark __column-layout&amp;#34;&lt;/span&gt;);
+    con1&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;command(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;move window to mark __column-layout&amp;#34;&lt;/span&gt;)
+    con2&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;command(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unmark __column-layout&amp;#34;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;layout&lt;/span&gt; (i3, event):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; event&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;change &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;close&amp;#34;&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; reply &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_workspaces():
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; reply&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;focused:
+                workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_tree()&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_by_id(reply&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ipc_data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;])&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace()
+
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; len(workspace&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; len(workspace&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+                    child &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; workspace&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]
+                    move_container(child, workspace)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        window &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_tree()&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_by_id(event&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;container&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;id)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; window &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;:
+            workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; window&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace()
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; workspace &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; len(workspace&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; COLUMNS:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; workspace&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nodes:
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;layout &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;splitv&amp;#34;&lt;/span&gt;:
+                        node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;command(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;splitv&amp;#34;&lt;/span&gt;)
+
+i3 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Connection()
+i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;on(Event&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;WINDOW_NEW, layout)
+i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;on(Event&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;WINDOW_CLOSE, layout)
+i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;on(Event&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;WINDOW_MOVE, layout)
+i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;main()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As always, make sure you have python3 and the latest version of i3ipc installed.&lt;/p&gt;
+&lt;p&gt;For larger and wider screens you might experiment increasing &lt;code&gt;COLUMNS&lt;/code&gt; to 3. I tend to stick with 2
+even when I had a desktop computer, my workflow usually ends up being &lt;em&gt;[thing I&amp;rsquo;m working on]&lt;/em&gt; on
+the left column and a bunch of terminals on the right.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re still reading this far, you&amp;rsquo;ll probably like these other posts on i3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../hacking-i3-window-promoting&#34;&gt;Hacking i3: Window Promoting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../hacking-i3-window-swallowing&#34;&gt;Hacking i3: Window Swallowing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introducing pjs</title>
+      <link>https://aduros.com/blog/introducing-pjs/</link>
+      <pubDate>Tue, 19 Jan 2021 20:45:27 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/introducing-pjs/</guid>
+      <description>&lt;p&gt;(Day 19 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been working on a small project that can basically be summed up as &lt;code&gt;awk&lt;/code&gt; for JS developers.
+&lt;a href=&#34;https://github.com/aduros/pjs&#34;&gt;&lt;code&gt;pjs&lt;/code&gt;&lt;/a&gt; is a command-line tool for processing text-based files by
+writing snippets of JavaScript.&lt;/p&gt;
+&lt;p&gt;For example, converting each line to upper-case:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;cat document.txt | pjs &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;_.toUpperCase()&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Or filtering lines:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;seq &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; | pjs &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;_ % 2 == 0&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And a whole bunch of &lt;a href=&#34;https://github.com/aduros/pjs#examples&#34;&gt;other stuff&lt;/a&gt;, including support for
+streaming CSV and JSON.&lt;/p&gt;
+&lt;p&gt;Under the hood it does some interesting things with static analysis and AST transformation to
+support all the magic. The magic can always be explained by running pjs with &lt;code&gt;--explain&lt;/code&gt; to see the
+generated program.&lt;/p&gt;
+&lt;p&gt;I would say v1.0 is nearly finished, ETA being a confident &amp;ldquo;soon&amp;rdquo;, and probably will be done by the
+time anyone reads this.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ramblings From a Dirty Apartment</title>
+      <link>https://aduros.com/blog/ramblings-from-a-dirty-apartment/</link>
+      <pubDate>Mon, 18 Jan 2021 20:56:21 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/ramblings-from-a-dirty-apartment/</guid>
+      <description>&lt;p&gt;(Day 18 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I started reading some philosophy disguised as a housekeeping manual called &lt;a href=&#34;https://www.amazon.com/Home-Comforts-Science-Keeping-House/dp/0743272862&#34;&gt;Home
+Comforts&lt;/a&gt; and it&amp;rsquo;s been
+pretty illuminating.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve always loathed housework. I&amp;rsquo;m not exactly sure why. It could be the feeling of futility from
+the cycle of cleaning something that will soon become dirty again. Or maybe my
+pseudo-nomadism/quasi-Buddhism prevents me from attaching much importance to objects and spaces. Or
+maybe like many I internalize that housework is women&amp;rsquo;s work, or that valued work is &lt;em&gt;paid&lt;/em&gt; work.&lt;/p&gt;
+&lt;p&gt;Whatever the reason, it&amp;rsquo;s bullshit. Many qualities I admire in others and try to cultivate in myself
+are practiced by housework. Self-reliance, independence, problem-solving, discipline, preparedness,
+even mindfulness.&lt;/p&gt;
+&lt;p&gt;To a degree these are qualities that are also developed by computer programming. I&amp;rsquo;m pretty good at
+one and not the other, why? One difference is that people will give you a lot of money for
+programming. But monetary rewards are starting to motivate me less and less these past few years.&lt;/p&gt;
+&lt;p&gt;If I put half as much time organizing my home as I do my &lt;code&gt;$HOME&lt;/code&gt; I&amp;rsquo;d probably be better off.
+Perhaps housework is the most rewarding task one can perform, because it doesn&amp;rsquo;t depend on an
+employer and the results are immediate.&lt;/p&gt;
+&lt;p&gt;But housework is &lt;em&gt;boring&lt;/em&gt;. Yeah, so is programming like 99% of the time. Besides, maybe boredom is
+&lt;a href=&#34;../implementing-a-slow-life&#34;&gt;underrated&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Returning to Text</title>
+      <link>https://aduros.com/blog/returning-to-text/</link>
+      <pubDate>Sun, 17 Jan 2021 21:21:16 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/returning-to-text/</guid>
+      <description>&lt;p&gt;(Day 17 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been replacing the way I store personal todo lists and notes. Previously I was using Trello.
+Before that I used &lt;a href=&#34;https://tiddlywiki.com/&#34;&gt;Tiddlywiki&lt;/a&gt; for a couple years. I used to work with a
+guy that swore by simply using a text file, so I started giving that a shot.&lt;/p&gt;
+&lt;p&gt;In theory this approach has some major perks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s easy to add stuff: Just start typing.&lt;/li&gt;
+&lt;li&gt;Just as importantly, it&amp;rsquo;s easy to delete stuff.&lt;/li&gt;
+&lt;li&gt;Searching and transforming text files is a solved problem.&lt;/li&gt;
+&lt;li&gt;You own your data. It&amp;rsquo;s on your own hardware and is in a format that won&amp;rsquo;t be obsolete in our
+lifetime.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Something that may be obvious to others that I discovered only recently is that &lt;em&gt;you need to be able
+to get to your notebook.txt quickly&lt;/em&gt;. It should be instantly accessible on a global keybind. It
+isn&amp;rsquo;t good enough to open your editor, file-open, navigate to notebook.txt, scroll down to where you
+were before&amp;hellip; Once I took care of that I&amp;rsquo;m finding the text file approach much more natural.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m using the &lt;a href=&#34;https://github.com/vimwiki/vimwiki&#34;&gt;vimwiki&lt;/a&gt; plugin, but honestly I don&amp;rsquo;t use most of
+the &amp;ldquo;wiki&amp;rdquo; features and just use it for markdown syntax conveniences.&lt;/p&gt;
+&lt;p&gt;The only downside I occasionally feel is the lack of access on my phone. Though not so much over the
+last few months with the lockdowns and all. I&amp;rsquo;ve thought about self-hosting something like Etherpad
+that would sync on both my devices, but&amp;hellip; meh. Sometimes low tech is best tech.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hacking i3: Window Promoting</title>
+      <link>https://aduros.com/blog/hacking-i3-window-promoting/</link>
+      <pubDate>Sat, 16 Jan 2021 12:04:44 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/hacking-i3-window-promoting/</guid>
+      <description>&lt;p&gt;(Day 16 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;One of the only things I miss from when I used &lt;a href=&#34;https://xmonad.org/&#34;&gt;xmonad&lt;/a&gt; many years ago was
+being able to hit a keybind to swap the currently focused window with the &amp;ldquo;master&amp;rdquo; window. I think
+the default keybind for that in xmonad is alt-Enter.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i3wm.org/&#34;&gt;i3&lt;/a&gt; doesn&amp;rsquo;t have the concept of a master window, but if we consider the master
+window to just be the largest window, the same effect can be achieved:&lt;/p&gt;
+&lt;video width=&#34;100%&#34; loop muted autoplay playsinline class=&#34;shadow&#34;&gt;
+  &lt;source src=&#34;demo.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;source src=&#34;demo.webm&#34; type=&#34;video/webm&#34;&gt;
+  &lt;p&gt;(The video could not be played)&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Simple, but often useful. Here&amp;rsquo;s the &lt;code&gt;promote-window&lt;/code&gt; script that implements it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python3&#34; data-lang=&#34;python3&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Promotes the focused window by swapping it with the largest window.&lt;/span&gt;
+
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; i3ipc &lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; Connection, Event
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;find_biggest_window&lt;/span&gt; (container):
+    max_leaf &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;
+    max_area &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; leaf &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; container&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;leaves():
+        rect &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; leaf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;rect
+        area &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rect&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;width &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; rect&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;height
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; leaf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;focused &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; area &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; max_area:
+            max_area &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; area
+            max_leaf &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; leaf
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; max_leaf
+
+i3 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Connection()
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; reply &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_workspaces():
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; reply&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;focused:
+        workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_tree()&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_by_id(reply&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ipc_data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;])
+        master &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; find_biggest_window(workspace)
+        i3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;command(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;swap container with con_id &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%s&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; master&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;id)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make sure you have python3 with i3ipc, and then add this your i3 config:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;bindsym $mod+p exec --no-startup-id ~/.config/i3/promote-window
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No big-brain Haskell required! If you read this far and found this interesting you might also like
+&lt;a href=&#34;../hacking-i3-window-swallowing&#34;&gt;Hacking i3: Window Swallowing&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Blog Half Full</title>
+      <link>https://aduros.com/blog/a-blog-half-full/</link>
+      <pubDate>Fri, 15 Jan 2021 20:34:14 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/a-blog-half-full/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m halfway through &lt;a href=&#34;https://aduros.com/blog/30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When I was a kid I &lt;em&gt;really&lt;/em&gt; wanted to be a cartoonist. I wanted it so much that my first &amp;ldquo;job&amp;rdquo; was
+doing a daily comic strip for the local newspaper. I did that for 10 months straight, 6 days a week.
+At the end I was so sick of it I never wanted to pick up a pencil ever again.&lt;/p&gt;
+&lt;p&gt;Hopefully blogging doesn&amp;rsquo;t end up the same way!&lt;/p&gt;
+&lt;p&gt;In other news, one post this week got picked up on &lt;a href=&#34;https://news.ycombinator.com/item?id=25732862&#34;&gt;Hacker
+News&lt;/a&gt; which was a nice little ego boost. I have no
+idea how much of that translated to new readership since this site doesn&amp;rsquo;t track users. This is
+absolutely for the best.&lt;/p&gt;
+&lt;p&gt;Just a couple more weeks, let&amp;rsquo;s get it.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/KxGRhd_iWuE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Simple Clipboard Management</title>
+      <link>https://aduros.com/blog/simple-clipboard-management/</link>
+      <pubDate>Thu, 14 Jan 2021 23:53:42 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/simple-clipboard-management/</guid>
+      <description>&lt;p&gt;(Day 14 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/erebe/greenclip&#34;&gt;Greenclip&lt;/a&gt; is really useful for recording your clipboard history
+and showing a menu to switch between items.&lt;/p&gt;
+&lt;p&gt;Along the same lines I had an idea to write a tiny script that allows editing of the clipboard in
+vim. This has been handy when I need to quickly fix up some text before pasting it into a GUI
+application:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/sh -e
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;mktemp /tmp/clipboard-XXX&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+
+xsel --clipboard &amp;gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$file&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+xterm -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EDITOR&lt;span style=&#34;color:#e6db74&#34;&gt; -c &amp;#39;set nofixeol&amp;#39; \&amp;#34;&lt;/span&gt;$file&lt;span style=&#34;color:#e6db74&#34;&gt;\&amp;#34;&amp;#34;&lt;/span&gt;
+xsel --clipboard &amp;lt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$file&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+
+rm &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$file&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;nofixeol&lt;/code&gt; option prevents vim from adding a newline to the end of the clipboard, which is
+usually not desired.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Firefox Minimalism</title>
+      <link>https://aduros.com/blog/firefox-minimalism/</link>
+      <pubDate>Wed, 13 Jan 2021 19:31:34 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/firefox-minimalism/</guid>
+      <description>&lt;p&gt;(Day 13 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been working on an opinionated and ultra-minimalist Firefox theme that pairs nicely with
+&lt;a href=&#34;https://github.com/tridactyl/tridactyl&#34;&gt;Tridactyl&lt;/a&gt;. I thought I&amp;rsquo;d share a few notes here.&lt;/p&gt;
+&lt;p&gt;But first some pretty screenshots! Here&amp;rsquo;s what you&amp;rsquo;re greeted with when you open a Firefox window:&lt;/p&gt;
+&lt;div style=&#34;text-align: center&#34;&gt;
+  &lt;img src=&#34;screenshot1.png&#34; class=&#34;shadow&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Nope, it&amp;rsquo;s not a terminal, that text prompt is the address bar.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s what it looks like with a page in a single tab:&lt;/p&gt;
+&lt;div style=&#34;text-align: center&#34;&gt;
+  &lt;img src=&#34;screenshot2.png&#34; class=&#34;shadow&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The tab bar is hidden until there are multiple tabs. I find this helps me focus during certain tasks
+where I have a browser window with just one site I&amp;rsquo;m working on.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a slightly busier example with three tabs open:&lt;/p&gt;
+&lt;div style=&#34;text-align: center&#34;&gt;
+  &lt;img src=&#34;screenshot3.png&#34; class=&#34;shadow&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;One of the tabs is playing audio, which is shown with a yellow underline.&lt;/p&gt;
+&lt;p&gt;In order to fit on this blog, all of these screenshots are much lower resolution than I actually
+browse with. But even with windows at low resolutions you can see it&amp;rsquo;s pretty readable.&lt;/p&gt;
+&lt;h2 id=&#34;trimmed-fat&#34;&gt;Trimmed Fat&lt;/h2&gt;
+&lt;p&gt;Default browser UIs can be messy, and some things were obvious candidates to remove. Other things
+were less obvious but since the theme assumes hotkey usage, basically everything that doesn&amp;rsquo;t
+communicate important information gets hidden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigation buttons (back, forward, home, reload): I use hotkeys or the right-click popup.&lt;/li&gt;
+&lt;li&gt;Page action buttons (bookmark, show info, add to Pocket, etc.): Either I have hotkeys or I never
+use these features.&lt;/li&gt;
+&lt;li&gt;Tab favicons: No branding and more room for the title.&lt;/li&gt;
+&lt;li&gt;The hamburger menu: The alt key can be pressed to temporarily show the menu bar. Most of the
+things in this menu can be hotkeyed (open dev tools, Firefox preferences, logins, etc.)&lt;/li&gt;
+&lt;li&gt;Extension buttons: I only use uBlock and Tridactyl.&lt;/li&gt;
+&lt;li&gt;Downloads button: Actually, I kept it because it&amp;rsquo;s handy to see download progress. It&amp;rsquo;s kind of
+annoying that it doesn&amp;rsquo;t auto-hide after the downloads are finished. I might remove it.&lt;/li&gt;
+&lt;li&gt;Page scrollbars: You can usually infer your position in a page just by looking at the content.
+Tridactyl has vim-like hotkeys for going to the bottom and top of the page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;changed-habits&#34;&gt;Changed Habits&lt;/h2&gt;
+&lt;p&gt;I used to be one of those people with 50+ tabs open, persisted across every session. Maybe once a
+week or so I would do a tab purge.&lt;/p&gt;
+&lt;p&gt;Using a &amp;ldquo;one-line&amp;rdquo; theme quickly discourages that habit. These days I rely more on multiple windows.
+When I start a new &amp;ldquo;task&amp;rdquo;, I open a new window on a different desktop. When done I close the window
+and all the tabs are gone. If I need to go back to some site I found before, I use browser history
+or bookmarks.&lt;/p&gt;
+&lt;p&gt;There are still some quirks to work out but once it&amp;rsquo;s ready I&amp;rsquo;ll throw the theme up somewhere on
+&lt;a href=&#34;https://github.com/aduros&#34;&gt;Github&lt;/a&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Media Companies are Complicit</title>
+      <link>https://aduros.com/blog/media-companies-are-complicit/</link>
+      <pubDate>Tue, 12 Jan 2021 20:19:51 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/media-companies-are-complicit/</guid>
+      <description>&lt;p&gt;(Day 12 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Facebook, Twitter, and other media companies shouldn&amp;rsquo;t be applauded for finally deplatforming the
+American president after profiting off controversy for so many years.&lt;/p&gt;
+&lt;p&gt;It took up &lt;em&gt;until the very day&lt;/em&gt; that the American president lost the election for TV outlets to
+finally start calling out his bullshit. It took an act of terrorism to force social media&amp;rsquo;s hand
+against the communities allowed to grow on their platforms.&lt;/p&gt;
+&lt;p&gt;Extremist users are engaged users, and businesses know that. These companies don&amp;rsquo;t stand for
+anything besides number of active users and ad impressions. They and their advertisers have way too
+much power. We&amp;rsquo;re seeing now that social media companies have the power to do what politics couldn&amp;rsquo;t
+do in 4 years, suppress Trump. This should be cause for some concern.&lt;/p&gt;
+&lt;p&gt;We can&amp;rsquo;t entrust media companies with the common good because their actions are moral-less and will
+always follow the shifting public sentiment which informs advertising. In the coming weeks some
+insurrectionists may be jailed and scapegoated. Maybe even the president himself. But don&amp;rsquo;t forget
+about the profiteering that helped create them and how we allow it to continue.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Access Recent Files From the Command Line</title>
+      <link>https://aduros.com/blog/access-recent-files-from-the-command-line/</link>
+      <pubDate>Mon, 11 Jan 2021 22:08:04 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/access-recent-files-from-the-command-line/</guid>
+      <description>&lt;p&gt;(Day 11 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t already use &lt;a href=&#34;https://github.com/rupa/z&#34;&gt;Z&lt;/a&gt; you absolutely need to check it out. Z is a
+CLI tool that cd&amp;rsquo;s to a recently used directory, so that typing &lt;code&gt;z foo&lt;/code&gt; will &lt;code&gt;cd /my/deeply/nested/project/foobar7&lt;/code&gt;, as long as you&amp;rsquo;ve cd&amp;rsquo;ed into foobar7 sometime in the past.&lt;/p&gt;
+&lt;p&gt;Z is great for jumping to recent directories&amp;hellip; but is there an equivalent for opening recently used
+&lt;em&gt;files&lt;/em&gt;? There&amp;rsquo;s &lt;a href=&#34;https://github.com/clvv/fasd&#34;&gt;fasd&lt;/a&gt;, but the way it works seems a bit too magical
+to me. It&amp;rsquo;s also limited in that files are often opened from other programs, instead of directly
+from the shell.&lt;/p&gt;
+&lt;p&gt;Every desktop environment since Windows 95 already has a &amp;ldquo;Recent Files&amp;rdquo; list for their file manager.
+On Linux, this is often handled by GTK. Conveniently, GTK provides a simple API for accessing the
+recent file list, and we can use it to write a small script that reads or writes to that list:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python3&#34; data-lang=&#34;python3&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# file-history: Read or write to GTK&amp;#39;s recent file list.&lt;/span&gt;
+
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gi
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; re
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys
+
+gi&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;require_version(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gtk&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.0&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; gi.repository &lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; Gtk, Gio, GLib
+
+manager &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Gtk&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;RecentManager&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_default()
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; len(sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# Add the given files to the recent file list&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; file &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:]:
+        uri &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Gio&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;File&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;new_for_path(file)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_uri()
+        manager&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_item(uri)
+    GLib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;idle_add(Gtk&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;main_quit)
+    Gtk&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;main()
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# Print the recent file list, starting with most recently used&lt;/span&gt;
+    home &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; re&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;compile(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;^&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;environ[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;HOME&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; item &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; sorted(manager&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_items(), key&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;lambda&lt;/span&gt; x: x&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_modified(), reverse&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; item&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exists():
+            print(home&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sub(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/&amp;#34;&lt;/span&gt;, item&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_uri_display()))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Running &lt;code&gt;file-history&lt;/code&gt; with arguments will add those files to the recent file list. Running
+&lt;code&gt;file-history&lt;/code&gt; with no arguments will print the recent file list to stdout. Now we can go to town
+combining this with other scripts.&lt;/p&gt;
+&lt;h2 id=&#34;reading-history&#34;&gt;Reading History&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s write a key binding in zsh that displays the recent file history in an
+&lt;a href=&#34;https://github.com/junegunn/fzf&#34;&gt;fzf&lt;/a&gt; menu.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;_bind_recent &lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+    local res&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;file-history | fzf --reverse --height 40% --prompt &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hist&amp;gt; &amp;#34;&lt;/span&gt; | sed &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s|^~/|&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/|&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$res&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+        LBUFFER&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$LBUFFER&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;(q)res&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; &amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+    zle reset-prompt
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+zle -N _bind_recent
+bindkey &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;^j&amp;#39;&lt;/span&gt; _bind_recent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now pressing ctrl-J will allow you to pick a recent file and add it to the end of the command line.
+I use this all the time for processing Firefox downloads. After downloading a zip or whatever, I
+just go to a terminal and type &lt;code&gt;unzip &amp;lt;ctrl-J&amp;gt;&lt;/code&gt;. Since the list is sorted, the recently downloaded
+zip is the first item in the list and I just press enter to expand out to &lt;code&gt;unzip ~/Downloads/LongFilename.zip&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Another possibility is integrating with &lt;a href=&#34;https://i3wm.org/&#34;&gt;i3&lt;/a&gt; or another window manager, so that
+pressing alt-J shows a recent file menu:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;bindsym $mod+j exec --no-startup-id file-history | rofi -dmenu -p Hist |
+    sed &amp;#34;s|^~/|$HOME/|&amp;#34; | xargs -d &amp;#39;\n&amp;#39; xdg-open
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;writing-history&#34;&gt;Writing History&lt;/h2&gt;
+&lt;p&gt;The other half of this is populating the recent file history with useful data. Graphical GTK apps
+will already do this. Ideally we want every file we &amp;ldquo;open&amp;rdquo; from the CLI to be added to the history
+too.&lt;/p&gt;
+&lt;p&gt;Some possibilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For users of CLI file managers like &lt;a href=&#34;https://github.com/gokcehan/lf&#34;&gt;LF&lt;/a&gt; or Ranger, call
+&lt;code&gt;file-history &amp;lt;selected-file&amp;gt;&lt;/code&gt; as part of the file open handler.&lt;/li&gt;
+&lt;li&gt;Write a shell alias that wraps &lt;code&gt;xdg-open&lt;/code&gt; and calls &lt;code&gt;file-history&lt;/code&gt;. I added this to my &lt;a href=&#34;https://github.com/aduros/dotfiles/blob/master/home/bin/o&#34;&gt;general
+purpose file opener&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Write a vim autocmd to sends all opened files to &lt;code&gt;file-history&lt;/code&gt;. Personally I don&amp;rsquo;t do this since
+vim already has an internal file history, but it might be useful for some.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far this setup has been working pretty nicely for me! Not quite as life-changing as Z, but I
+still use it on a daily basis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>XTerm: It&#39;s Better Than You Thought</title>
+      <link>https://aduros.com/blog/xterm-its-better-than-you-thought/</link>
+      <pubDate>Sun, 10 Jan 2021 19:29:19 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/xterm-its-better-than-you-thought/</guid>
+      <description>&lt;p&gt;(Day 10 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;A couple months back I switched my terminal from xfce4-terminal to the venerable xterm. For some
+reason I always put xterm in the same bucket as xclock, xmessage, or any other prehistoric command
+starting with X that comes pre-installed on any graphical Linux distribution.&lt;/p&gt;
+&lt;p&gt;It was surprising to learn that xterm is still very much &lt;a href=&#34;https://invisible-island.net/xterm/xterm.log.html&#34;&gt;actively
+developed&lt;/a&gt;. Even more surprisingly, it turns out
+xterm has &lt;a href=&#34;https://lwn.net/Articles/751763/&#34;&gt;incredibly low input latency&lt;/a&gt; compared to modern
+terminals. This is easy to test at home, try typing in xterm compared to any other terminal and feel
+how much snappier it is.&lt;/p&gt;
+&lt;p&gt;The lower latency alone is worth the price of admission in my opinion, so I went about configuring
+xterm as my default terminal. The configuration goes in &lt;code&gt;~/.Xresources&lt;/code&gt; and you need to run &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt; after every change, or &lt;a href=&#34;https://github.com/aduros/dotfiles/blob/eab476fc62e74e46cb41bb5c094cede7a28a014f/home/.config/nvim/options.vim#L27&#34;&gt;make vim do
+it&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;basic-configuration&#34;&gt;Basic Configuration&lt;/h2&gt;
+&lt;p&gt;Here are some &amp;ldquo;modern&amp;rdquo; sensible defaults I ended up landing on:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;! Sensible defaults
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.scrollTtyOutput: false
+XTerm.vt100.scrollKey: true
+XTerm.vt100.bellIsUrgent: true
+XTerm.vt100.metaSendsEscape: true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And here are some visual styling options, not including colors:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;! Styling
+XTerm.vt100.faceName: DejaVu Sans Mono
+XTerm.vt100.boldMode: false
+XTerm.vt100.faceSize: 11
+XTerm.vt100.internalBorder: 16
+XTerm.borderWidth: 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;XTerm supports key binding, but the syntax is non-obvious:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;XTerm.vt100.translations: #override \n\
+    Ctrl Shift &amp;lt;Key&amp;gt;N: scroll-back(1, halfpage) \n\
+    Ctrl Shift &amp;lt;Key&amp;gt;T: scroll-forw(1, halfpage) \n\
+    Ctrl Shift &amp;lt;Key&amp;gt;C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift &amp;lt;Key&amp;gt;V: insert-selection(CLIPBOARD)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This allows copying and pasting to the clipboard (not just the X selection) with shift-ctrl-C and V.
+It also allows scrolling up and down with shift-ctrl-N and T (you can switch this to K and J to
+match vim keys in Qwerty).&lt;/p&gt;
+&lt;h2 id=&#34;url-handling&#34;&gt;URL Handling&lt;/h2&gt;
+&lt;p&gt;So now we have a pretty usable setup, but there&amp;rsquo;s one more incredibly useful feature that was hard
+to figure out: opening URLs in the browser. We could of course select the URL and copy-paste, but
+there&amp;rsquo;s a better way.&lt;/p&gt;
+&lt;p&gt;XTerm has a configuration option called &lt;code&gt;printerCommand&lt;/code&gt; which is a command that is piped all the
+text currently visible in the terminal. As the name suggests, it&amp;rsquo;s meant to be used to implement
+printing to physical paper, but we can save the trees and hijack it to instead scan the screen for
+URLs and open the browser:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/sh -e
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+grep -Eo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\bhttps?://\S+\b&amp;#39;&lt;/span&gt; |
+    uniq |
+    ifne rofi -dmenu -i -p &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Open URL&amp;#34;&lt;/span&gt; -auto-select |
+    xargs xdg-open
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This greps for URLs, removes consecutive duplicates with &lt;code&gt;uniq&lt;/code&gt;, and displays a
+&lt;a href=&#34;https://github.com/davatorium/rofi&#34;&gt;rofi&lt;/a&gt; menu to choose between them if there were multiple URLs.
+&lt;code&gt;ifne&lt;/code&gt; is included in &lt;a href=&#34;https://packages.debian.org/unstable/utils/moreutils&#34;&gt;moreutils&lt;/a&gt;. Put this
+script in an executable file called &lt;code&gt;select-url&lt;/code&gt; in your &lt;code&gt;$PATH&lt;/code&gt; and then add this to &lt;code&gt;.Xresources&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;XTerm.vt100.printerCommand: select-url
+
+XTerm.vt100.translations: #override \n\
+    ...
+    Ctrl Shift &amp;lt;Key&amp;gt;W: print(noAttrs, noNewLine)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now when you press shift-ctrl-W, any URL shown in the terminal will open in the browser. You don&amp;rsquo;t
+have to select anything or use your mouse at all, nice!&lt;/p&gt;
+&lt;p&gt;Someday it would be great to improve &lt;code&gt;select-url&lt;/code&gt; to also scan for email addresses. Maybe during the
+next pandemic&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;peeking-at-the-alternate-screen&#34;&gt;Peeking at the Alternate Screen&lt;/h2&gt;
+&lt;p&gt;Sometimes you open a fullscreen application like vim or a man page and you need to refer back to
+some text on the shell. Use this keybind to toggle back and forth:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;XTerm.vt100.translations: #override \n\
+    ...
+    Ctrl Shift &amp;lt;Key&amp;gt;H: set-altscreen(toggle)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can even use it view a previously opened vim or man page after you close out of it!&lt;/p&gt;
+&lt;h2 id=&#34;opening-new-terminals-at-the-current-directory&#34;&gt;Opening New Terminals at the Current Directory&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s a keybind action called &lt;code&gt;spawn-new-terminal()&lt;/code&gt; that can be used for this, but even better is
+using &lt;a href=&#34;https://github.com/schischi/xcwd&#34;&gt;xcwd&lt;/a&gt; to get the working directory of any currently focused
+window. Then you can put this in your i3 config for example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;bindsym $mod+Return exec --no-startup-id cd &amp;#34;`xcwd`&amp;#34; &amp;amp;&amp;amp; xterm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;wish-list&#34;&gt;Wish List&lt;/h2&gt;
+&lt;p&gt;XTerm is missing a few small features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Text reflow when the terminal is resized.&lt;/li&gt;
+&lt;li&gt;Fallback fonts don&amp;rsquo;t seem to always work. Maybe I&amp;rsquo;m missing a config option?&lt;/li&gt;
+&lt;li&gt;Transparency not natively supported. I don&amp;rsquo;t care about transparency but maybe it&amp;rsquo;s important to
+some people.&lt;/li&gt;
+&lt;li&gt;Occasionally strange flickering with &lt;a href=&#34;https://github.com/ibhagwan/picom&#34;&gt;picom&lt;/a&gt;, possibly a bug
+with picom?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the end this wasn&amp;rsquo;t enough to stop me from using xterm, but the lack of text reflow still irks me
+from time to time. Overall, I&amp;rsquo;ve been pleasantly surprised with xterm after taking the time to
+configure it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Remote Movie Nights With Popcord</title>
+      <link>https://aduros.com/blog/remote-movie-nights-with-popcord/</link>
+      <pubDate>Sat, 09 Jan 2021 19:30:50 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/remote-movie-nights-with-popcord/</guid>
+      <description>&lt;p&gt;(Day 9 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Several months ago during the height of the 2020 quarantine I released
+&lt;a href=&#34;https://popcord.aduros.com&#34;&gt;Popcord&lt;/a&gt;, a Chrome extension for watching videos with friends remotely.
+It&amp;rsquo;s designed to be used while on voice chat with friends and family, and simply handles
+synchronizing the playback position and state of the movie you&amp;rsquo;re all watching together. I&amp;rsquo;m pretty
+proud of how it turned out!&lt;/p&gt;
+&lt;div style=&#34;text-align: center&#34;&gt;
+  &lt;img src=&#34;screenshot.png&#34; class=&#34;shadow&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Under the hood the system is made up of 3 different pieces: The browser extension, a web application,
+and a websocket server.&lt;/p&gt;
+&lt;h2 id=&#34;browser-extension&#34;&gt;Browser Extension&lt;/h2&gt;
+&lt;p&gt;This is the actual extension downloaded from the Chrome web store. It has code for interacting with
+the HTML5 &lt;code&gt;&amp;lt;video&amp;gt;&lt;/code&gt; elements on the page, and the minimal UI popup with the button to connect to the
+websocket server. It also exposes API hooks to invite links hosted by the web application hosted at
+&lt;a href=&#34;https://popcord.aduros.com&#34;&gt;https://popcord.aduros.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to port a version to
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions&#34;&gt;Firefox&lt;/a&gt; someday, but I
+never got around to it.&lt;/p&gt;
+&lt;h2 id=&#34;web-application&#34;&gt;Web Application&lt;/h2&gt;
+&lt;p&gt;This is an Express webapp written in node that serves the invite URLs that look like this:
+&lt;a href=&#34;https://popcord.aduros.com/invite/h5fryqv2sk?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DRRNanbmD1xk&#34;&gt;https://popcord.aduros.com/invite/h5fryqv2sk?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DRRNanbmD1xk&lt;/a&gt;.
+Those pages also contain a bit of JS that talks to the browser extension to prepare the redirect,
+such as checking for the presence of the extension and prompting for permissions to run on the
+destination domain (in this example youtube.com).&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s no database or persistence of any kind, since all the needed state is contained in the
+invite URLs: Both the final destination URL, and the room token.&lt;/p&gt;
+&lt;h2 id=&#34;websocket-server&#34;&gt;Websocket Server&lt;/h2&gt;
+&lt;p&gt;Once the invite link is clicked through, the extension goes to the destination URL and connects to
+the websocket server using the given room token. The websocket server is just a simple controller
+that groups up clients by room token and allows them to relay messages to each other. When one
+client sends a command like &amp;ldquo;pause the video&amp;rdquo; the server broadcasts it to all other clients in the
+same room.&lt;/p&gt;
+&lt;h2 id=&#34;hosting&#34;&gt;Hosting&lt;/h2&gt;
+&lt;p&gt;Both the webapp and websocket server are deployed as systemd services running on the same EC2
+machine that hosts this blog, though they could be separated in the future should the need arise.
+They both run isolated in &lt;a href=&#34;https://firejail.wordpress.com/&#34;&gt;firejail&lt;/a&gt; sandboxes for security.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://popcord.aduros.com&#34;&gt;Try Popcord&lt;/a&gt; the next time you&amp;rsquo;re away from home or want to watch a
+movie with friends far away! If you find an issue, please report it on the &lt;a href=&#34;https://github.com/aduros/popcord&#34;&gt;Github
+repository&lt;/a&gt; or email me.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What&#39;s My IP Address?</title>
+      <link>https://aduros.com/blog/whats-my-ip-address/</link>
+      <pubDate>Fri, 08 Jan 2021 20:15:22 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/whats-my-ip-address/</guid>
+      <description>&lt;p&gt;(Day 8 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Sometimes you need to determine your own IP address. There&amp;rsquo;s &lt;code&gt;ip addr&lt;/code&gt; (the new &lt;code&gt;ifconfig&lt;/code&gt;), which
+will tell you your local network IP. What about your external Internet-addressible IP? Use this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;dig @resolver4.opendns.com myip.opendns.com +short
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is faster than &lt;code&gt;curl icanhazip.com&lt;/code&gt; or equivalent URLs, and more reliable too.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Implementing a Slow Life</title>
+      <link>https://aduros.com/blog/implementing-a-slow-life/</link>
+      <pubDate>Thu, 07 Jan 2021 15:45:28 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/implementing-a-slow-life/</guid>
+      <description>&lt;p&gt;(Day 7 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a &lt;a href=&#34;https://www.theguardian.com/science/2014/jul/03/electric-shock-preferable-to-thinking-says-study&#34;&gt;famous
+experiment&lt;/a&gt;
+where subjects (typically poor university students) are left alone in a small, empty room with blank
+walls and no windows. They are asked to sit at a table and &amp;ldquo;entertain themselves with their own
+thoughts&amp;rdquo; for 15 minutes. No music, no phone, no TV. On the table is a button that applies a mild
+electric shock. It turns out, many of us will press that button, often multiple times. Why?&lt;/p&gt;
+&lt;p&gt;Like with any psychological experiment, we shouldn&amp;rsquo;t be too quick to come to conclusions. The
+conclusion here being that sometimes we prefer pain to boredom. Speaking personally however,
+I consider this to be true. I&amp;rsquo;d probably hit that button (at least at first out of curiosity, and
+probably afterwards out of boredom). I certainly hit that figurative button multiple times a day
+whenever I&amp;rsquo;m bored at home.&lt;/p&gt;
+&lt;p&gt;In the same way that eating broccoli is delicious, but totally boring to someone who has had their
+level of taste stimulation calibrated to sugary and salty foods, I&amp;rsquo;m considering the ways my own
+mental stimulation is over-calibrated to junk.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t think there&amp;rsquo;s anything wrong with enjoying junk food, or being highly stimulated. Only that
+perhaps it shouldn&amp;rsquo;t be one&amp;rsquo;s default state of being.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s talk about 3 small things I think should be enjoyed responsibly in a Slow Life: Multi-tasking,
+social media, and cars.&lt;/p&gt;
+&lt;h2 id=&#34;multi-tasking&#34;&gt;Multi-tasking&lt;/h2&gt;
+&lt;p&gt;Some people say that multi-tasking is a myth, but I&amp;rsquo;ve met many people who can do it quite well.
+They never do it by &lt;em&gt;actually&lt;/em&gt; performing multiple tasks simultaneously though. Multi-tasking works
+by rapidly switching focus from task to task. When you train multi-tasking you&amp;rsquo;re really training to
+reduce the cost of all that context switching. This mode of thinking can be useful, but it can also
+be over-trained and isn&amp;rsquo;t very compatible with boredom.&lt;/p&gt;
+&lt;h2 id=&#34;social-media&#34;&gt;Social media&lt;/h2&gt;
+&lt;p&gt;There&amp;rsquo;s absolutely nothing wrong with using social media, having a social media presence, and
+talking to others on social media. It&amp;rsquo;s still junk food. Treat it more like enjoying a glass of wine
+(or your drug of choice) in the evening, and less like needing to get drunk throughout the day.&lt;/p&gt;
+&lt;h2 id=&#34;cars&#34;&gt;Cars&lt;/h2&gt;
+&lt;p&gt;Ok, so here&amp;rsquo;s where I go off the rails a bit. I cannot stand cars. Whether I&amp;rsquo;m riding in a car, or
+walking on the street next to passing cars, or sitting somewhere and hearing traffic, for some
+reason cars keep me mentally stimulated juuust enough to be draining. I&amp;rsquo;m not even talking about the
+ecological impact of cars, which is also important. It&amp;rsquo;s something deeper&amp;hellip; possibly the prevalence
+of cars combined with how much of modern life is involuntarily structured around them. As soon as I
+can better articulate my car beef I may write another post about it. Anyways, drive cars, but don&amp;rsquo;t
+live in or around them.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Generating Strong Passwords</title>
+      <link>https://aduros.com/blog/generating-strong-passwords/</link>
+      <pubDate>Wed, 06 Jan 2021 22:02:26 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/generating-strong-passwords/</guid>
+      <description>&lt;p&gt;(Day 6 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;APG is a command line program for generating random passwords. On Ubuntu/Debian it can be installed
+with &lt;code&gt;sudo apt install apg&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here are the flags I use with it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;apg -a &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -n &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -m &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; -x &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; -M SNCL -d -E &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;\&amp;#34;\`\\&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;-a 1&lt;/code&gt;: Specifies to use true random instead of the default mode of pronounceable passwords. The
+assumption is that these passwords are going to be remembered by a password manager and not a brain.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-n 1&lt;/code&gt;: Only generate one password, by default apg will generate multiple.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-m 25 -x 30&lt;/code&gt;: Generate a password between 25 and 30 characters long. Probably overkill, but I love
+me some entropy.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-M SNCL&lt;/code&gt;: Guarantees the password will contain at least one symbol, number, capital, and lowercase
+character. Handy for websites that enforce passwords with these characters.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-E &amp;quot;&#39;\&amp;quot;\`\\&amp;quot;&lt;/code&gt;: Prevents the password from containing quotes and backslashes, meaning passwords
+are always safe to paste into a string literal in source code.&lt;/p&gt;
+&lt;p&gt;The output of this command can be piped into &lt;code&gt;xsel&lt;/code&gt; to copy it to the clipboard. See
+&lt;a href=&#34;https://github.com/aduros/dotfiles/blob/eab476fc62e74e46cb41bb5c094cede7a28a014f/home/bin/generate-password&#34;&gt;generate-password&lt;/a&gt;
+for what that looks like.&lt;/p&gt;
+&lt;p&gt;Note: apg hasn&amp;rsquo;t been updated since 2003 and its creator has disappeared from the Internet. If
+there&amp;rsquo;s some other password generator I should be using do &lt;a href=&#34;mailto:b@aduros.com&#34;&gt;let me know&lt;/a&gt;, but I
+haven&amp;rsquo;t found anything that matches apg&amp;rsquo;s features. Although perhaps using software that&amp;rsquo;s
+&amp;ldquo;finished&amp;rdquo; and built to last isn&amp;rsquo;t necessarily a bad thing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hacking i3: Window Swallowing</title>
+      <link>https://aduros.com/blog/hacking-i3-window-swallowing/</link>
+      <pubDate>Tue, 05 Jan 2021 21:54:40 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/hacking-i3-window-swallowing/</guid>
+      <description>&lt;p&gt;(Day 5 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Tiling window managers are a big reason why I use Linux. Not having to manually drag windows around
+is absolutely game changing, especially on a laptop with a small screen.&lt;/p&gt;
+&lt;p&gt;Tiling WMs work by resizing other windows when a new window is opened, so that no windows ever
+overlap. Most of the time this is perfect, but there&amp;rsquo;s a certain case where it&amp;rsquo;s not so great, which
+is when opening a GUI application from a terminal to quickly view a file:&lt;/p&gt;
+&lt;video width=&#34;100%&#34; loop muted autoplay playsinline class=&#34;shadow&#34;&gt;
+  &lt;source src=&#34;before.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;source src=&#34;before.webm&#34; type=&#34;video/webm&#34;&gt;
+  &lt;p&gt;(The video could not be played)&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Notice how the original terminal that opened &lt;a href=&#34;https://github.com/muennich/sxiv&#34;&gt;sxiv&lt;/a&gt; (a bad name
+for a good image viewer) remains open, taking up space and not showing anything useful. Even worse,
+we can&amp;rsquo;t close that terminal without also killing the image window.&lt;/p&gt;
+&lt;p&gt;In this case what you really want is to have the image window &amp;ldquo;on top&amp;rdquo; of the terminal window,
+hiding it until it closes. I think &lt;a href=&#34;https://dwm.suckless.org/&#34;&gt;DWM&lt;/a&gt; was the first to implement this
+type of feature, calling it &amp;ldquo;window swallowing&amp;rdquo;. I use &lt;a href=&#34;https://i3wm.org/&#34;&gt;i3&lt;/a&gt;, so I tried some
+other solutions like &lt;a href=&#34;https://github.com/jamesofarrell/i3-swallow&#34;&gt;i3-swallow&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/salman-abedin/devour&#34;&gt;devour&lt;/a&gt;. Unfortunately nothing I found really worked 100%,
+having layout flickering or restoring the terminal window to the wrong spot.&lt;/p&gt;
+&lt;p&gt;It occurred to me that i3 has a feature which I never use that could work here: tabs. So I wrote a
+script which creates a temporary tab layout on the current window in a way that replicates
+&amp;ldquo;swallowing&amp;rdquo;. No flickering or jank. As a small bonus, you can still view the terminal window if
+needed by switching tabs.&lt;/p&gt;
+&lt;p&gt;The final step is hiding the i3 tab buttons in the config. This is optional but I find i3 tab
+buttons pretty ugly so I turn them off by putting &lt;code&gt;font pango:mono 0&lt;/code&gt; in the config. Unfortunately
+this is a dirty hack as setting the font size seems to be the only way to shrink the tab bar. This
+is the same font that i3 uses to display error messages, so don&amp;rsquo;t mess up! Or comment it out if you
+need to see errors.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the final result:&lt;/p&gt;
+&lt;video width=&#34;100%&#34; loop muted autoplay playsinline class=&#34;shadow&#34;&gt;
+  &lt;source src=&#34;after.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;source src=&#34;after.webm&#34; type=&#34;video/webm&#34;&gt;
+  &lt;p&gt;(The video could not be played)&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Beautiful 😍 All you need to do is prefix a command with &lt;code&gt;i3-tabbed&lt;/code&gt; to let it do its thing. This
+can be made automatic by using a shell alias: &lt;code&gt;alias sxiv=&amp;quot;i3-tabbed sxiv&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to &lt;a href=&#34;https://github.com/aduros/dotfiles/blob/master/home/bin/i3-tabbed&#34;&gt;grab the script&lt;/a&gt;,
+make sure you have python3 and i3ipc which can be installed with &lt;code&gt;pip install i3ipc&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>TODO-based Development</title>
+      <link>https://aduros.com/blog/todo-based-development/</link>
+      <pubDate>Mon, 04 Jan 2021 14:06:31 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/todo-based-development/</guid>
+      <description>&lt;p&gt;(Day 4 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I use TODO comments a lot when working on small projects. Projects where the &amp;ldquo;issue tracker&amp;rdquo; is just
+a text file in my editor, and mainly to stub out empty methods that I&amp;rsquo;ll implement later. TODOs are
+easy to insert, and they move with the source code. The main drawback is that they usually get lost
+and end up as bitrot.&lt;/p&gt;
+&lt;p&gt;Keeping track of TODOs by searching the codebase is pretty straightforward. It can even be
+integrated nicely in vim:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;rg --vimgrep --only-matching &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\b(TODO|FIXME)[:;.,]? *(.*)&amp;#39;&lt;/span&gt; --replace &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;$2&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That will present all comments of the form &lt;code&gt;// TODO: fix Y2K bug&lt;/code&gt; in vim&amp;rsquo;s quickfix list.&lt;/p&gt;
+&lt;p&gt;Even better is if we can sort the TODOs by date:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;rg --vimgrep --only-matching &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\b(TODO|FIXME)\s*\(([\d-]*?)\)[:;.,]? *(.*)&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --replace &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; $2 | $3&amp;#39;&lt;/span&gt; -- &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; | sort --field-separator &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;:&amp;#34;&lt;/span&gt; --key &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; --reverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This requires adding the date inside the comments like this: &lt;code&gt;// TODO(2021-01-04): Implement foobar&lt;/code&gt;. Inserting the date can be made automatic in vim by using an abbreviation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;inoreabbrev&lt;/span&gt; &amp;lt;&lt;span style=&#34;color:#a6e22e&#34;&gt;expr&lt;/span&gt;&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TODO&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TODO(&amp;#34;&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;strftime&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%F&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;)&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then whenever you type &lt;code&gt;TODO&lt;/code&gt; in insert mode it expands to include the date. No plugins required! If
+you found this interesting check out the full &lt;a href=&#34;https://github.com/aduros/dotfiles/blob/eab476fc62e74e46cb41bb5c094cede7a28a014f/home/.config/nvim/init.vim#L291&#34;&gt;vim
+config&lt;/a&gt;
+and the simple &lt;a href=&#34;https://github.com/aduros/dotfiles/blob/eab476fc62e74e46cb41bb5c094cede7a28a014f/home/bin/todo&#34;&gt;todo
+script&lt;/a&gt;
+it relies on.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Experiments With Rockstar</title>
+      <link>https://aduros.com/blog/experiments-with-rockstar/</link>
+      <pubDate>Sun, 03 Jan 2021 17:24:10 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/experiments-with-rockstar/</guid>
+      <description>&lt;p&gt;(Day 3 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I recently stumbled across a toy programming language called &lt;a href=&#34;https://codewithrockstar.com&#34;&gt;Rockstar&lt;/a&gt;,
+in which programs are also heavy metal lyrics. Basically COBOL for metalheads.&lt;/p&gt;
+&lt;p&gt;The syntax can be almost completely poetic, even with programming features with numeric literals,
+functions, arrays, and arithmetic hidden in its text.&lt;/p&gt;
+&lt;p&gt;The grand-daddy of esoteric programming languages is
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Brainfuck&#34;&gt;Brainfuck&lt;/a&gt;, in which programs have only 8 commands and are
+almost completely unreadable.&lt;/p&gt;
+&lt;p&gt;Thanks to copious amounts of Covid-related free time, I present the world&amp;rsquo;s most useless program: A
+Rockstar program that interprets and executes a Brainfuck program. The &lt;a href=&#34;https://github.com/aduros/brainrock/blob/master/interpreter-debug.rock&#34;&gt;&amp;ldquo;debug&amp;rdquo;
+version&lt;/a&gt; tries to be more
+readable, but here&amp;rsquo;s the &amp;ldquo;optimized&amp;rdquo; version in its 100 lines of glory/horror:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Brainfuck was deceiving a
+knife was decorated red
+A killer is on every earth
+You were I
+Life was loneliness
+Let freedom be life without you
+Rock steadily
+
+Rock the memories
+Let my heart be life
+Listen to the drums
+Let your song be life
+
+Unite steadily into the earth
+
+Heaven takes the virtuous
+If the virtuous is a killer
+Give back life
+
+Give back the virtuous with you
+
+Hell takes rock
+If rock is life
+Give back a killer
+
+Give back rock with freedom
+
+My brain takes dreaming and waking
+Cast waking into darkness
+Give back darkness is dreaming
+
+My search takes your hands
+Put your hands into mine
+While mine
+Let your song be with your hands
+Let flight be the drums at your song
+If my brain taking flight, brainfuck
+Build mine up
+
+If my brain taking flight, knife
+Knock mine down
+
+
+
+Until nothing
+Let drugs be the drums at your song
+If drugs ain&amp;#39;t right
+Break it down
+
+Let time be the memories at my heart
+If time is nothing
+Let time be life
+
+If my brain taking drugs, brainfuck and time is life
+My search taking you
+Take it to the top
+
+If my brain taking drugs, knife and time
+My search taking freedom
+Take it to the top
+
+Dire was bloody battle-cry
+If my brain taking drugs, dire
+Knock my heart down
+
+Softly was snowed in
+If my brain taking drugs, softly
+Build my heart up
+
+Forgetting was half way
+If my brain taking drugs, forgetting
+Let the memories at my heart be Heaven taking time
+
+Terror is this virus
+If my brain taking drugs, terror
+Let the memories at my heart be Hell taking time
+
+Regretful was your demise
+If my brain taking drugs, regretful
+Real is a retrospect
+If time is real
+Scream the earth
+Unite steadily into the earth
+
+If time ain&amp;#39;t real
+Cast time into doubt
+Let the earth be with doubt
+
+
+Build your song up
+
+If the earth ain&amp;#39;t nothing
+Whisper the earth...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can paste this monstrosity into the &lt;a href=&#34;https://codewithrockstar.com/online&#34;&gt;online Rockstar&lt;/a&gt;
+interpreter, along with any Brainfuck program into the Input field. For example, Hello World:
+&lt;code&gt;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In theory it should be compatible with most Brainfuck programs, unlike the &lt;a href=&#34;https://github.com/aduros/trollcat&#34;&gt;last interpreter I
+wrote&lt;/a&gt;. The Brainfuck comma instruction for character input
+isn&amp;rsquo;t supported though. It might be possible by buffering a line of text and reading off the first
+character, but I&amp;rsquo;ve already spent way too much time on this thing.&lt;/p&gt;
+&lt;p&gt;Anyways, now I can put &amp;ldquo;rockstar developer&amp;rdquo; on my resume and confuse recruiters.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Final Thoughts on Flash</title>
+      <link>https://aduros.com/blog/final-thoughts-on-flash/</link>
+      <pubDate>Sat, 02 Jan 2021 12:10:09 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/final-thoughts-on-flash/</guid>
+      <description>&lt;p&gt;(Day 2 of &lt;a href=&#34;../30-days-of-blogging&#34;&gt;30 Days of Blogging&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;On December 31 2020, Flash was finally, officially, 100% for real this time, discontinued. It&amp;rsquo;s
+already been dead for ages of course, but damned if that won&amp;rsquo;t stop me from adding my own hot take
+about Flash. I was involved with Flash game development from around 2008-2014 or so. I&amp;rsquo;d like to
+note a few things I think the platform did well, and not so well.&lt;/p&gt;
+&lt;h1 id=&#34;things-flash-did-well&#34;&gt;Things Flash did well&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Easily archivable&lt;/strong&gt;. The .swf format contained all the code and assets for the application to run.
+Back in the day this made it really easy to host and share (and pirate) games. Today it also makes
+it easy to archive Flash games for historical purposes. When it comes to the web and appstore
+platforms, long-term availability is more iffy. Either games live as a mash of files on a single web
+server which will eventually go offline, or they only run on a certain version of phone which will
+be obsolete in a couple of years.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Backwards compatibility&lt;/strong&gt;. In retrospect it was remarkable how Flash never had any breaking
+changes between versions. Old SWFs that were authored in the first ancient versions of Flash still
+work to this day. By comparison, pretty much all of &lt;a href=&#34;https://aduros.com/games/&#34;&gt;my early HTML5
+games&lt;/a&gt; are broken today.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syndication as a revenue model&lt;/strong&gt; for small developers. The Flash game industry was decentralized.
+Though there were large game hubs like Miniclip, there were thousands of smaller Flash game sites.
+As a Flash game developer, you could license your game to a publisher to syndicate on their network
+of sites. You could sell licenses to multiple publishers. It wouldn&amp;rsquo;t make you fabulously rich, but
+it was safe income that could fund a solo project or even a small team. Today there&amp;rsquo;s probably like
+2-3 hubs that your game can viably run on. The income potential in the top 1% is bonkers high,
+but if you&amp;rsquo;re in the 99%, you get nothing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It was weird&lt;/strong&gt;. As a consequence of the platform&amp;rsquo;s appeal to small developers, there was a lot of
+weird shit created on it. We still have experimental stuff on the web, but most of it is in the form
+of videos and images and non-interactive. It seems like the interactive weirdness has largely moved
+off the web platform and onto modding-friendly sandbox games like Roblox, VRChat, Minecraft, etc.&lt;/p&gt;
+&lt;h1 id=&#34;things-flash-did-poorly&#34;&gt;Things Flash did poorly&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;There were bugs&lt;/strong&gt;. Oh man was it ever buggy, browsers crashed all the time. In hindsight this may
+have been as much Flash player&amp;rsquo;s fault as it was the plugin API that browsers used to embed the
+Flash player. Either way it was hell.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The name &amp;ldquo;Flash&amp;rdquo; was overloaded&lt;/strong&gt;. It was confusing that the name &amp;ldquo;Flash&amp;rdquo; was simultaneously used
+for (a) The Flash authoring environment (b) The Flash player runtime (c) The Flash browser plugin.
+Adobe tied their entire ecosystem around the Flash brand, but that backfired spectacularly once
+&amp;ldquo;Flash&amp;rdquo; started to become a taboo word. Adobe eventually renamed Flash-the-authoring-environment to
+Animate, but it was way too late.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer tools or lack thereof&lt;/strong&gt;. Flash was very much a designer-oriented product, and their
+offering to developers who just wanted to do everything in a text editor was really lacking.  Entire
+home-grown &lt;a href=&#34;https://haxe.org&#34;&gt;software projects&lt;/a&gt; sprung up trying to make Flash more
+developer-friendly, that were constantly at odds with Adobe&amp;rsquo;s designer-focused vision of doing
+things. As a developer this irked me, but in the post-Flash web stack perhaps things have swung too
+far in the direction of doing everything in a text editor. We have a million JS frameworks and tools
+for building applications with text but we no longer have the equivalent of a
+Flash-the-authoring-environment for bringing animations into those applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Flash player should have been open sourced&lt;/strong&gt;. I actually don&amp;rsquo;t know if this would have made a
+difference, though it certainly would have helped fix my other gripes. I believe that Adobe could
+have made it viable since all their revenue came from Flash-the-authoring-environment anyways.
+There would still be value in an open source Flash player today for archival purposes. Adobe plz, I
+just want to be able to play Bloons TD when I&amp;rsquo;m 85 on my iWindowsX 128-bit VR tablet.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>30 Days of Blogging</title>
+      <link>https://aduros.com/blog/30-days-of-blogging/</link>
+      <pubDate>Fri, 01 Jan 2021 18:35:32 +0000</pubDate>
+      <author>Bruno Garcia &lt;b@aduros.com&gt;</author>
+      <guid>https://aduros.com/blog/30-days-of-blogging/</guid>
+      <description>&lt;p&gt;Happy new year!&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve had this domain kicking around for ages and have always wanted to do something more with it.
+So, I&amp;rsquo;m making a commitment to write a blog post every single day for this month. This won&amp;rsquo;t be easy
+for me. I do not write. Hell, most days I can barely even &lt;em&gt;read&lt;/em&gt;. I worry about writing about the
+wrong thing, or too little, or too much. But I&amp;rsquo;m also stubborn, so for the next 30 days we&amp;rsquo;re just
+going to dive in.&lt;/p&gt;
+&lt;p&gt;The past several months of the COVID quarantine has given me plenty of time to think, and time to
+work on side projects which will be interesting to write about here. That should fill about 2 weeks
+worth of posts. After that&amp;hellip; well, let&amp;rsquo;s find out.&lt;/p&gt;
+&lt;p&gt;So here we go, new year, new blog. I haven&amp;rsquo;t yet decided what I enjoy writing about, but I expect
+the posts will be mostly about tech, but also occasionally about travel, circus arts, spirituality.
+Really anything but politics.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

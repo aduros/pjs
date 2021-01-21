@@ -323,10 +323,10 @@ Print the URLs of all images on a web page:
 curl https://aduros.com | pjs --html 'img' '_.attr.src'
 ```
 
-Print the href of all external links using a complex CSS selector:
+Print a count of all external links using a complex CSS selector:
 
 ```sh
-curl https://aduros.com | pjs --html 'ul.c-links a[target=_blank]' '_.attr.href'
+curl https://aduros.com | pjs --html 'ul.c-links a[target=_blank]' --after COUNT
 ```
 
 Print all H2 links with URLs containing the word "blog":
@@ -335,7 +335,7 @@ Print all H2 links with URLs containing the word "blog":
 curl https://aduros.com | pjs --html 'h2 a' '_.attr.href.includes("blog") ? _.attr.href : null'
 ```
 
-Print a summary of an RSS feed:
+Print a readable summary of an RSS feed:
 
 ```sh
 curl https://aduros.com/index.xml | pjs --xml 'item' \
