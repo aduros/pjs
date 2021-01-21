@@ -14,7 +14,7 @@ pjs lets you write small and powerful JavaScript programs, similar to awk/sed/gr
 generating a complete JS program from the provided script(s), and feeding it each line of standard
 input. See the EXAMPLES section below to see what pjs can do.
 
-The latest version of pjs can be installed by running:
+The latest version of `pjs` can be installed by running:
 
 ```sh
 npm install -g pjs-tool
@@ -302,7 +302,7 @@ cat users.json | pjs --json 'items.*' '_.age >= 21'
 
 # BUGS
 
-Bugs can be reported on GitHub: https://github.com/aduros/pjs/issues
+Please report bugs on GitHub: https://github.com/aduros/pjs/issues
 
 # SEE ALSO
 
