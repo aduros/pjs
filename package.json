@@ -1,6 +1,6 @@
 {
   "name": "pjs-tool",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An awk-like command-line tool for processing text, CSV, JSON, HTML, and XML.",
   "directories": {
     "bin": "./bin",
