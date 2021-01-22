@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>jwz</title>
+	<atom:link href="https://www.jwz.org/blog/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.jwz.org/blog/</link>
+	<description></description>
+	<lastBuildDate>Thu, 21 Jan 2021 23:35:06 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+<atom:link rel="hub" href="https://pubsubhubbub.appspot.com"/><atom:link rel="hub" href="https://pubsubhubbub.superfeedr.com"/>	<item>
+		<title>Flash2K</title>
+		<link>https://www.jwz.org/blog/2021/01/flash2k/</link>
+					<comments>https://www.jwz.org/blog/2021/01/flash2k/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 21 Jan 2021 23:35:06 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[copyright]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[security]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjke</guid>
+
+					<description><![CDATA[As Adobe Flash stops running, so do some railroads in China: The railroad system in Dalian, northern China, collapsed citywide on Tuesday for up to 20 hours after the Adobe Flash programing software stopped running. Adobe had announced as early as 2017 that it would cease support for the multimedia software on Dec. 30 last year. The American software company eventually ended the operation of all Flash content on Tuesday. Tuesday's chaos arose after China Railway Shenyang failed to deactivate Flash in time, leading to a complete shutdown of its railroads in Dalian, Liaoning province. Staffers were reportedly unable to view train operation diagrams, formulate train sequencing schedules and arrange shunting plans. Authorities fixed the issue by installing a pirated version of Flash at 4:30 a.m. the following day. Why didn't they just run it on archive.org? Also: did Adobe push out Flash updates with time bombs in them? I assumed the deadline just meant they were going to remove the download link!]]></description>
+										<content:encoded><![CDATA[<A HREF="https://hk.appledaily.com/news/20210117/FLXATT4LKVBGVEBRLAECJPTCHM/"><IMG SRC="https://www.jwz.org/images/scaled/768/2017/dkcxzzbwsai4zx5.jpg" data-size="1044x1043" STYLE="width: 35%; height: auto; max-width: 1044px; max-height: 1043px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2017/dkcxzzbwsai4zx5.jpg 1044w, https://www.jwz.org/images/scaled/768/2017/dkcxzzbwsai4zx5.jpg 768w, https://www.jwz.org/images/scaled/640/2017/dkcxzzbwsai4zx5.jpg 640w, https://www.jwz.org/images/scaled/360/2017/dkcxzzbwsai4zx5.jpg 360w" SIZES="(max-width: 660px) 35vw, 26em" LOADING="lazy">As Adobe Flash stops running, so do some railroads in China</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">The railroad system in Dalian, northern China, collapsed citywide on Tuesday for up to 20 hours after the Adobe Flash programing software stopped running.<P>Adobe had announced as early as 2017 that it would cease support for the multimedia software on Dec. 30 last year. The American software company eventually ended the operation of all Flash content on Tuesday.<P>Tuesday's chaos arose after China Railway Shenyang failed to deactivate Flash in time, leading to a complete shutdown of its railroads in Dalian, Liaoning province. Staffers were reportedly unable to view train operation diagrams, formulate train sequencing schedules and arrange shunting plans.<P>Authorities fixed the issue by installing a pirated version of Flash at 4:30 a.m. the following day.</BLOCKQUOTE><P>Why didn't they just run it on archive.org?<P>Also: did Adobe push out Flash updates with <I>time bombs</I> in them? I assumed the deadline just meant they were going to remove the download link!<P><A HREF="https://www.jwz.org/blog/2013/12/bart-powered-by-dali-clock/">Previously</A>, <A HREF="https://www.jwz.org/blog/2017/09/adobe-riiiiiiiiick/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/01/these-completely-normal-trains-are-absolutely-safe-and-are-in-no-way-evaluating-you-with-cold-mechanical-malevolence/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/09/i-think-he-deserved-his-punishment-dont-you/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/04/toy-train-meets-cold-unfeeling-robot-arm/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/y2k-the-movie-what-if-theyre-right/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/01/we-are-now-closer-to-the-y2038-bug-than-the-y2k-bug/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/flash2k/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Put Bernie Anywhere</title>
+		<link>https://www.jwz.org/blog/2021/01/put-bernie-anywhere/</link>
+					<comments>https://www.jwz.org/blog/2021/01/put-bernie-anywhere/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 21 Jan 2021 20:19:04 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[dnalounge]]></category>
+		<category><![CDATA[maps]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkc</guid>
+
+					<description><![CDATA[Enter an address or location and bernie will appear there. These worked out pretty well: This one is the world champ, though. Dan_Case:]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://bernie-sits.herokuapp.com/">Enter an address or location and bernie will appear there.</A><P>These worked out pretty well:<P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV STYLE="display: inline-block; width: 33.33%; max-width: 642px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><a href="https://www.jwz.org/images/2021/bernie1.jpg" data-size="640x640"><IMG SRC="https://www.jwz.org/images/2021/bernie1.jpg" data-size="640x640" STYLE="width: 100%; height: auto; max-width: 640px; max-height: 640px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/bernie1.jpg 640w, https://www.jwz.org/images/scaled/360/2021/bernie1.jpg 360w" SIZES="(max-width: 660px) 34vw, 24em" LOADING="lazy"></a></DIV><DIV STYLE="display: inline-block; width: 33.33%; max-width: 642px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A href="https://www.jwz.org/images/2021/bernie2.jpg" data-size="640x640"><IMG SRC="https://www.jwz.org/images/2021/bernie2.jpg" data-size="640x640" STYLE="width: 100%; height: auto; max-width: 640px; max-height: 640px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/bernie2.jpg 640w, https://www.jwz.org/images/scaled/360/2021/bernie2.jpg 360w" SIZES="(max-width: 660px) 34vw, 24em" LOADING="lazy"></a></DIV><DIV STYLE="display: inline-block; width: 33.34%; max-width: 642px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><a href="https://www.jwz.org/images/2021/bernie3.jpg" data-size="640x640"><IMG SRC="https://www.jwz.org/images/2021/bernie3.jpg" data-size="640x640" STYLE="width: 100%; height: auto; max-width: 640px; max-height: 640px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/bernie3.jpg 640w, https://www.jwz.org/images/scaled/360/2021/bernie3.jpg 360w" SIZES="(max-width: 660px) 34vw, 25em" LOADING="lazy"></a></DIV></DIV><P>This one is the world champ, though. <A HREF="https://twitter.com/Dan_Case/status/1351945923610423308"> Dan_Case:<P><IMG SRC="https://www.jwz.org/images/scaled/768/2021/esmtppoxeaak8ts.jpg" data-size="1200x800" STYLE="width: 100%; height: auto; max-width: 1200px; max-height: 800px; border: 1px solid; box-sizing: border-box; margin: 2px 0;" SRCSET="https://www.jwz.org/images/2021/esmtppoxeaak8ts.jpg 1200w, https://www.jwz.org/images/scaled/768/2021/esmtppoxeaak8ts.jpg 768w, https://www.jwz.org/images/scaled/640/2021/esmtppoxeaak8ts.jpg 640w, https://www.jwz.org/images/scaled/360/2021/esmtppoxeaak8ts.jpg 360w" SIZES="(max-width: 660px) 100vw, 72em" LOADING="lazy"></A> <P><A HREF="https://www.jwz.org/blog/2012/09/no-maps-for-these-territories/">Previously</A>, <A HREF="https://www.jwz.org/blog/2008/05/why-the-long-face/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/put-bernie-anywhere/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Zombie Movies Prepared You for the Pandemic</title>
+		<link>https://www.jwz.org/blog/2021/01/zombie-movies-prepared-you-for-the-pandemic/</link>
+					<comments>https://www.jwz.org/blog/2021/01/zombie-movies-prepared-you-for-the-pandemic/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 21 Jan 2021 17:01:40 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[grim meathook future]]></category>
+		<category><![CDATA[movies]]></category>
+		<category><![CDATA[mutants]]></category>
+		<category><![CDATA[plague]]></category>
+		<category><![CDATA[zombies]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkb</guid>
+
+					<description><![CDATA[[Research reveals] that an individual's enjoyment of horror films could have better prepared them for the COVID-19 pandemic as opposed to others who do not enjoy frightening entertainment. "My latest research collaboration was unique in that my colleagues wanted to identify factors beyond personality that contributed to people's psychological preparedness and resilience in the face of the pandemic," Johnson explained. "After factoring out personality influences, which were actually quite strong, we found that the more movies about zombies, alien invasions and apocalyptic pandemics people had seen prior to COVID-19, the better they dealt with the actual, current pandemic. These kinds of movies apparently serve as mental rehearsal for actual events. To me, this implicates an even more important message about stories in general -- whether in books, movies or plays. Stories are not just entertainment, but preparation for life." Personally, I never want to see a god damned zombie movie again as long as I live, but I was kind of there already even before the pandemic, because I was so sick to death of how terrible The Walking Dead and its spinoffs were. But I will make an exception for the first zombie movie that focuses on zombie denialists.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://neurosciencenews.com/zombie-movie-pandemic-17564/"><VIDEO STYLE="width: 60%; height: auto; max-width: 500px; max-height: 324px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" LOOP AUTOPLAY PLAYSINLINE MUTED><SOURCE SRC="https://www.jwz.org/images/scaled/mp4/2021/tumblr_pgkdjs7of61s1v3r1o2_500.mp4" TYPE="video/mp4" /><!-- <IMG SRC="https://www.jwz.org/images/2021/tumblr_pgkdjs7of61s1v3r1o2_500.gif" data-size="500x324" STYLE="width: 60%; height: auto; max-width: 500px; max-height: 324px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/tumblr_pgkdjs7of61s1v3r1o2_500.gif 500w, https://www.jwz.org/images/scaled/360/2021/tumblr_pgkdjs7of61s1v3r1o2_500.gif 360w" SIZES="(max-width: 660px) 60vw, 44em" LOADING="lazy"> --></VIDEO>[Research reveals] that an individual's enjoyment of horror films could have better prepared them for the COVID-19 pandemic as opposed to others who do not enjoy frightening entertainment.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">"My latest research collaboration was unique in that my colleagues wanted to identify factors beyond personality that contributed to people's psychological preparedness and resilience in the face of the pandemic," Johnson explained. "After factoring out personality influences, which were actually quite strong, we found that the more movies about zombies, alien invasions and apocalyptic pandemics people had seen prior to COVID-19, the better they dealt with the actual, current pandemic. These kinds of movies apparently serve as mental rehearsal for actual events.<P>To me, this implicates an even more important message about stories in general -- whether in books, movies or plays. Stories are not just entertainment, but preparation for life."</BLOCKQUOTE><P><I>Personally, I never want to see a god damned zombie movie again as long as I live, but I was kind of there already even before the pandemic, because I was so sick to death of how terrible </I>The Walking Dead<I> and its spinoffs were.<P>But I will make an exception for the first zombie movie that focuses on zombie denialists.</I><P><A HREF="https://www.jwz.org/blog/2015/10/hygiene-tips-from-fred-from-scooby-doo/">Previously</A>, <A HREF="https://www.jwz.org/blog/2021/01/spare-the-air/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/01/cordyceps/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/11/10000-zombies-vs-giant-blender/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/08/siberian-heat-wave-anthrax/">previously</A>, <A HREF="https://www.dnalounge.com/backstage/log/2009/02/07.html">previously</A>, <A HREF="https://www.jwz.org/blog/2007/06/i-just-like-saying-zombie-bukkake/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/zombie-movies-prepared-you-for-the-pandemic/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Googlyshark</title>
+		<link>https://www.jwz.org/blog/2021/01/googlyshark/</link>
+					<comments>https://www.jwz.org/blog/2021/01/googlyshark/#respond</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 21 Jan 2021 03:27:29 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[eyes]]></category>
+		<category><![CDATA[mutants]]></category>
+		<category><![CDATA[teeth]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjka</guid>
+
+					<description><![CDATA[SWinstonSchool:]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://twitter.com/SWinstonSchool/status/1352090071017672710">SWinstonSchool:</A></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 55%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/esnadrpw4aib9c1.mp4" POSTER="https://www.jwz.org/images/2021/esnadrpw4aib9c1.jpg" AUTOPLAY LOOP MUTED PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV><P><A HREF="https://www.jwz.org/blog/2020/10/youtube-can-go-duck-itself/">Previously</A>, <A HREF="https://www.jwz.org/blog/2017/10/conch-eyes/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/05/googly-the-planet/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/11/hey-my-eyes-are-up-here/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/08/mesmerizing/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/07/googlybutt/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/05/fix-it-with-eyes/">previously</A>, <A HREF="https://www.jwz.org/blog/2008/12/my-personal-robotic-assistant-was-not-quite-right/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/01/we-specialize-in-tattoos-of-unicorns-with-sharks-for-arms/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/googlyshark/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/esnadrpw4aib9c1.mp4" length="306668" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Tainted Punchcard</title>
+		<link>https://www.jwz.org/blog/2021/01/tainted-punchcard/</link>
+					<comments>https://www.jwz.org/blog/2021/01/tainted-punchcard/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Wed, 20 Jan 2021 22:51:12 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[mad science]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[music]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[toys]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkZ</guid>
+
+					<description><![CDATA[AndyRileyish: I hand-punched Tainted Love into this strip of card because lockdown.]]></description>
+										<content:encoded><![CDATA[<div align=center><A HREF="https://twitter.com/AndyRileyish/status/1351995693083357283">AndyRileyish: I hand-punched Tainted Love into this strip of card because lockdown.</A><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 56%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/pshn0wihajzzlsdi.mp4" POSTER="https://www.jwz.org/images/2021/arxck9f8m7yqlf5t.jpg" LOOP PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV></div><P><A HREF="https://www.jwz.org/blog/2019/05/flip-dot-tetris/">Previously</A>, <A HREF="https://www.jwz.org/blog/2018/07/popcorn-driven-robotic-actuators/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/02/a-portrait-of-the-artist-as-a-pelvic-thrusting-rotisserie-chicken/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/05/a-look-at-horologys-easter-problem/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/09/how-the-curta-works/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/11/fourier-analysis-with-a-mechanical-computer/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/01/fundamentals-of-teletypewriters-used-in-the-bell-system-1938/">previously</A>, <A HREF="https://www.jwz.org/blog/2010/02/an-introduction-to-mechanical-computing/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/tainted-punchcard/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/pshn0wihajzzlsdi.mp4" length="15224934" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Witch Court</title>
+		<link>https://www.jwz.org/blog/2021/01/witch-court/</link>
+					<comments>https://www.jwz.org/blog/2021/01/witch-court/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Wed, 20 Jan 2021 22:31:20 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[perversions]]></category>
+		<category><![CDATA[religion]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkY</guid>
+
+					<description><![CDATA['Live' tweeting historical witch trials. Modern English, period sources. An ex-witch called Deliverance Hobbs is now bewitched because she confessed. The spectral form of another witch keeps appearing and beating her with iron rods as punishment. [...] A witch had an inch-long teat on her belly. She claimed it was a hernia, but it looked recently-sucked, with a hole at the tip. When it was squeezed, "white milky matter" came out. She also had three smaller teats on her genitals. A girl claimed that Rose Cullender, the witch with the milky teat on her belly and three extra teats on her vulva, had been coming to her bed at night, one time bringing a huge dog with her. [...] A child caught an invisible mouse and threw it into the fire where it exploded with a flash like gunpowder. No one but the child saw a mouse, but everyone saw the flash. [...] A bee flew into a child's face. The child vomited up a large iron nail. The child later confirmed that the bee had been carrying the nail and had "forced it into her mouth". [...] The child got sick. One night a strange toad fell out of her blanket and ran along the hearth. A boy picked it up with tongs and held it in the fire, where it exploded like a gunshot. The child had been very sick, but after the magic toad exploded in the fire she completely recovered. [...] The boy told the Devil he would commit to a life of deceit if the Devil would grant him one strange superpower: the boy asked for his saliva to be given the power to scald dogs as though it were boiling water. The Devil granted the boy his wish (to "make his spittle scald a dog"). The boy spat on a dog and a large amount of scalding hot water poured all over it. The possessed boy admitted to having spat a torrent of boiling water onto the dog. His honesty and remorse caused the Devil to leave his body with a terrifyingly loud noise. [...] A witch riding a goat was able to carry 15 or 16 children in one trip by taking a long wooden pole, sticking one end into the goat's anus and seating the children all along the length of the pole. [...] Asked where precisely on her body the Devil sucked her blood, the witch said the Devil sucked at a location he had chosen himself, just slightly above her anus. Because of the Devil's constant sucking at that spot, there is now a teat-like growth on the witch's body, near her anus. Elizabeth asked the Devil why he sucked her blood from the teat just above her anus. He said that it nourished him. [...] A witch's blood is infected with a "poisonous ferment". If a witch gives you a hard glare while thinking spiteful thoughts, pestilential spirits will shoot out of her eyes and infect you. Nature works by "subtle streams" of "minute particles". An example would be the jets of pestilence which shoot out of witch's eyes via by means of their malicious imagination and cause "dangerous and strange alterations" in those weak enough to be affected. The contagious witch-curse can be airborne - spread into the air by a witch's glaring eyes. The pestilence can also be transmitted in other more obvious ways such as the victim being hit by a witch or being given a poisoned apple. [...] Some say, why would the Devil waste his time running errands for a "silly old woman"? But if the Devil is wicked then he probably also uses his time unwisely. When we hear about the crazy behaviour of spirits and familiars, some people ask why the devil would frolic so ludicrously. Perhaps witches are only visited by spirits or demons who are very junior, low ranking or disgraced. [...] The idea that witches can change their bodies into animals is no harder to believe than the idea that the thoughts or imagination of a pregnant woman can cause her foetus to have real and monstrous birth defects, which is of course a widely credited fact.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://twitter.com/witchcourt"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/1500x500.jpg" data-size="1500x500" STYLE="width: 65%; height: auto; max-width: 1500px; max-height: 500px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/1500x500.jpg 1500w, https://www.jwz.org/images/scaled/1280/2021/1500x500.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/1500x500.jpg 768w, https://www.jwz.org/images/scaled/640/2021/1500x500.jpg 640w, https://www.jwz.org/images/scaled/360/2021/1500x500.jpg 360w" SIZES="(max-width: 660px) 65vw, 47em" LOADING="lazy">'Live' tweeting historical witch trials. Modern English, period sources.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">An ex-witch called Deliverance Hobbs is now bewitched because she confessed. The spectral form of another witch keeps appearing and beating her with iron rods as punishment. [...]<P>A witch had an inch-long teat on her belly. She claimed it was a hernia, but it looked recently-sucked, with a hole at the tip. When it was squeezed, "white milky matter" came out. She also had three smaller teats on her genitals. A girl claimed that Rose Cullender, the witch with the milky teat on her belly and three extra teats on her vulva, had been coming to her bed at night, one time bringing a huge dog with her. [...]<P>A child caught an invisible mouse and threw it into the fire where it exploded with a flash like gunpowder. No one but the child saw a mouse, but everyone saw the flash. [...]<P>A bee flew into a child's face. The child vomited up a large iron nail. The child later confirmed that the bee had been carrying the nail and had "forced it into her mouth". [...]<P>The child got sick. One night a strange toad fell out of her blanket and ran along the hearth. A boy picked it up with tongs and held it in the fire, where it exploded like a gunshot. The child had been very sick, but after the magic toad exploded in the fire she completely recovered. [...]<P>The boy told the Devil he would commit to a life of deceit if the Devil would grant him one strange superpower: the boy asked for his saliva to be given the power to scald dogs as though it were boiling water. The Devil granted the boy his wish (to "make his spittle scald a dog"). The boy spat on a dog and a large amount of scalding hot water poured all over it. The possessed boy admitted to having spat a torrent of boiling water onto the dog. His honesty and remorse caused the Devil to leave his body with a terrifyingly loud noise. [...]<P>A witch riding a goat was able to carry 15 or 16 children in one trip by taking a long wooden pole, sticking one end into the goat's anus and seating the children all along the length of the pole. [...]<P>Asked where precisely on her body the Devil sucked her blood, the witch said the Devil sucked at a location he had chosen himself, just slightly above her anus. Because of the Devil's constant sucking at that spot, there is now a teat-like growth on the witch's body, near her anus. Elizabeth asked the Devil why he sucked her blood from the teat just above her anus. He said that it nourished him. [...]<P>A witch's blood is infected with a "poisonous ferment". If a witch gives you a hard glare while thinking spiteful thoughts, pestilential spirits will shoot out of her eyes and infect you. Nature works by "subtle streams" of "minute particles". An example would be the jets of pestilence which shoot out of witch's eyes via by means of their malicious imagination and cause "dangerous and strange alterations" in those weak enough to be affected. The contagious witch-curse can be airborne - spread into the air by a witch's glaring eyes. The pestilence can also be transmitted in other more obvious ways such as the victim being hit by a witch or being given a poisoned apple. [...]<P>Some say, why would the Devil waste his time running errands for a "silly old woman"? But if the Devil is wicked then he probably also uses his time unwisely. When we hear about the crazy behaviour of spirits and familiars, some people ask why the devil would frolic so ludicrously. Perhaps witches are only visited by spirits or demons who are very junior, low ranking or disgraced. [...]<P>The idea that witches can change their bodies into animals is no harder to believe than the idea that the thoughts or imagination of a pregnant woman can cause her foetus to have real and monstrous birth defects, which is of course a widely credited fact.</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2017/01/pressed-on-new-year-trump-vomits-frogs/">Previously</A>, <A HREF="https://www.jwz.org/blog/2017/08/w-i-t-c-h-boston/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/05/using-witchcraft-against-library-patron/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/01/we-talked-to-a-witch-who-casts-viruses-out-of-computers-with-magic/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/06/etsy-explains-why-it-banned-magic-spells/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/witch-court/feed/</wfw:commentRss>
+			<slash:comments>7</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>yjkX</title>
+		<link>https://www.jwz.org/blog/2021/01/13252887/</link>
+					<comments>https://www.jwz.org/blog/2021/01/13252887/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Wed, 20 Jan 2021 20:52:28 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[perversions]]></category>
+		<category><![CDATA[poop]]></category>
+		<category><![CDATA[tentacles]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkX</guid>
+
+					<description><![CDATA[I sincerely hope that today's regime change can mark a return to my blog's core competency: fart jokes and tentacles.]]></description>
+										<content:encoded><![CDATA[I sincerely hope that today's regime change can mark a return to my blog's core competency: fart jokes and tentacles.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/13252887/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Wikipedia: Repository of all Human Knowledge</title>
+		<link>https://www.jwz.org/blog/2021/01/wikipedia-repository-of-all-human-knowledge-7/</link>
+					<comments>https://www.jwz.org/blog/2021/01/wikipedia-repository-of-all-human-knowledge-7/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Wed, 20 Jan 2021 19:24:23 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[boobs]]></category>
+		<category><![CDATA[perversions]]></category>
+		<category><![CDATA[pranks]]></category>
+		<category><![CDATA[wiki]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkW</guid>
+
+					<description><![CDATA[The Great Wikipedia Titty Scandal: This is the story of a Wikipedia administrator gone mad with 80,000 boob pages. Digging into Neelix's history, however, his fellow administrators couldn't believe what they found. He hadn't just created a handful of redirects, as the original report described; he'd quietly created thousands upon thousands of new redirects, each one a chaotic, if not offensive, permutation of the word "tits" and "boobs." For example, he created redirects for "tittypumper," "tittypumpers," "tit pump," "pump titties," "pumping boobies" and hundreds more for "breast pump." In fact, for seemingly every Wikipedia article related to breasts, he did something similar. [...] "I especially don't see the value of creating pages with titles like 'titty banged,' 'frenchfucking,' 'licks boobs,' 'boobyfeeding,' 'a trip down mammary lane' and so on. Wikipedia is not censored, but we're also not Urban Dictionary," added Ivanvector. [...] "I've just gone through all 80,000 page creations, and he was creating nonsense like 'anti-trousers' years ago," added Iridescent. "This isn't anything new, it's just the first time it's come to light."]]></description>
+										<content:encoded><![CDATA[<A HREF="https://melmagazine.com/en-us/story/boobs-tits-wikipedia-titty-trial"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/wikipedia_admin_create_80k_entries_t.jpg" data-size="1440x600" STYLE="width: 65%; height: auto; max-width: 1440px; max-height: 600px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/wikipedia_admin_create_80k_entries_t.jpg 1440w, https://www.jwz.org/images/scaled/1280/2021/wikipedia_admin_create_80k_entries_t.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/wikipedia_admin_create_80k_entries_t.jpg 768w, https://www.jwz.org/images/scaled/640/2021/wikipedia_admin_create_80k_entries_t.jpg 640w, https://www.jwz.org/images/scaled/360/2021/wikipedia_admin_create_80k_entries_t.jpg 360w" SIZES="(max-width: 660px) 65vw, 47em" LOADING="lazy">The Great Wikipedia Titty Scandal: This is the story of a Wikipedia administrator gone mad with 80,000 boob pages.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">Digging into Neelix's history, however, his fellow administrators couldn't believe what they found. He hadn't just created a handful of redirects, as the original report described; he'd quietly created thousands upon thousands of new redirects, each one a chaotic, if not offensive, permutation of the word "tits" and "boobs." For example, he created redirects for "tittypumper," "tittypumpers," "tit pump," "pump titties," "pumping boobies" and hundreds more for "breast pump." In fact, for seemingly every Wikipedia article related to breasts, he did something similar. [...]<P>"I especially don't see the value of creating pages with titles like 'titty banged,' 'frenchfucking,' 'licks boobs,' 'boobyfeeding,' 'a trip down mammary lane' and so on. Wikipedia is not censored, but we're also not Urban Dictionary," added Ivanvector. [...]<P>"I've just gone through all 80,000 page creations, and he was creating nonsense like 'anti-trousers' years ago," added Iridescent. "This isn't anything new, it's just the first time it's come to light."</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2018/01/wikipedia-articles-invented-by-a-neural-network/">Previously</A>, <A HREF="https://www.jwz.org/blog/2017/12/wikipedia-repository-of-all-human-knowledge-6/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/12/wikipedia-repository-of-all-human-knowledge-5/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/03/wikipedia-repository-of-all-human-knowledge-4/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/11/wikipedia-deleted-articles-with-freaky-titles/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/02/list-of-unnamed-fictional-united-states-presidents/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/02/wikipedia-repository-of-all-human-knowledge-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/05/citation-needed/">previously</A>, <A HREF="https://www.jwz.org/blog/2012/09/repository-of-all-human-knowledge/">previously</A>, <A HREF="https://www.jwz.org/blog/2009/12/repository-of-all-human-knowledge-in-anime/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/wikipedia-repository-of-all-human-knowledge-7/feed/</wfw:commentRss>
+			<slash:comments>11</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Dear Music Video Directors:</title>
+		<link>https://www.jwz.org/blog/2021/01/dear-music-video-directors-3/</link>
+					<comments>https://www.jwz.org/blog/2021/01/dear-music-video-directors-3/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Tue, 19 Jan 2021 17:40:52 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[art]]></category>
+		<category><![CDATA[banned words]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[glitch]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[music]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkT</guid>
+
+					<description><![CDATA[By my extremely scientific survey, 10% of all music videos made in 2020 have used the following filter. Stop. It is not charming like an 808 handclap. It is irritating like an airhorn sample. I don't know which video-editing software came with this as one of the stock old-timey presets, but FFS, stop using it. Bonus points here for the unnecessarily burned-in pillarboxing.]]></description>
+										<content:encoded><![CDATA[By my extremely scientific survey, 10% of all music videos made in 2020 have used the following filter. Stop. It is not charming like an 808 handclap. It is irritating like an airhorn sample. I don't know which video-editing software came with this as one of the stock old-timey presets, but FFS, stop using it.<P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto; max-width: 480px;"><A HREF="https://www.jwz.org/images/2021/oldtimey.jpg" data-size="3840x2160"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/oldtimey.jpg" data-size="3840x2160" STYLE="width: 100%; height: auto; max-width: 3840px; max-height: 2160px; border: 1px solid; box-sizing: border-box; margin: 2px 0;" SRCSET="https://www.jwz.org/images/2021/oldtimey.jpg 3840w, https://www.jwz.org/images/scaled/1280/2021/oldtimey.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/oldtimey.jpg 768w, https://www.jwz.org/images/scaled/640/2021/oldtimey.jpg 640w, https://www.jwz.org/images/scaled/360/2021/oldtimey.jpg 360w" SIZES="(max-width: 660px) 100vw, 72em" LOADING="lazy"></A><P>Bonus points here for the unnecessarily burned-in pillarboxing.<P><A HREF="https://www.jwz.org/blog/2012/10/dear-music-video-directors-2/">Previously</A>, <A HREF="https://www.jwz.org/blog/2011/09/dear-music-video-directors/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/10/jwz-mixtape-174/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/02/the-cyberizer/">previously</A>, <A HREF="https://www.jwz.org/blog/2011/06/video-bounding-boxes/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/08/xscreensaver-5-40/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/dear-music-video-directors-3/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>The Internet was a Mistake</title>
+		<link>https://www.jwz.org/blog/2021/01/the-internet-was-a-mistake/</link>
+					<comments>https://www.jwz.org/blog/2021/01/the-internet-was-a-mistake/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2021 20:59:19 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[nscp]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[www]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkO</guid>
+
+					<description><![CDATA[TeenageStepdad:]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://twitter.com/TeenageStepdad/status/1351249782585520128">TeenageStepdad:</A></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 80%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/etkwbvlkvtntnpid.mp4" POSTER="https://www.jwz.org/images/2021/4w9a_se8ob7waknh.jpg" LOOP PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV><P><A HREF="https://www.jwz.org/blog/2020/11/nowadays-there-are-websites/">Previously</A>, <A HREF="https://www.jwz.org/blog/2019/04/you-were-saying-something-about-best-intentions/">previously</A>, <A HREF="https://www.jwz.org/blog/2021/01/10k-september/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/03/brand-necrophilia-part-7/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/08/internet-browsing/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/12/aim-rip/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/the-internet-was-a-mistake/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/etkwbvlkvtntnpid.mp4" length="350613" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Apparently I have violated Facebook&#039;s Community Standards.</title>
+		<link>https://www.jwz.org/blog/2021/01/apparently-i-have-violated-facebooks-community-standards/</link>
+					<comments>https://www.jwz.org/blog/2021/01/apparently-i-have-violated-facebooks-community-standards/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2021 16:32:53 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[dnalounge]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[photography]]></category>
+		<category><![CDATA[security]]></category>
+		<category><![CDATA[www]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkL</guid>
+
+					<description><![CDATA[Note that my Facebook account has zero friends, zero posts, zero photos, and has made zero comments in the last 4+ years. It only still exists so that I can admin our business pages. "We may be unable to review your account. We apologize for any inconvenience "]]></description>
+										<content:encoded><![CDATA[<DIV STYLE="text-align: center; width: 100%; margin: 0 auto; max-width: 640px;"><DIV STYLE="display: inline-block; width: 100%; max-width: 1228px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><a href="https://www.jwz.org/images/2021/fb1.jpg" data-size="1226x714"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/fb1.jpg" data-size="1226x714" STYLE="width: 100%; height: auto; max-width: 1226px; max-height: 714px; border: 1px solid; box-sizing: border-box;" ALT="Your account has been disabled. You can't use Facebook because your account, or activity on it, doesn't follow our Community Standards." SRCSET="https://www.jwz.org/images/2021/fb1.jpg 1226w, https://www.jwz.org/images/scaled/768/2021/fb1.jpg 768w, https://www.jwz.org/images/scaled/640/2021/fb1.jpg 640w, https://www.jwz.org/images/scaled/360/2021/fb1.jpg 360w" SIZES="(max-width: 660px) 100vw, 72em" LOADING="lazy"></a></DIV><P><div style="text-align: left;"> Note that my Facebook account has zero friends, zero posts, zero photos, and has made zero comments in the last 4+ years. It only still exists so that I can admin our business pages. </div><P><DIV STYLE="display: inline-block; width: 26.05%; max-width: 1234px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><a href="https://www.jwz.org/images/2021/fb2.jpg" data-size="1232x1204"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/fb2.jpg" data-size="1232x1204" STYLE="width: 100%; height: auto; max-width: 1232px; max-height: 1204px; border: 1px solid; box-sizing: border-box;" ALT="Upload a photo of yourself. Upload a photo that clearly shows your face. Make sure the photo is well-lit and isn't blurry." SRCSET="https://www.jwz.org/images/2021/fb2.jpg 1232w, https://www.jwz.org/images/scaled/768/2021/fb2.jpg 768w, https://www.jwz.org/images/scaled/640/2021/fb2.jpg 640w, https://www.jwz.org/images/scaled/360/2021/fb2.jpg 360w" SIZES="(max-width: 660px) 27vw, 19em" LOADING="lazy"></a></DIV><DIV STYLE="display: inline-block; width: 73.95%; max-width: 1216px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><a href="https://www.jwz.org/images/2021/fb3.jpg" data-size="1214x418"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/fb3.jpg" data-size="1214x418" STYLE="width: 100%; height: auto; max-width: 1214px; max-height: 418px; border: 1px solid; box-sizing: border-box;" alt="We have received your information. Thank you for sending your information. We have fewer people available to review information due to the coronavirus (COVID-19) pandemic. This means we may be unable to review your account. We apologize for any inconvenience." SRCSET="https://www.jwz.org/images/2021/fb3.jpg 1214w, https://www.jwz.org/images/scaled/768/2021/fb3.jpg 768w, https://www.jwz.org/images/scaled/640/2021/fb3.jpg 640w, https://www.jwz.org/images/scaled/360/2021/fb3.jpg 360w" SIZES="(max-width: 660px) 74vw, 54em" LOADING="lazy"></a></DIV><P>"We may be unable to review your account. We apologize for any inconvenience "<P><A HREF="https://www.jwz.org/blog/2018/12/community-standards/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/according-to-twitter-pointing-out-that-time-that-trump-tower-was-literally-protected-by-white-trash-trucks-is-hateful-conduct/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/zuckerberg-says-bannon-has-not-violated-enough-policies-for-suspension/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/05/fucking-facebook-3/">previously</A>, <A HREF="https://www.jwz.org/blog/2021/01/facebook-is-showing-military-gear-ads-next-to-insurrection-posts/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/09/facebook-admits-their-algorithm-is-optimized-for-fascism/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/07/facebook-touts-fight-on-fake-news-but-struggles-to-explain-why-infowars-isnt-banned/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/12/google-facebook-agreed-to-team-up-against-possible-antitrust-action/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/01/facebook-wont-remove-this-womans-butthole-as-a-business-page/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/10/instagram-3/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/apparently-i-have-violated-facebooks-community-standards/feed/</wfw:commentRss>
+			<slash:comments>19</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Spare the air.</title>
+		<link>https://www.jwz.org/blog/2021/01/spare-the-air/</link>
+					<comments>https://www.jwz.org/blog/2021/01/spare-the-air/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2021 07:35:12 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[parts]]></category>
+		<category><![CDATA[plague]]></category>
+		<category><![CDATA[zombies]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkJ</guid>
+
+					<description><![CDATA[So many people have died in Los Angeles County that officials have suspended air-quality regulations that limit the number of cremations. Health officials and the L.A. County coroner requested the change because the current death rate is "more than double that of pre-pandemic years, leading to hospitals, funeral homes and crematoriums exceeding capacity, without the ability to process the backlog," the South Coast Air Quality Management District said Sunday.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://www.latimes.com/california/story/2021-01-17/covid-19-coronavirus-vaccine-update-pandemic"><VIDEO STYLE="width: 30%; height: auto; max-width: 346px; max-height: 336px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" LOOP AUTOPLAY PLAYSINLINE MUTED><SOURCE SRC="https://www.jwz.org/images/scaled/mp4/2021/390o.mp4" TYPE="video/mp4" /><!-- <IMG SRC="https://www.jwz.org/images/2021/390o.gif" data-size="346x336" STYLE="width: 30%; height: auto; max-width: 346px; max-height: 336px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/390o.gif 346w" SIZES="(max-width: 660px) 30vw, 22em" LOADING="lazy"> --></VIDEO>So many people have died in Los Angeles County that officials have suspended air-quality regulations that limit the number of cremations.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">Health officials and the L.A. County coroner <A HREF="http://www.aqmd.gov/docs/default-source/covid-19/crematoria-limits-suspension.pdf">requested the change</A> because the current death rate is "more than double that of pre-pandemic years, leading to hospitals, funeral homes and crematoriums exceeding capacity, without the ability to process the backlog," the South Coast Air Quality Management District said Sunday.</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2020/11/vr-furry-total-landscaping/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/church-patriarch-dies-from-covid-19-after-leading-open-casket-funeral-of-bishop-killed-by-the-virus/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/after-big-thanksgiving-dinners-plan-small-christmas-funerals-health-experts-warn/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/07/today-in-bucket-of-cocks-news/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/09/mass-grave-of-diseased-pigs/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/10/vatican-tightens-standards-on-corpse-disposal/">previously</A>, <A HREF="https://www.jwz.org/blog/2006/10/send-more-paramedics/">previously</A>, <A HREF="https://www.jwz.org/blog/2005/02/soylent-green-dry-mix/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/spare-the-air/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Periodic wellness check on Pablo Escobar&#039;s Cocaine Hippos:</title>
+		<link>https://www.jwz.org/blog/2021/01/periodic-wellness-check-on-pablo-escobars-cocaine-hippos/</link>
+					<comments>https://www.jwz.org/blog/2021/01/periodic-wellness-check-on-pablo-escobars-cocaine-hippos/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2021 02:22:11 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[grim meathook future]]></category>
+		<category><![CDATA[mutants]]></category>
+		<category><![CDATA[parts]]></category>
+		<category><![CDATA[perversions]]></category>
+		<category><![CDATA[teeth]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkI</guid>
+
+					<description><![CDATA[Doin' fine. 'When he was shot dead in 1993,, most of the animals were shipped away, but four hippos were left to fend for themselves in a pond. Although nobody knows exactly how many there are, estimates put the total number between 80 and 100, making them the largest invasive species on the planet. Scientists forecast that the number of hippos will swell to almost 1,500 by 2040. They conclude, that at that point, environmental impacts will be irreversible and numbers impossible to control. "Nobody likes the idea of shooting a hippo, but we have to accept that no other strategy is going to work," [...] Environmentalists have been trying to sterilise the hippos for years [...] Male hippos have retractable testes and females' reproductive organs are even harder to find, according to scientists. "We didn't understand the female anatomy," said David Echeverri Lopez, a government environmentalist. "We tried to sterilise females on several occasions and were always unsuccessful." He is also playing an impossible game of catch-up. Mr Echeverri told The Telegraph that he is able to castrate roughly a hippo per year, whereas scientists estimate that the population grows by 10 percent annually. [...] "Relocation might have been possible 30 years ago, when there were only four hippos," said Dr Castelblanco-Mart&#237;nez. "Castration could also have been effective if officials had provided sufficient resources for the programme early on, but a cull is now the only option."]]></description>
+										<content:encoded><![CDATA[<A HREF="https://www.telegraph.co.uk/news/2021/01/17/colombias-rapidly-breeding-cocaine-hippos-must-stopped-scientists/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/telemmglpict000248827362_trans_nvbqz.jpg" data-size="2501x1563" STYLE="width: 65%; height: auto; max-width: 2501px; max-height: 1563px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/telemmglpict000248827362_trans_nvbqz.jpg 2501w, https://www.jwz.org/images/scaled/1280/2021/telemmglpict000248827362_trans_nvbqz.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/telemmglpict000248827362_trans_nvbqz.jpg 768w, https://www.jwz.org/images/scaled/640/2021/telemmglpict000248827362_trans_nvbqz.jpg 640w, https://www.jwz.org/images/scaled/360/2021/telemmglpict000248827362_trans_nvbqz.jpg 360w" SIZES="(max-width: 660px) 65vw, 47em" LOADING="lazy">Doin' fine.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">'When he was shot dead in 1993,, most of the animals were shipped away, but four hippos were left to fend for themselves in a pond.<P>Although nobody knows exactly how many there are, estimates put the total number between 80 and 100, making them the largest invasive species on the planet. Scientists forecast that the number of hippos will swell to almost 1,500 by 2040. They conclude, that at that point, environmental impacts will be irreversible and numbers impossible to control.<P>"Nobody likes the idea of shooting a hippo, but we have to accept that no other strategy is going to work," [...]<P>Environmentalists have been trying to sterilise the hippos for years [...] Male hippos have retractable testes and females' reproductive organs are even harder to find, according to scientists. "We didn't understand the female anatomy," said David Echeverri Lopez, a government environmentalist. "We tried to sterilise females on several occasions and were always unsuccessful."<P>He is also playing an impossible game of catch-up. Mr Echeverri told The Telegraph that he is able to castrate roughly a hippo per year, whereas scientists estimate that the population grows by 10 percent annually. [...]<P>"Relocation might have been possible 30 years ago, when there were only four hippos," said Dr Castelblanco-Mart&iacute;nez. "Castration could also have been effective if officials had provided sufficient resources for the programme early on, but a cull is now the only option."</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2016/07/lets-check-in-with-pablo-escobars-herd-of-feral-hippos/">Previously</A>, <A HREF="https://www.jwz.org/blog/2014/07/today-in-hippo-news/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/02/hippo-nuts/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/05/i-was-swallowed-by-a-hippo/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/09/bad-hair-incorrect-feathering-and-missing-skin-flaps/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/periodic-wellness-check-on-pablo-escobars-cocaine-hippos/feed/</wfw:commentRss>
+			<slash:comments>4</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Space Monkey</title>
+		<link>https://www.jwz.org/blog/2021/01/space-monkey/</link>
+					<comments>https://www.jwz.org/blog/2021/01/space-monkey/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sun, 17 Jan 2021 20:57:54 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[monkeys]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[space]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkG</guid>
+
+					<description><![CDATA[How did I not know about this until today?? In 2016, former astronaut Mark Kelly sent his twin brother and ISS commander Scott Kelly a gorilla suit for their birthday.]]></description>
+										<content:encoded><![CDATA[How did I not know about this until today??<P>In 2016, former astronaut <A HREF="https://twitter.com/CaptMarkKelly/status/701927839344373760">Mark Kelly</A> sent his twin brother and ISS commander <A HREF="https://twitter.com/StationCDRKelly/status/702239878323372032">Scott Kelly</A> a <A HREF="https://v1.escapistmagazine.com/news/view/166565-Astronauts-Twin-Brother-Sends-a-Gorilla-Suit-As-A-Care-Package">gorilla suit for their birthday.</A><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV CLASS="video_floater video_43"><DIV CLASS="video_frame"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/9lknzid7skgkb3ya.mp4" LOOP PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN POSTER="https://www.jwz.org/images/2021/9lknzid7skgkb3ya.jpg"></VIDEO></DIV></DIV><P><A HREF="https://www.jwz.org/blog/2018/10/a-monkey-walks-into-a-bar/">Previously</A>, <A HREF="https://www.jwz.org/blog/2017/09/a-showman-to-the-end-his-gorilla-suits-launched-a-costume-empire/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/02/another-hard-day-at-the-orifice/">previously</A>, <A HREF="https://www.jwz.org/blog/2010/02/address-is-approximate/">previously</A>, <A HREF="https://www.jwz.org/blog/2006/09/gourilla/">previously</A>, <A HREF="https://www.jwz.org/blog/2005/09/three-words-space-monkey-pants/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/space-monkey/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/9lknzid7skgkb3ya.mp4" length="3420627" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Today is Johnny Mnemonic day.</title>
+		<link>https://www.jwz.org/blog/2021/01/today-is-johnny-mnemonic-day/</link>
+					<comments>https://www.jwz.org/blog/2021/01/today-is-johnny-mnemonic-day/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sun, 17 Jan 2021 17:49:37 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[movies]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[the future]]></category>
+		<category><![CDATA[tron]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkC</guid>
+
+					<description><![CDATA[Thursday, January 17th, 2021. That's right, today's Thursday. It says so right there. "Fax the images to Newark." I wrote a review of it ten months ago -- I saw it at Alamo shortly before lockdown, which probably means that Johnny Mnemonic was the last movie I saw in a theatre.]]></description>
+										<content:encoded><![CDATA[<div align=center> Thursday, January 17th, 2021.<BR> That's right, today's Thursday.<BR> It says so right there.<P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV CLASS="video_floater" STYLE="width: 50%; margin: 0; box-sizing: border-box; padding: 2px;"><DIV CLASS="video_frame"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/johnnymnemonic1.mp4" POSTER="https://www.jwz.org/images/2021/johnnymnemonic1.jpg" LOOP PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV><DIV CLASS="video_floater" STYLE="width: 50%; margin: 0; box-sizing: border-box; padding: 2px;"><DIV CLASS="video_frame"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/johnnymnemonic2.mp4" POSTER="https://www.jwz.org/images/2021/johnnymnemonic2.jpg" LOOP PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV><P>"Fax the images to Newark."</div>
+<P> I <A HREF="https://www.jwz.org/blog/2020/03/recent-tv-2/">wrote a review</A> of it ten months ago -- I saw it at Alamo shortly before lockdown, which probably means that <I>Johnny Mnemonic</I> was the last movie I saw in a theatre.
+<P><A HREF="https://www.jwz.org/blog/2019/11/blade-runner-day/">Previously</A>, <A HREF="https://www.jwz.org/blog/2019/06/happy-third-birthday-zhora-salome/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/04/happy-second-birthday-leon-kowalski/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/02/happy-third-birthday-priscilla-stratton/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/01/happy-third-birthday-roy-batty/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/10/blade-runner-2049/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/02/altered-carbon/">previously</A>, <A HREF="https://www.jwz.org/blog/2021/01/10k-september/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/03/recent-tv-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2015/03/and-people-say-im-hard-to-shop-for-3/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/03/xscreensaver-5-43-hacks-the-planet/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/02/unthinkable-complexity-lines-of-light-ranged-in-the-non-space-of-the-mind/">previously</A>, <A HREF="https://www.dnalounge.com/backstage/log/2017/02/15.html">previously</A>, <A HREF="https://www.jwz.org/blog/2009/10/even-though-weve-run-out-of-future-its-important-that-we-continue-to-strive-to-make-gibsons-visi/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/03/webiversary/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/today-is-johnny-mnemonic-day/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/johnnymnemonic1.mp4" length="10539121" type="video/mp4" />
+<enclosure url="https://www.jwz.org/images/2021/johnnymnemonic2.mp4" length="562940" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>WTF, certbot</title>
+		<link>https://www.jwz.org/blog/2021/01/wtf-certbot/</link>
+					<comments>https://www.jwz.org/blog/2021/01/wtf-certbot/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sun, 17 Jan 2021 16:50:38 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[lazyweb]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[security]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjkB</guid>
+
+					<description><![CDATA[A few weeks ago, my Let's Encrypt cron job started complaining that certbot-auto is no longer supported on CentOS 7.7. Ummmm thaaaaanks? So I changed "certbot-auto" to "certbot" but now it's saying: Attempting to parse the version 1.9.0 renewal configuration file found at /etc/letsencrypt/renewal/jwz.org.conf with version 0.38.0 of Certbot. This might not work. How is this shit supposed to work? What am I expected to do on CentOS 7.7? Certbot 0.38.0 is the latest version in yum.]]></description>
+										<content:encoded><![CDATA[A few weeks ago, my Let's Encrypt cron job started complaining that certbot-auto is no longer supported on CentOS 7.7. Ummmm <I>thaaaaanks?</I> So I changed "certbot-auto" to "certbot" but now it's saying:<P><blockquote STYLE="margin-left:1em;border-left:2px solid;padding-left:1em"> Attempting to parse the version 1.9.0 renewal configuration file found at /etc/letsencrypt/renewal/jwz.org.conf with version 0.38.0 of Certbot. This might not work.</blockquote><P>How is this shit supposed to work? What am I expected to do on CentOS 7.7? Certbot 0.38.0 is the latest version in yum.<P><A HREF="https://www.jwz.org/blog/2018/06/starttls-everywhere/">Previously</A>, <A HREF="https://www.jwz.org/blog/2019/05/lets-encrypt/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/wtf-certbot/feed/</wfw:commentRss>
+			<slash:comments>26</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>10K September</title>
+		<link>https://www.jwz.org/blog/2021/01/10k-september/</link>
+					<comments>https://www.jwz.org/blog/2021/01/10k-september/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sat, 16 Jan 2021 19:06:45 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[nscp]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[time_t]]></category>
+		<category><![CDATA[www]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj_</guid>
+
+					<description><![CDATA[Today is day 10,000 of The September That Never Ended. The Internet: Mistakes Were Made.&#8482;]]></description>
+										<content:encoded><![CDATA[<IMG SRC="https://www.jwz.org/images/scaled/768/2021/aol20g.png" data-size="1420x1476" STYLE="width: 20%; height: auto; max-width: 1420px; max-height: 1476px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/aol20g.png 1420w, https://www.jwz.org/images/scaled/1280/2021/aol20g.png 1280w, https://www.jwz.org/images/scaled/768/2021/aol20g.png 768w, https://www.jwz.org/images/scaled/640/2021/aol20g.png 640w, https://www.jwz.org/images/scaled/360/2021/aol20g.png 360w" SIZES="(max-width: 660px) 20vw, 15em" LOADING="lazy">Today is day 10,000 of The September That Never Ended.<P>The Internet: Mistakes Were Made.&trade;<P><A HREF="https://www.jwz.org/blog/2020/08/the-date-is-now-tuesday-march-178th-2020/">Previously</A>, <A HREF="https://www.jwz.org/blog/2021/01/202/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/04/you-were-saying-something-about-best-intentions/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/01/we-are-now-closer-to-the-y2038-bug-than-the-y2k-bug/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/12/aim-rip/">previously</A>, <A HREF="https://www.jwz.org/blog/2008/08/brand-necrophilia-part-5/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/10k-september/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Stealing Your Private YouTube Videos, One Frame at a Time</title>
+		<link>https://www.jwz.org/blog/2021/01/stealing-your-private-youtube-videos-one-frame-at-a-time/</link>
+					<comments>https://www.jwz.org/blog/2021/01/stealing-your-private-youtube-videos-one-frame-at-a-time/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sat, 16 Jan 2021 03:40:42 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[copyright]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[security]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj-</guid>
+
+					<description><![CDATA[Turns out you can exfiltrate every possible thumbnail of a private video via an Adwords account.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://bugs.xdavidhu.me/google/2021/01/11/stealing-your-private-videos-one-frame-at-a-time/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/hackervoice.jpg" data-size="800x534" STYLE="width: 30%; height: auto; max-width: 800px; max-height: 534px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/hackervoice.jpg 800w, https://www.jwz.org/images/scaled/768/2021/hackervoice.jpg 768w, https://www.jwz.org/images/scaled/640/2021/hackervoice.jpg 640w, https://www.jwz.org/images/scaled/360/2021/hackervoice.jpg 360w" SIZES="(max-width: 660px) 30vw, 22em" LOADING="lazy">Turns out you can exfiltrate every possible thumbnail of a private video via an Adwords account.</A><P><A HREF="https://www.jwz.org/blog/2020/10/youtube-can-go-duck-itself/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/03/today-in-youtubes-joke-of-a-fair-use-appeal-process-4/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/11/today-in-youtubes-joke-of-a-fair-use-appeal-process-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/02/today-in-youtubes-joke-of-a-fair-use-appeal-process/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/10/the-ever-shrinking-api/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/01/youtubes-content-id-system-is-by-any-practical-definition-of-the-words-foolproof-and-incapable-of-error/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/stealing-your-private-youtube-videos-one-frame-at-a-time/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>I told you so, 2021 edition</title>
+		<link>https://www.jwz.org/blog/2021/01/i-told-you-so-2021-edition/</link>
+					<comments>https://www.jwz.org/blog/2021/01/i-told-you-so-2021-edition/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sat, 16 Jan 2021 03:11:57 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[copyright]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[security]]></category>
+		<category><![CDATA[xscreensaver]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj9</guid>
+
+					<description><![CDATA[Cinnamon-screensaver got popped, again. If you are not running XScreenSaver on Linux, then it is safe to assume that your screen does not lock. The latest: 2021: Mash keys on the virtual keyboard to unlock Cinnamon-screensaver. Previously: CVE-2019-3010, Privilege escalation in Oracle Solaris screen saver fork. CVE-2015-7496: Hold ESC to unlock Gnome-session GDM. CVE-2014-1949, MDVSA-2015:162: Press Menu key then ESC in Cinnamon-screensaver, get shell. Hold down keys, unlock Cinnamon-screensaver. Hold enter, unlock Gnome-screensaver. You will recall that in 2004, which is now seventeen years ago, I wrote a document explaining why I made the design trade-offs that I did in XScreenSaver, and in that document I predicted this exact bug as my example of, "this is what will happen if you don't do it this way." And they went and made that happen. Repeatedly. Every time this bug is re-introduced, someone pipes up and says something like, "So what, it was a bug, they've fixed it." That's really missing the point. The point is not that such a bug existed, but that such a bug was even possible. The real bug here is that the design of the system even permits this class of bug. It is unconscionable that someone designing a critical piece of security infrastructure would design the system in such a way that it does not fail safe. Especially when I have given them nearly 30 years of prior art demonstrating how to do it right, and a two-decades-old document clearly explaining What Not To Do that coincidentally used this very bug as its illustrative strawman! These bugs are a shameful embarrassment of design -- as opposed to merely bad code. This same bug keeps cropping up in these other screen lockers for several reasons. Writing security-critical code is hard. Most people can't do it. Locking and authentication is an OS-level problem. And while X11 is at the heart of the OS of a Linux desktop computer, it was designed with no security to speak of, and so lockers have to run as normal, unprivileged, user-level applications. That makes the problem even harder. This mistake of the X11 architecture can never, ever be fixed. X11 is too old, too ossified, and has too many quagmire-trapped stakeholders to ever make any meaningful changes to it again. That's why people keep trying to replace X11 -- and failing, because it's too entrenched. As always, these bugs are terrible because bad security is worse than no security. If you knew for a fact that your screen didn't lock, you would behave appropriately. Maybe you'd log out when you walked away. Maybe you wouldn't use that computer for certain things. But a security placebo makes you behave as if it's secure when in fact it is not. One of the infuriating parts of these recurring bugs is that the screen-locker part of XScreenSaver isn't even the fun part! I do not enjoy working on it. I never have. I added it in response to demand and necessity, not because it sounded like a good time. I started and continue this project as an outlet for making art. I'd much rather be spending my time pushing triangles. Sigh. And in not-at-all-unrelated news: Just to add insult to injury, it has recently come to my attention that not only are Gnome-screensaver, Mate-screensaver and Cinnamon-screensaver buggy and insecure dumpster fires, but they are also in violation of my license and infringing my copyright. XScreenSaver was released under the BSD license, one of the oldest and most permissive of the free software licenses. It turns out, the Gnome-screensaver authors copied large parts of XScreenSaver into their program, removed the BSD license and slapped a GPL license on my code instead -- and also removed my name. Rude. If they had asked me, "can you dual-license this code", I might have said yes. If they had asked, "can we strip your name off and credit your work as (C) William Jon McCann instead"... probably not. Mate-screensaver and Cinnamon-screensaver, being forks and descendants of Gnome-screensaver, have inherited this license violation and continue to perpetuate it. Every Linux distro is shipping this copyright- and license-infringing code. I eagerly await hearing how they're going to make this right.]]></description>
+										<content:encoded><![CDATA[<DIV STYLE="text-align: right; width: 60%; max-width: 640px; margin: 0 0 1em 1em; white-space: nowrap; float: right;"><DIV CLASS="video_floater"><DIV CLASS="video_frame"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/toldyouso.mp4" POSTER="https://www.jwz.org/images/2021/toldyouso.jpg" AUTOPLAY LOOP MUTED PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV> Cinnamon-screensaver got popped, again.<P>If you are not running <A HREF="https://www.jwz.org/xscreensaver/">XScreenSaver</A> on Linux, then it is safe to assume that your screen does not lock.
+<P>The latest:<P><ul><li> <A HREF="https://github.com/linuxmint/cinnamon-screensaver/issues/354">2021: Mash keys on the virtual keyboard to unlock Cinnamon-screensaver.</A> </li></ul>
+<P>Previously:<P><ul>
+<li> <A HREF="https://nvd.nist.gov/vuln/detail/CVE-2019-3010">CVE-2019-3010, Privilege escalation in Oracle Solaris screen saver fork.</A> 
+</li><li> <A HREF="https://bugzilla.gnome.org/show_bug.cgi?id=758032"> CVE-2015-7496: Hold ESC to unlock Gnome-session GDM.</A>
+</li><li> <A HREF="https://nvd.nist.gov/vuln/detail/CVE-2014-1949">CVE-2014-1949,</A> <A HREF="https://www.securityfocus.com/archive/1/535119/30/0/">MDVSA-2015:162: Press Menu key then ESC in Cinnamon-screensaver, get shell.</A> 
+</li><li> <A HREF="https://github.com/linuxmint/Cinnamon/issues/3443">Hold down keys, unlock Cinnamon-screensaver.</A> 
+</li><li> <A HREF="https://bugs.launchpad.net/ubuntu/+source/unity/+bug/1308572">Hold enter, unlock Gnome-screensaver.</A> 
+</li></ul>
+<P>You will recall that in <B><I>2004</I></b>, which is now <I>seventeen years ago,</I> I wrote a document <A HREF="https://www.jwz.org/xscreensaver/toolkits.html">explaining why I made the design trade-offs that I did in XScreenSaver</A>, and in that document I predicted <I>this exact bug</I> as my example of, "this is what will happen if you don't do it this way."<P>And they went and made that happen.<P>Repeatedly.<P>Every time this bug is re-introduced, someone pipes up and says something like, "So what, it was a bug, they've fixed it." That's really missing the point. The point is not that such a bug existed, but that such a bug was even possible. The real bug here is that the design of the system even permits this <I>class</I> of bug. It is unconscionable that someone designing a critical piece of security infrastructure would design the system in such a way that it does not fail <I><B>safe.</B></I><P>Especially when I have given them nearly <I>30 years</I> of prior art demonstrating how to do it right, and a two-decades-old document clearly explaining What Not To Do that coincidentally used <I>this very bug</I> as its illustrative strawman!<P>These bugs are a shameful embarrassment of <I>design</I> -- as opposed to merely bad code.<P>This same bug keeps cropping up in these other screen lockers for several reasons.<P><ol> <li> Writing security-critical code is hard. Most people can't do it.<P></li><li> Locking and authentication is an OS-level problem. And while X11 is at the heart of the OS of a Linux desktop computer, it was designed with no security to speak of, and so lockers have to run as normal, unprivileged, user-level applications. That makes the problem even harder.<P></li><li> This mistake of the X11 architecture can never, ever be fixed. X11 is too old, too ossified, and has too many quagmire-trapped stakeholders to ever make any meaningful changes to it again. That's why people keep trying to replace X11 -- and failing, because it's too entrenched. </li></ol><P>As always, these bugs are terrible because <I>bad</I> security is worse than <I>no</I> security. If you knew for a fact that your screen didn't lock, you would behave appropriately. Maybe you'd log out when you walked away. Maybe you wouldn't use that computer for certain things. But a security placebo makes you behave as if it's secure when in fact it is not.<P>One of the infuriating parts of these recurring bugs is that the screen-locker part of XScreenSaver isn't even the fun part! I do not enjoy working on it. I never have. I added it in response to demand and necessity, not because it sounded like a good time. I started and continue this project as an outlet for making <I>art</I>. I'd much rather be spending my time pushing triangles.<P>Sigh.<P><B>And in not-at-all-unrelated news:</B><P>Just to add insult to injury, it has recently come to my attention that not only are Gnome-screensaver, Mate-screensaver and Cinnamon-screensaver buggy and insecure dumpster fires, but they are also in violation of my license and infringing my copyright.<P>XScreenSaver was released under the BSD license, one of the oldest and most permissive of the free software licenses. It turns out, the Gnome-screensaver authors copied large parts of XScreenSaver into their program, removed the BSD license and slapped a GPL license on my code instead -- and also removed my name. Rude.<P>If they had asked me, "can you dual-license this code", I might have said yes. If they had asked, "can we strip your name off and credit your work as (C) William Jon McCann instead"... probably not.<P>Mate-screensaver and Cinnamon-screensaver, being forks and descendants of Gnome-screensaver, have inherited this license violation and continue to perpetuate it. Every Linux distro is shipping this copyright- and license-infringing code.<P>I eagerly await hearing how they're going to make this right.<P><A HREF="https://www.jwz.org/blog/2015/04/i-told-you-so-again/">Previously</A>, <A HREF="https://www.jwz.org/blog/2014/04/the-awful-thing-about-getting-it-right-the-first-time-is-that-nobody-realizes-how-hard-it-was/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/11/hold-down-ret-for-70-seconds-to-get-a-root-shell/">previously</A>, <A HREF="https://www.jwz.org/blog/2011/10/has-gnome-3-decided-that-people-shouldnt-want-screen-savers/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/10/we-live-in-a-magical-future-where-strings-is-exploitable/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/i-told-you-so-2021-edition/feed/</wfw:commentRss>
+			<slash:comments>88</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/toldyouso.mp4" length="6138482" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Billboard</title>
+		<link>https://www.jwz.org/blog/2021/01/billboard-3/</link>
+					<comments>https://www.jwz.org/blog/2021/01/billboard-3/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Sat, 16 Jan 2021 00:24:30 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[billboard]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[religion]]></category>
+		<category><![CDATA[sf]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj8</guid>
+
+					<description><![CDATA["Wow, I sure do hate this weed-and-bongs billboard outside my window." [ Monkey's paw curls ] Now there's an anti-abortion billboard too.]]></description>
+										<content:encoded><![CDATA["Wow, I sure do hate this weed-and-bongs billboard outside my window."<P>[ Monkey's paw curls ]<P>Now there's an anti-abortion billboard too.<P><A HREF="https://www.jwz.org/blog/2018/06/i-agree-with-this-message-and-its-a-quite-festive-one-today/">Previously</A>, <A HREF="https://www.jwz.org/blog/2015/10/i-approve-of-this-message/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/billboard-3/feed/</wfw:commentRss>
+			<slash:comments>10</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Sony Scopeman</title>
+		<link>https://www.jwz.org/blog/2021/01/sony-scopeman/</link>
+					<comments>https://www.jwz.org/blog/2021/01/sony-scopeman/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2021 03:37:18 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[art]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[mad science]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[toys]]></category>
+		<category><![CDATA[tron]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj7</guid>
+
+					<description><![CDATA[Niklas Fauth: Hardware Design files of a replacement mainboard for the Sony Watchman FD-10. This turns it into a bluetooth and WiFi-enabled vector display. In "Audio" mode, the ESP32 acts as a bluetooth speaker. Play back audio files from your smartphone or laptop to hear and see the soundwaves. You can change the size by adjusting the playback volume. In "Video" mode, the ESP32 renders the result of the Lorenz Attractor equation. You can change the simulation speed using the "Tune" knob.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://github.com/NiklasFauth/sony-scopeman"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/erqgjktxcaa4_yf.jpg" data-size="1536x2048" STYLE="width: 26%; height: auto; max-width: 1536px; max-height: 2048px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/erqgjktxcaa4_yf.jpg 1536w, https://www.jwz.org/images/scaled/1280/2021/erqgjktxcaa4_yf.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/erqgjktxcaa4_yf.jpg 768w, https://www.jwz.org/images/scaled/640/2021/erqgjktxcaa4_yf.jpg 640w, https://www.jwz.org/images/scaled/360/2021/erqgjktxcaa4_yf.jpg 360w" SIZES="(max-width: 660px) 26vw, 19em" LOADING="lazy"></a> <DIV STYLE="text-align: right; width: 30%; max-width: 640px; margin: 0 0 1em 1em; white-space: nowrap; float: right;"><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 56%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/ajafvqv7axjvavw7.mp4" POSTER="https://www.jwz.org/images/2021/bg3ubkcdyxox5ssr.jpg" PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN LOOP></VIDEO></DIV></DIV><BR><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 56%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/0t5qjpkfvkcmdl_k.mp4" POSTER="https://www.jwz.org/images/2021/u_hgfq0s2dl5kikx.jpg" PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN LOOP></VIDEO></DIV></DIV></DIV> <A HREF="https://github.com/NiklasFauth/sony-scopeman">Niklas Fauth:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em"> Hardware Design files of a replacement mainboard for the Sony Watchman FD-10. This turns it into a bluetooth and WiFi-enabled vector display.<P>In "Audio" mode, the ESP32 acts as a bluetooth speaker. Play back audio files from your smartphone or laptop to hear and see the soundwaves. You can change the size by adjusting the playback volume.<P>In "Video" mode, the ESP32 renders the result of the Lorenz Attractor equation. You can change the simulation speed using the "Tune" knob.</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2018/10/today-in-the-emularity/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/02/rotary-cellphone-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/03/90s-police-car-dashboard-computer-now-runs-xscreensaver/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/11/daft-punk-on-a-vectrex/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/01/avoid-spikes-remains-solid-advice/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/05/deflecting-it-old-school-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/02/all-your-vectors/">previously</A>, <A HREF="https://www.jwz.org/blog/2013/01/deflecting-it-old-school/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/sony-scopeman/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/ajafvqv7axjvavw7.mp4" length="5754815" type="video/mp4" />
+<enclosure url="https://www.jwz.org/images/2021/0t5qjpkfvkcmdl_k.mp4" length="5059078" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Facebook Is Showing Military Gear Ads Next To Insurrection Posts</title>
+		<link>https://www.jwz.org/blog/2021/01/facebook-is-showing-military-gear-ads-next-to-insurrection-posts/</link>
+					<comments>https://www.jwz.org/blog/2021/01/facebook-is-showing-military-gear-ads-next-to-insurrection-posts/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2021 01:58:11 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[grim meathook future]]></category>
+		<category><![CDATA[security]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj5</guid>
+
+					<description><![CDATA[Facebook has been running ads for body armor, gun holsters, and other military equipment next to content promoting election misinformation and news about the attempted coup at the US Capitol, despite internal warnings from concerned employees. In the aftermath of an attempted insurrection by President Donald Trump's supporters last week at the US Capitol building, Facebook has served up ads for defense products to accounts that follow extremist content, according to the Tech Transparency Project, a nonprofit watchdog group. Those ads -- which include New Year's specials for specialized body armor plates, rifle enhancements, and shooting targets -- were all delivered to a TTP Facebook account used to monitor right-wing content that could incite violence. [...] These ads for tactical gear, which were flagged internally by employees as potentially problematic, show Facebook has been profiting from content that amplifies political and cultural discord in the US. "Facebook has spent years facilitating fringe voices who use the platform to organize and amplify calls for violence," said TTP Director Katie Paul. "As if that weren't enough, Facebook's advertising microtargeting is directing domestic extremists toward weapons accessories and armor that can make their militarized efforts more effective, all while Facebook profits." [...] During Monday's interview, Sandberg also addressed the proliferation of hate-related content on Facebook. "I think there's a false belief that we somehow profit, that people somehow want to see this content," she said. "That's just not true." [cue laughter]]]></description>
+										<content:encoded><![CDATA[<A HREF="https://www.buzzfeednews.com/article/ryanmac/facebook-profits-military-gear-ads-capitol-riot"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/facebook-has-been-showing-military-g.jpg" data-size="1200x797" STYLE="width: 35%; height: auto; max-width: 1200px; max-height: 797px; border: 1px solid; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2021/facebook-has-been-showing-military-g.jpg 1200w, https://www.jwz.org/images/scaled/768/2021/facebook-has-been-showing-military-g.jpg 768w, https://www.jwz.org/images/scaled/640/2021/facebook-has-been-showing-military-g.jpg 640w, https://www.jwz.org/images/scaled/360/2021/facebook-has-been-showing-military-g.jpg 360w" SIZES="(max-width: 660px) 35vw, 26em" LOADING="lazy"></A><div style="float: right; border: 1px solid; padding: 1em; margin: 0 0 1em 1em; text-align: center; font-weight: bold; clear: right;">IT HAS BEEN<BR> <b style="font-size: 24pt; line-height: 24pt; display: block;">[ 0 ] </b><br>DAYS SINCE <BR>FACEBOOK EMPLOYEES <BR> WERE "CONCERNED"</div> <A HREF="https://www.buzzfeednews.com/article/ryanmac/facebook-profits-military-gear-ads-capitol-riot">Facebook has been running ads for body armor, gun holsters, and other military equipment next to content promoting election misinformation and news about the attempted coup at the US Capitol, despite internal warnings from concerned employees.</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">In the aftermath of an attempted insurrection by President Donald Trump's supporters last week at the US Capitol building, Facebook has served up ads for defense products to accounts that follow extremist content, according to the Tech Transparency Project, a nonprofit watchdog group. Those ads -- which include New Year's specials for specialized body armor plates, rifle enhancements, and shooting targets -- were all delivered to a TTP Facebook account used to monitor right-wing content that could incite violence. [...]<P>These ads for tactical gear, which were flagged internally by employees as potentially problematic, show Facebook has been profiting from content that amplifies political and cultural discord in the US.<P>"Facebook has spent years facilitating fringe voices who use the platform to organize and amplify calls for violence," said TTP Director Katie Paul. "As if that weren't enough, Facebook's advertising microtargeting is directing domestic extremists toward weapons accessories and armor that can make their militarized efforts more effective, all while Facebook profits." [...]<P>During Monday's interview, Sandberg also addressed the proliferation of hate-related content on Facebook. "I think there's a false belief that we somehow profit, that people somehow want to see this content," she said. "That's just not true." <I>[cue laughter]</I> </BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2021/01/the-scarlet-f/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/09/facebook-admits-their-algorithm-is-optimized-for-fascism/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/08/facebooks-kenosha-guard-militia-event-was-reported-455-times-moderators-said-it-was-fine/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/06/everyone-at-facebook-is-qwhite-complicit/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/11/ashamed-to-work-in-silicon-valley-how-techies-became-the-new-bankers/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/facebook-is-showing-military-gear-ads-next-to-insurrection-posts/feed/</wfw:commentRss>
+			<slash:comments>7</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>US Coast Guard recovers stolen tiki boat after extremely low-speed chase</title>
+		<link>https://www.jwz.org/blog/2021/01/us-coast-guard-recovers-stolen-tiki-boat-after-extremely-low-speed-chase/</link>
+					<comments>https://www.jwz.org/blog/2021/01/us-coast-guard-recovers-stolen-tiki-boat-after-extremely-low-speed-chase/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2021 01:00:47 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[pranks]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj4</guid>
+
+					<description><![CDATA["The person aboard showed signs of intoxication and was taken into custody."]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://twitter.com/USCGSoutheast/status/1349446406122123268">"The person aboard showed signs of intoxication and was taken into custody."</A></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV STYLE="display: inline-block; width: 50%; max-width: 902px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://twitter.com/USCGSoutheast/status/1349446406122123268"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/eroxrytxuaajuvf.jpg" data-size="900x1200" STYLE="width: 100%; height: auto; max-width: 900px; max-height: 1200px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/eroxrytxuaajuvf.jpg 900w, https://www.jwz.org/images/scaled/768/2021/eroxrytxuaajuvf.jpg 768w, https://www.jwz.org/images/scaled/640/2021/eroxrytxuaajuvf.jpg 640w, https://www.jwz.org/images/scaled/360/2021/eroxrytxuaajuvf.jpg 360w" SIZES="(max-width: 660px) 50vw, 36em" LOADING="lazy"></A> </DIV><DIV STYLE="display: inline-block; width: 50%; max-width: 902px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://twitter.com/USCGSoutheast/status/1349446406122123268"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/eroxrydxyayyhzm.jpg" data-size="900x1200" STYLE="width: 100%; height: auto; max-width: 900px; max-height: 1200px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/eroxrydxyayyhzm.jpg 900w, https://www.jwz.org/images/scaled/768/2021/eroxrydxyayyhzm.jpg 768w, https://www.jwz.org/images/scaled/640/2021/eroxrydxyayyhzm.jpg 640w, https://www.jwz.org/images/scaled/360/2021/eroxrydxyayyhzm.jpg 360w" SIZES="(max-width: 660px) 50vw, 36em" LOADING="lazy"></A> </DIV><P><A HREF="https://www.dnalounge.com/backstage/log/2019/05/06.html">Previously</A>, <A HREF="https://www.jwz.org/blog/2016/06/luminiferous-painkiller-make-it-a-double/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/12/tonga/">previously</A>, <A HREF="https://www.jwz.org/blog/2010/04/tonga-room-saved/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/07/shut-up-woman-getaway-horse/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/10/angus-man-who-tried-to-fly-drone-into-perth-prison-claimed-romanian-circus-stole-his-chihuahua/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/us-coast-guard-recovers-stolen-tiki-boat-after-extremely-low-speed-chase/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>The Scarlet F</title>
+		<link>https://www.jwz.org/blog/2021/01/the-scarlet-f/</link>
+					<comments>https://www.jwz.org/blog/2021/01/the-scarlet-f/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2021 00:35:22 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[corporations]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[grim meathook future]]></category>
+		<category><![CDATA[security]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj3</guid>
+
+					<description><![CDATA[Facebook Warns Employees Not to Wear Company Gear In Public After Banning Trump: Facebook's internal security team has warned employees not to wear or carry any Facebook-branded gear in public. "In light of recent events, and to err on the side of caution, global security is encouraging everyone to avoid wearing or carrying Facebook-branded items at this time," the memo said without apparently mentioning Trump by name. [...] It's no surprise that social media companies are worried about backlash from Trump's cadre of dangerous extremists. Though one can't help but wonder where we'd be today had companies like Facebook and Twitter taken Trump's authoritarian language more seriously over the past four years. [...] Facebook and Twitter may have done the right thing by banning Trump after the Capitol coup attempt, but it's way too late to call leadership at these companies anything but complicit in the damage Trump has done to the country. There would very likely be no Trump presidency without Twitter and Facebook.]]></description>
+										<content:encoded><![CDATA[<A HREF="https://gizmodo.com/facebook-warns-employees-not-to-wear-company-gear-in-pu-1846040220"><IMG SRC="https://www.jwz.org/images/2019/ffb.png" data-size="300x300" STYLE="width: 30%; height: auto; max-width: 300px; max-height: 300px; border: 0; box-sizing: border-box; margin: 0 0 1em 1em; float: right; clear: right;" SRCSET="https://www.jwz.org/images/2019/ffb.png 300w" SIZES="(max-width: 660px) 30vw, 22em" LOADING="lazy">Facebook Warns Employees Not to Wear Company Gear In Public After Banning Trump</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">Facebook's internal security team has warned employees not to wear or carry any Facebook-branded gear in public.<P>"In light of recent events, and to err on the side of caution, global security is encouraging everyone to avoid wearing or carrying Facebook-branded items at this time," the memo said without apparently mentioning Trump by name. [...]<P>It's no surprise that social media companies are worried about backlash from Trump's cadre of dangerous extremists. Though one can't help but wonder where we'd be today had companies like Facebook and Twitter taken Trump's authoritarian language more seriously over the past four years. [...]<P>Facebook and Twitter may have done the right thing by banning Trump after the Capitol coup attempt, but it's way too late to call leadership at these companies anything but complicit in the damage Trump has done to the country. There would very likely be no Trump presidency without Twitter and Facebook.</BLOCKQUOTE><P><A HREF="https://www.jwz.org/blog/2020/12/google-facebook-agreed-to-team-up-against-possible-antitrust-action/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/11/zuckerberg-says-bannon-has-not-violated-enough-policies-for-suspension/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/09/facebook-admits-their-algorithm-is-optimized-for-fascism/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/08/facebooks-kenosha-guard-militia-event-was-reported-455-times-moderators-said-it-was-fine/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/06/everyone-at-facebook-is-qwhite-complicit/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/11/ashamed-to-work-in-silicon-valley-how-techies-became-the-new-bankers/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/10/president-zuckerberg-doesnt-care-about-corporeal-people/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/the-scarlet-f/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>House EVS</title>
+		<link>https://www.jwz.org/blog/2021/01/house-evs/</link>
+					<comments>https://www.jwz.org/blog/2021/01/house-evs/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2021 00:02:29 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj2</guid>
+
+					<description><![CDATA[I don't think I've seen the House voting UI before! The aesthetic is very Star Trek TOS. kaikahele: On just my 11th day as Hawaii's newest member of Congress I have voted YEA to impeach the President of the United States. He must be held accountable for inciting violent &#38; deadly insurrection on our democracy &#38; our nations capitol. We must remove him from office. ProPublica: Voting in the House has not changed much since an electronic voting system was first used on January 23, 1973, with the goal of making voting periods shorter. The latest version of the EVS system was installed in 2004. There are 47 voting stations around the House chamber,, and members can use any of them to vote using a card they carry. Few votes are held in the format that existed decades ago, when individual names were read aloud, but electronic voting isn't mandatory. Lawmakers can come down to the well of the chamber, in front of the clerks, and use a system of color-coded cards to write their votes and hand them to a tally clerk. house.gov: Before electronic voting was introduced, this well-worn object, two Veeder-Root manual counters welded together, was often the center of attention on the Floor of the House. 1985. 1972. 1928 I wonder if the cards are considered "secrets" or if they just have the name encoded on them in plain-text.]]></description>
+										<content:encoded><![CDATA[<DIV STYLE="text-align: right; width: 65%; max-width: 640px; margin: 0 0 1em 1em; white-space: nowrap; float: right;"><DIV CLASS="video_floater" STYLE="max-width: 640px;"><DIV CLASS="video_frame" STYLE="padding-bottom: 57%"><VIDEO CLASS="video_embed" SRC="https://www.jwz.org/images/2021/wry6dfxqze4udmch.mp4" POSTER="https://www.jwz.org/images/2021/1ndfapvqzw54z2wy.jpg" AUTOPLAY LOOP MUTED PLAYSINLINE CONTROLS ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></VIDEO></DIV></DIV></DIV>I don't think I've seen the House voting UI before! The aesthetic is very <I>Star Trek TOS.</I><P><A HREF="https://twitter.com/kaikahele/status/1349463424724512770">kaikahele:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">On just my 11th day as Hawaii's newest member of Congress I have voted YEA to impeach the President of the United States.<P>He must be held accountable for inciting violent &amp; deadly insurrection on our democracy &amp; our nations capitol.<P>We must remove him from office.</BLOCKQUOTE><P><A HREF="https://www.propublica.org/article/how-do-congressional-representatives-vote-anyway">ProPublica:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">Voting in the House has not changed much since an electronic voting system was first used on January 23, 1973, with the goal of making voting periods shorter. The latest version of the EVS system was installed in 2004. There are 47 voting stations around the House chamber,, and members can use any of them to vote using a card they carry.<P>Few votes are held in the format that existed decades ago, when individual names were read aloud, but electronic voting isn't mandatory. Lawmakers can come down to the well of the chamber, in front of the clerks, and use a system of color-coded cards to write their votes and hand them to a tally clerk.</BLOCKQUOTE><P><A HREF="https://history.house.gov/Collection/Detail/29748">house.gov:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">Before electronic voting was introduced, this well-worn object, two Veeder-Root manual counters welded together, was often the center of attention on the Floor of the House.</BLOCKQUOTE><P><DIV STYLE="text-align: center; font-size: smaller; width: 100%; margin: 0 auto;"><DIV STYLE="display: inline-block; width: 32.62%; max-width: 312px; padding: 0 6px 1em 6px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://history.house.gov/Collection/Detail/25769809098"><IMG SRC="https://www.jwz.org/images/2021/2018_039_000-2.jpg" data-size="310x238" STYLE="width: 100%; height: auto; max-width: 310px; max-height: 238px; border: 1px solid; box-sizing: border-box; margin-bottom: 0.5em;" SRCSET="https://www.jwz.org/images/2021/2018_039_000-2.jpg 310w" SIZES="(max-width: 660px) 33vw, 24em" LOADING="lazy">1985</A> </DIV><DIV STYLE="display: inline-block; width: 33.91%; max-width: 312px; padding: 0 6px 1em 6px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://history.house.gov/Collection/Listing/2005/2005-204-000/"><IMG SRC="https://www.jwz.org/images/2021/2005_204_000-1.jpg" data-size="310x229" STYLE="width: 100%; height: auto; max-width: 310px; max-height: 229px; border: 1px solid; box-sizing: border-box; margin-bottom: 0.5em;" SRCSET="https://www.jwz.org/images/2021/2005_204_000-1.jpg 310w" SIZES="(max-width: 660px) 34vw, 25em" LOADING="lazy">1972</A> </DIV><DIV STYLE="display: inline-block; width: 33.47%; max-width: 312px; padding: 0 6px 1em 6px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://history.house.gov/Collection/Detail/29748"><IMG SRC="https://www.jwz.org/images/2021/2005_81_3.jpg" data-size="310x232" STYLE="width: 100%; height: auto; max-width: 310px; max-height: 232px; border: 1px solid; box-sizing: border-box; margin-bottom: 0.5em;" SRCSET="https://www.jwz.org/images/2021/2005_81_3.jpg 310w" SIZES="(max-width: 660px) 34vw, 25em" LOADING="lazy">1928</A> </DIV></DIV> I wonder if the cards are considered "secrets" or if they just have the name encoded on them in plain-text.<P><A HREF="https://www.jwz.org/blog/2018/06/aha-judge/">Previously</A>, <A HREF="https://www.jwz.org/blog/2013/05/devtty/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/08/birkhoffs-sweet-ass-laptop-1997/">previously</A>, <A HREF="https://www.jwz.org/blog/2005/09/type-harder/">previously</A>, <A HREF="https://www.jwz.org/blog/2014/12/alien-1970s-city-futura-helvetica/">previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/house-evs/feed/</wfw:commentRss>
+			<slash:comments>6</slash:comments>
+		
+		<enclosure url="https://www.jwz.org/images/2021/wry6dfxqze4udmch.mp4" length="203848" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Recent Movies and TV</title>
+		<link>https://www.jwz.org/blog/2021/01/recent-movies-and-tv-9/</link>
+					<comments>https://www.jwz.org/blog/2021/01/recent-movies-and-tv-9/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Tue, 12 Jan 2021 06:29:14 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[movies]]></category>
+		<category><![CDATA[reviews]]></category>
+		<category><![CDATA[tv]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj1</guid>
+
+					<description><![CDATA[Mank: Wow, I loved this -- it's gorgeously shot, the cast are amazing, the flashback structure mirrors Kane in a very cool way.... And I can't imagine how this got made. Was the pitch, "We've got that film major market cornered! Well... not just any film major, but the ones who have deep knowledge about the players in the studio system in the 30s. Long tail. Oh and it's black and white." If you aren't a total movie nerd will you even understand what's going on without regular Wikipedia pauses? Anyway it's fucking brilliant, and the best technical recreation of a movie from that era that I've ever seen. They even included the cigarette burns and reel-change flutters! Kingfish calls this "painting the feet" -- "When you paint the little pilot's feet, and then glue closed the cockpit of the model airplane, and only you know, for all time, that his little feets are painted." Tenet: I remember that sinking feeling when they finally found the MacGuffin. "Fuck, that means it's only half over??" You know how they say Trump is a poor person's idea of a rich person? This movie is a stupid person's idea of clever. Much like Inception. I mean, Bill and Ted 3 had better use of its cosmology. The camera tricks with the backwards fights weren't even any good, or even comprehensible. And a backwards person sitting in a forwards car makes it backward? The stupid, it burns like inexplicable frostbite. This movie was better when it was the Sugar Water video by Cibo Matto, which was mercifully only 4 minutes long. And had better physics. The Flight Attendant: She wakes up in a hotel in a foreign country with a corpse in her bed and isn't sure if she murdered him, like you do. It started off much stronger than it finished, but it was ok. Mad Max Fury Road, Black &#38; Chrome Edit: In memoriam of the passing of Toecutter, I watched the black and white version, which I hadn't seen before. It's brilliant. Interestingly, not entirely black and white, but sometimes graded in blues instead. I think it also would have worked really well as a silent movie (well, not silent -- but not a "talkie". Score and effects, but title cards instead of dialog!) J. R. "Bob" Dobbs and the Church of the Subgenius: This was fun a fun documentary about a cult that was very important to me in my formative years. The Queen's Gambit: Poorly socialized addict plays chess, pouts. I loved this. Superintelligence: An AI trying to decide whether to wipe out humanity uses Melissa McCarthy as a guinea pig, and then the plot kind of just gives up on all that and the AI tries to set her up on a date instead, while the DOD and NSA peek in the window like the ineffectual chaperone from an 80s movie? It's fluff, but I enjoy her style of comedy and this is more of that. Planes, Trains and Automobiles: I watched an actual Thanksgiving movie, near Thanksgiving. I forgot how funny this was! I was still chuckling about it the next day. Lego Star Wars Holiday Special: I've never watched any of the other Lego movies, but this was one of the worst, least-funny things I've ever seen. I didn't last 15 minutes. I was expecting Robot Chicken. It is not that. The Stand-In: Drew Barrymore chews the scenery as two different shitheads. It's predictable but kinda funny. Archenemy: Hobo Superman helps some kids beat up some drug dealers. It's ok. Radium Girls: It's depressing, and then their faces fall off. Capitalism! Castle Freak (2020): Breaking my rule about remakes, this was a pretty entertaining horror movie. It went Lovecraft, whereas the original didn't (even though Stuart Gordon, director of the original, made all the Lovecraft movies.) Castle Freak (1995): I couldn't remember if I had ever seen the original. It is complete garbage, probably Gordon's worse. And... that's something. Wonder Woman 84: Oh mah gawd this was soooo bad. Let us never speak of it again. Parallel: Tech shitheads find a magic mirror to parallel universes and act like shitheads about it, taking advantage in the most shitheaddy ways they can imagine. Pass. Soul: It's really good. Tesla (2020): This was fantastic. It had a fourth-wall-breaking ahistorical aspect to it, like the I, Tonya of alternating current. (There's even skating.)]]></description>
+										<content:encoded><![CDATA[<B><A HREF="https://www.youtube.com/watch?v=aSfX-nrg-lI">Mank:</A></B> Wow, I loved this -- it's gorgeously shot, the cast are amazing, the flashback structure mirrors Kane in a very cool way.... And I can't imagine how this got made. Was the pitch, "We've got that film major market cornered! Well... not just any film major, but the ones who have deep knowledge about the players in the studio system in the 30s. Long tail. Oh and it's black and white." If you aren't a total movie nerd will you even understand what's going on without regular Wikipedia pauses? Anyway it's fucking brilliant, and the best technical recreation of a movie from that era that I've ever seen. They even included the cigarette burns and reel-change flutters!<P>Kingfish calls this "painting the feet" -- "When you paint the little pilot's feet, and then glue closed the cockpit of the model airplane, and only you know, for all time, that his little feets are painted."<P><B><A HREF="https://www.youtube.com/watch?v=LdOM0x0XDMo">Tenet:</A></B> I remember that sinking feeling when they finally found the MacGuffin. "Fuck, that means it's only <I>half over??"</I> You know how they say Trump is a poor person's idea of a rich person? This movie is a stupid person's idea of clever. Much like <I>Inception.</I> I mean, <I>Bill and Ted 3</I> had better use of its cosmology. The camera tricks with the backwards fights weren't even any good, or even comprehensible. And a backwards person sitting in a forwards car makes it backward? The stupid, it burns like inexplicable frostbite.<P>This movie was better when it was the <A HREF="https://www.youtube.com/watch?v=EN9auBn6Jys"><I>Sugar Water</I> video by Cibo Matto</A>, which was mercifully only 4 minutes long. And had better physics.<P><B><A HREF="https://www.youtube.com/watch?v=OP_WC5oOCe8">The Flight Attendant:</A></B> She wakes up in a hotel in a foreign country with a corpse in her bed and isn't sure if she murdered him, like you do. It started off much stronger than it finished, but it was ok.<P><B><A HREF="https://www.youtube.com/watch?v=7Bbh9CUFS0M">Mad Max Fury Road, Black &amp; Chrome Edit:</A></B> In memoriam of the passing of Toecutter, I watched the black and white version, which I hadn't seen before. It's brilliant. Interestingly, not entirely black and white, but sometimes graded in blues instead. I think it also would have worked really well as a silent movie (well, not silent -- but not a "talkie". Score and effects, but title cards instead of dialog!)<P><B><A HREF="https://www.youtube.com/watch?v=j3fW7FNAvrc">J. R. "Bob" Dobbs and the Church of the Subgenius:</A></B> This was fun a fun documentary about a cult that was very important to me in my formative years.<P><B><A HREF="https://www.youtube.com/watch?v=CDrieqwSdgI">The Queen's Gambit:</A></B> Poorly socialized addict plays chess, pouts. I loved this.<P><B><A HREF="https://www.youtube.com/watch?v=ghgafY27kUM">Superintelligence:</A></B> An AI trying to decide whether to wipe out humanity uses Melissa McCarthy as a guinea pig, and then the plot kind of just gives up on all that and the AI tries to set her up on a date instead, while the DOD and NSA peek in the window like the ineffectual chaperone from an 80s movie? It's fluff, but I enjoy her style of comedy and this is more of that.<P><B><A HREF="https://www.youtube.com/watch?v=ZfnvrPZSFb8">Planes, Trains and Automobiles:</A></B> I watched an actual Thanksgiving movie, near Thanksgiving. I forgot how funny this was! I was still chuckling about it the next day.<P><B><A HREF="https://www.youtube.com/watch?v=-bZxO5Dn9x0">Lego Star Wars Holiday Special:</A></B> I've never watched any of the other Lego movies, but this was one of the worst, least-funny things I've ever seen. I didn't last 15 minutes. I was expecting <I>Robot Chicken.</I> It is not that.<P><B><A HREF="https://www.youtube.com/watch?v=rgo0tZgJ3H0">The Stand-In:</A></B> Drew Barrymore chews the scenery as two different shitheads. It's predictable but kinda funny.<P><B><A HREF="https://www.youtube.com/watch?v=5uIUUKZsEUY">Archenemy:</A></B> Hobo Superman helps some kids beat up some drug dealers. It's ok.<P><B><A HREF="https://www.youtube.com/watch?v=7RxnIriKLRk">Radium Girls:</A></B> It's depressing, and then their faces fall off. Capitalism!<P><B><A HREF="https://www.youtube.com/watch?v=6iCm6Vf6G5A">Castle Freak (2020):</A></B> Breaking my rule about remakes, this was a pretty entertaining horror movie. It went Lovecraft, whereas the original didn't (even though Stuart Gordon, director of the original, made <I>all</I> the Lovecraft movies.)<P><B><A HREF="https://www.youtube.com/watch?v=u4QcKHPCLQA">Castle Freak (1995):</A></B> I couldn't remember if I had ever seen the original. It is complete garbage, probably Gordon's worse. And... that's something.<P><B><A HREF="https://www.youtube.com/watch?v=sfM7_JLk-84">Wonder Woman 84:</A></B> Oh mah gawd this was soooo bad. Let us never speak of it again.<P><B><A HREF="https://www.youtube.com/watch?v=43F0OFEoeHA">Parallel:</A></B> Tech shitheads find a magic mirror to parallel universes and act like shitheads about it, taking advantage in the most shitheaddy ways they can imagine. Pass.<P><B><A HREF="https://www.youtube.com/watch?v=xOsLIiBStEs">Soul:</A></B> It's really good.<P><B><A HREF="https://www.youtube.com/watch?v=e4U-23TOKms">Tesla (2020):</A></B> This was fantastic. It had a fourth-wall-breaking ahistorical aspect to it, like the <I>I, Tonya</I> of alternating current. (There's even skating.)<P><A HREF="https://www.jwz.org/blog/2020/11/recent-movies-30/">Previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/recent-movies-and-tv-9/feed/</wfw:commentRss>
+			<slash:comments>31</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>jwz mixtape 224</title>
+		<link>https://www.jwz.org/blog/2021/01/jwz-mixtape-224/</link>
+					<comments>https://www.jwz.org/blog/2021/01/jwz-mixtape-224/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Tue, 12 Jan 2021 02:38:37 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[firstperson]]></category>
+		<category><![CDATA[mixtape]]></category>
+		<category><![CDATA[mpegs]]></category>
+		<category><![CDATA[music]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjj0</guid>
+
+					<description><![CDATA[Please enjoy jwz mixtape 224.]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER> <A HREF="https://www.dnalounge.com/webcast/mixtapes/"><IMG SRC="https://www.dnalounge.com/webcast/mixtape2.png" STYLE="display: none;"><IMG SRC="https://www.dnalounge.com/webcast/vhs.gif" STYLE="width:100%; height:auto; max-width:150px; max-height:82px; border:0;"></A> <P>Please enjoy <A HREF="https://www.dnalounge.com/webcast/mixtapes/">jwz mixtape 224</A>. <P></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><IFRAME CLASS="video_embed" WIDTH=853 HEIGHT=480  SRC="https://www.youtube.com/embed/?version=3&amp;listType=playlist&amp;list=PLyALKMPGOR5dnR4vgsoMXrYYpfNYmIUZ8&amp;modestbranding=1&amp;iv_load_policy=3" TITLE="jwz mixtape 224" ALLOW="autoplay; fullscreen" GESTURE="media" DELEGATESTICKYUSERACTIVATION ALLOWFULLSCREEN></IFRAME></DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/jwz-mixtape-224/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Modern Retro Computer Terminals</title>
+		<link>https://www.jwz.org/blog/2021/01/modern-retro-computer-terminals/</link>
+					<comments>https://www.jwz.org/blog/2021/01/modern-retro-computer-terminals/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 11 Jan 2021 23:49:42 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[art]]></category>
+		<category><![CDATA[computers]]></category>
+		<category><![CDATA[retrocomputing]]></category>
+		<category><![CDATA[toys]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjjz</guid>
+
+					<description><![CDATA[Oriol Ferrer Mesi&#224;:]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://uri.cat/projects/modern-retro-terminal/">Oriol Ferrer Mesi&agrave;:</A></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><DIV STYLE="display: inline-block; width: 50%; max-width: 6002px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://uri.cat/projects/modern-retro-terminal/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/uri4942.jpg" data-size="6000x4000" STYLE="width: 100%; height: auto; max-width: 6000px; max-height: 4000px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/uri4942.jpg 6000w, https://www.jwz.org/images/scaled/1280/2021/uri4942.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/uri4942.jpg 768w, https://www.jwz.org/images/scaled/640/2021/uri4942.jpg 640w, https://www.jwz.org/images/scaled/360/2021/uri4942.jpg 360w" SIZES="(max-width: 660px) 50vw, 36em" LOADING="lazy"></A> </DIV><DIV STYLE="display: inline-block; width: 50%; max-width: 6002px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://uri.cat/projects/modern-retro-terminal/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/ultrawide_copper_7.jpg" data-size="6000x4000" STYLE="width: 100%; height: auto; max-width: 6000px; max-height: 4000px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/ultrawide_copper_7.jpg 6000w, https://www.jwz.org/images/scaled/1280/2021/ultrawide_copper_7.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/ultrawide_copper_7.jpg 768w, https://www.jwz.org/images/scaled/640/2021/ultrawide_copper_7.jpg 640w, https://www.jwz.org/images/scaled/360/2021/ultrawide_copper_7.jpg 360w" SIZES="(max-width: 660px) 50vw, 36em" LOADING="lazy"></A> </DIV><BR><DIV STYLE="display: inline-block; width: 33.32%; max-width: 3002px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://uri.cat/projects/modern-retro-terminal/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/uri3894.jpg" data-size="3000x2000" STYLE="width: 100%; height: auto; max-width: 3000px; max-height: 2000px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/uri3894.jpg 3000w, https://www.jwz.org/images/scaled/1280/2021/uri3894.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/uri3894.jpg 768w, https://www.jwz.org/images/scaled/640/2021/uri3894.jpg 640w, https://www.jwz.org/images/scaled/360/2021/uri3894.jpg 360w" SIZES="(max-width: 660px) 34vw, 24em" LOADING="lazy"></A> </DIV><DIV STYLE="display: inline-block; width: 33.35%; max-width: 1402px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://uri.cat/projects/modern-retro-terminal/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/miniterm_1-1400x933.jpg" data-size="1400x933" STYLE="width: 100%; height: auto; max-width: 1400px; max-height: 933px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/miniterm_1-1400x933.jpg 1400w, https://www.jwz.org/images/scaled/1280/2021/miniterm_1-1400x933.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/miniterm_1-1400x933.jpg 768w, https://www.jwz.org/images/scaled/640/2021/miniterm_1-1400x933.jpg 640w, https://www.jwz.org/images/scaled/360/2021/miniterm_1-1400x933.jpg 360w" SIZES="(max-width: 660px) 34vw, 25em" LOADING="lazy"></A> </DIV><DIV STYLE="display: inline-block; width: 33.33%; max-width: 6002px; padding: 2px; box-sizing: border-box; vertical-align: top; white-space: normal;"><A HREF="https://uri.cat/projects/modern-retro-terminal/"><IMG SRC="https://www.jwz.org/images/scaled/768/2021/flat_terminal_6.jpg" data-size="6000x4000" STYLE="width: 100%; height: auto; max-width: 6000px; max-height: 4000px; border: 1px solid; box-sizing: border-box;" SRCSET="https://www.jwz.org/images/2021/flat_terminal_6.jpg 6000w, https://www.jwz.org/images/scaled/1280/2021/flat_terminal_6.jpg 1280w, https://www.jwz.org/images/scaled/768/2021/flat_terminal_6.jpg 768w, https://www.jwz.org/images/scaled/640/2021/flat_terminal_6.jpg 640w, https://www.jwz.org/images/scaled/360/2021/flat_terminal_6.jpg 360w" SIZES="(max-width: 660px) 34vw, 24em" LOADING="lazy"></A> </DIV><P><A HREF="https://www.jwz.org/blog/2020/10/ill-take-problems-we-solved-correctly-in-the-80s-for-100-alex/">Previously</A>, <A HREF="https://www.jwz.org/blog/2020/02/evoboxx-life-synthesizer/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/02/rotary-cellphone-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/10/8025/">previously</A>, <A HREF="https://www.jwz.org/blog/2017/08/birkhoffs-sweet-ass-laptop-1997/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/09/today-in-ono-sendai-news-4/">previously</A>, <A HREF="https://www.jwz.org/blog/2018/08/today-in-ono-sendai-news-2/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/09/cyberdeck64/">previously</A>, <A HREF="https://www.jwz.org/blog/2019/03/alice-4/">previously</A>, <A HREF="https://www.jwz.org/blog/2016/09/searching-for-finally-got-my-emacs-setup-just-how-i-like-it-yields-excellent-results/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/modern-retro-computer-terminals/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Meanwhile, Cate Blanchett</title>
+		<link>https://www.jwz.org/blog/2021/01/meanwhile-cate-blanchett/</link>
+					<comments>https://www.jwz.org/blog/2021/01/meanwhile-cate-blanchett/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 11 Jan 2021 20:03:23 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[religion]]></category>
+		<category><![CDATA[vampires]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjjy</guid>
+
+					<description><![CDATA[Cate Blanchett wins permission for meditation room at her haunted &#163;4.9m Sussex mansion despite discovery of bat colony.]]></description>
+										<content:encoded><![CDATA[<DIV ALIGN=CENTER><A HREF="https://ketuba-art.com/2021/01/11/cate-blanchett-wins-permission-for-meditation-room-at-sussex-mansion/">Cate Blanchett wins permission for meditation room at her haunted &pound;4.9m Sussex mansion despite discovery of bat colony.</A></DIV><P><DIV STYLE="text-align: center; width: 100%; margin: 0 auto;"><A HREF="https://ketuba-art.com/2021/01/11/cate-blanchett-wins-permission-for-meditation-room-at-sussex-mansion/"><IMG SRC="https://www.jwz.org/images/2021/37868262-9134637-image-a-36_16103783.jpg" data-size="634x476" STYLE="width: 100%; height: auto; max-width: 634px; max-height: 476px; border: 1px solid; box-sizing: border-box; margin: 2px 0;" SRCSET="https://www.jwz.org/images/2021/37868262-9134637-image-a-36_16103783.jpg 634w, https://www.jwz.org/images/scaled/360/2021/37868262-9134637-image-a-36_16103783.jpg 360w" SIZES="(max-width: 660px) 100vw, 72em" LOADING="lazy"></A><P><A HREF="https://www.jwz.org/blog/2018/01/hela-v0-4b/">Previously</A>, <A HREF="https://www.jwz.org/blog/2008/06/indiana-jones-and-the-kingdom-of-the-crystal-skull-the-abridged-script/">previously</A>, <A HREF="https://www.jwz.org/blog/2020/03/bat-pee/">previously</A>, <A HREF="https://www.jwz.org/blog/2009/06/today-in-batcock-news/">previously</A>, <A HREF="https://www.jwz.org/blog/2002/05/and-the-number-one-reason-you-should-fear-bats-is/">previously</A>, <A HREF="https://www.jwz.org/blog/2009/10/fruit-bat-fellatio/">previously</A>.</DIV>]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/meanwhile-cate-blanchett/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>House Democrats introduce impeachment resolution</title>
+		<link>https://www.jwz.org/blog/2021/01/house-democrats-introduce-impeachment-resolution/</link>
+					<comments>https://www.jwz.org/blog/2021/01/house-democrats-introduce-impeachment-resolution/#comments</comments>
+		
+		<dc:creator><![CDATA[jwz]]></dc:creator>
+		<pubDate>Mon, 11 Jan 2021 18:03:28 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[big brother]]></category>
+		<category><![CDATA[conspiracies]]></category>
+		<category><![CDATA[doomed]]></category>
+		<category><![CDATA[grim meathook future]]></category>
+		<category><![CDATA[security]]></category>
+		<category><![CDATA[stormtroopers]]></category>
+		<guid isPermaLink="false">https://jwz.org/b/yjjx</guid>
+
+					<description><![CDATA[Charging Trump with incitement of insurrection: House Democrats formally introduced their resolution to impeach President Donald Trump on Monday, [PDF, text] charging him with "incitement of insurrection" for his role in last week's riots at the US Capitol. The single impeachment article, which was introduced when the House gaveled into a brief pro-forma session Monday, points to Trump's repeated false claims that he won the election and his speech to the crowd on January 6 before pro-Trump rioters breached the Capitol. It also cited Trump's call with the Georgia Republican secretary of state where the President urged him to "find" enough votes for Trump to win the state. "In all this, President Trump gravely endangered the security of the United States and its institutions of Government," the resolution says. "He threatened the integrity of the democratic system, interfered with the peaceful transition of power, and imperiled a coequal branch of Government. He thereby betrayed his trust as President, to the manifest injury of the people of the United States." The resolution, which was introduced by Democrats David Cicilline of Rhode Island, Jamie Raskin of Maryland and Ted Lieu of California, also cited the Constitution's 14th Amendment, noting that it "prohibits any person who has 'engaged in insurrection or rebellion against' the United States" from holding office. What does the party of "unity and moving on" have to say? Let's check in: Democrats on Monday sought to take up a resolution from Raskin urging Pence and the Cabinet to invoke the 25th Amendment. Hoyer asked for unanimous consent to bring up the resolution, but West Virginia GOP Rep. Alex Mooney objected to the request. Pelosi has said the Democrats will move to bring the resolution for a floor vote on Tuesday. [...] A Senate impeachment trial beginning on January 20 -- Biden's inauguration -- would grind the chamber to a halt, unable to confirm nominees or enact legislation until the trial was finished. One option being considered is waiting until later to send the articles to the Senate: House Democratic Whip James Clyburn said on CNN's "State of the Union" Sunday the House might wait until after Biden's first 100 days in office before sending the impeachment articles to the Senate to begin the trial. But Hoyer's comments Monday seemed to suggest that was an unlikely move, since it would cut against Democrats' argument that removing Trump is an urgent priority. I don't get the "urgency" argument -- my understanding is that there is no path to removing him from office before Jan 20 via impeachment. Only the 25th Amendment can do that. And Pence -- the guy who Trump's goons intended to lynch on Wednesday -- won't do that.]]></description>
+										<content:encoded><![CDATA[<DIV STYLE="text-align: center; width: 65%; max-width: 480px; margin: 0 0 1em 2em; white-space: nowrap; float: right;"><DIV STYLE="display: inline-block; width: 100%; max-width: 482px; padding: 0 6px 1em 6px; box-sizing: border-box; vertical-align: top; white-space: normal; text-align: left;"><VIDEO STYLE="width: 100%; height: auto; max-width: 480px; max-height: 270px; border: 1px solid; box-sizing: border-box; margin-bottom: 0.5em;" LOOP AUTOPLAY PLAYSINLINE MUTED><SOURCE SRC="https://www.jwz.org/images/scaled/mp4/2021/cfszpiioxhn5czgkxt.mp4" TYPE="video/mp4" /><!-- <IMG SRC="https://www.jwz.org/images/2021/cfszpiioxhn5czgkxt.gif" data-size="480x270" STYLE="width: 100%; height: auto; max-width: 480px; max-height: 270px; border: 1px solid; box-sizing: border-box; margin-bottom: 0.5em;" SRCSET="https://www.jwz.org/images/2021/cfszpiioxhn5czgkxt.gif 480w, https://www.jwz.org/images/scaled/360/2021/cfszpiioxhn5czgkxt.gif 360w" SIZES="(max-width: 660px) 65vw, 47em" LOADING="lazy"> --></VIDEO> Surveillance footage of the House impeachment proceedings, 5 days after they were nearly executed on livestream by Trump's Brownshirts. </DIV></DIV><A HREF="https://www.cnn.com/2021/01/11/politics/house-democrats-impeachment-plans/index.html">Charging Trump with incitement of insurrection:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em">House Democrats formally introduced their resolution to impeach President Donald Trump on Monday, <I>[<A href="https://cicilline.house.gov/sites/cicilline.house.gov/files/documents/ARTICLES%20-%20Final%201030%20-%20011121.pdf">PDF</A>, <a href="https://www.npr.org/sections/trump-impeachment-effort-live-updates/2021/01/11/955631105/impeachment-resolution-cites-trumps-incitement-of-capitol-insurrection">text</A>]</I> charging him with "incitement of insurrection" for his role in last week's riots at the US Capitol.<P>The single impeachment article, which was introduced when the House gaveled into a brief pro-forma session Monday, points to Trump's repeated false claims that he won the election and his speech to the crowd on January 6 before pro-Trump rioters breached the Capitol. It also cited Trump's call with the Georgia Republican secretary of state where the President urged him to "find" enough votes for Trump to win the state.<P>"In all this, President Trump gravely endangered the security of the United States and its institutions of Government," the resolution says. "He threatened the integrity of the democratic system, interfered with the peaceful transition of power, and imperiled a coequal branch of Government. He thereby betrayed his trust as President, to the manifest injury of the people of the United States."<P>The resolution, which was introduced by Democrats David Cicilline of Rhode Island, Jamie Raskin of Maryland and Ted Lieu of California, also cited the Constitution's 14th Amendment, noting that it "prohibits any person who has 'engaged in insurrection or rebellion against' the United States" from holding office. </blockquote> <div style="float: right; width: 40%; margin: 0 0 1em 2em; border: 1px solid; padding: 1em 1em 0 1em;"> <A HREF="https://twitter.com/DomSalvaggio/status/1348377654085308416">DomSalvaggio:</A><P><BLOCKQUOTE STYLE="margin-left:1em;border-left:2px solid;padding-left:1em" style="margin-left: 0.75em">I just murdered my neighbor's family dog. His kids are crying. The parents want to call the cops on me, but I don't know how that would unify the neighborhood.</BLOCKQUOTE></div> What does the party of "unity and moving on" have to say? Let's check in:<P><blockquote STYLE="margin-left:1em;border-left:2px solid;padding-left:1em"> Democrats on Monday sought to take up a resolution from Raskin urging Pence and the Cabinet to invoke the 25th Amendment. Hoyer asked for unanimous consent to bring up the resolution, but West Virginia GOP Rep. Alex Mooney objected to the request. Pelosi has said the Democrats will move to bring the resolution for a floor vote on Tuesday. [...]<P>A Senate impeachment trial beginning on January 20 -- Biden's inauguration -- would grind the chamber to a halt, unable to confirm nominees or enact legislation until the trial was finished.<P>One option being considered is waiting until later to send the articles to the Senate: House Democratic Whip James Clyburn said on CNN's "State of the Union" Sunday the House might wait until after Biden's first 100 days in office before sending the impeachment articles to the Senate to begin the trial. But Hoyer's comments Monday seemed to suggest that was an unlikely move, since it would cut against Democrats' argument that removing Trump is an urgent priority.</BLOCKQUOTE><P>I don't get the "urgency" argument -- my understanding is that there is <I>no</I> path to removing him from office before Jan 20 via impeachment. Only the 25th Amendment can do that. And Pence -- the guy who Trump's goons intended to <I>lynch</I> on Wednesday -- won't do that.<P><A HREF="https://www.jwz.org/blog/2021/01/they-were-out-for-blood/">Previously</A>.]]></content:encoded>
+					
+					<wfw:commentRss>https://www.jwz.org/blog/2021/01/house-democrats-introduce-impeachment-resolution/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

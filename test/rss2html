@@ -1,0 +1,32 @@
+#!/usr/bin/env -S pjs --xml item -f
+//
+// Example of how of using a self-contained script to convert rss to html
+//
+// Usage: curl https://cdn.jwz.org/blog/feed/ | ./rss2html > output.html
+
+BEFORE: `
+    <!doctype html>
+    <html>
+    <body>
+        <h1>RSS Feeds (Generated on ${new Date()}</h1>
+`
+
+const link = _.querySelector("link");
+const title = _.querySelector("title");
+const description = _.querySelector("description");
+const author = _.querySelector("author");
+const pubDate = _.querySelector("pubDate");
+
+`
+    <h2>${COUNT}. <a href="${link.text}">${title.text}</a></h2>
+    <h4>Posted on ${pubDate.text}</h4>
+    <p>${description.text}</p>
+`
+
+AFTER: `
+    <h2>Total posts: ${COUNT}</h2>
+    </body>
+    </html>
+`
+
+// vim: ft=javascript

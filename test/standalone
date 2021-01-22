@@ -1,8 +1,20 @@
 #!/usr/bin/env -S pjs -f
+//
+// This is a standalone pjs script!
 
 BEFORE: {
-    let x = 4;
+    calledBefore = 100;
+    calledBefore += 23;
 }
 
-// This is a standalone script!
 _.toUpperCase();
+
+AFTER: {
+    if (calledBefore == 123) {
+        print("Done!");
+    } else {
+        throw new Error("Assert: Didn't call BEFORE?");
+    }
+}
+
+// vi: ft=javascript

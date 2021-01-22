@@ -42,7 +42,7 @@ anything else that should be done on startup. Can be specified multiple times.
 perform anything else that should be done on completion. Can be specified multiple times.
 
 `-f, --file <script-file>`
-: Load script text from a file instead of the command line.
+: Load script text from a file instead of the command-line.
 
 `-d, --delimiter <delimiter>`
 : The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
@@ -112,7 +112,7 @@ output. If the last expression is `true`, the line is printed unmodified. If the
 a value, that value is printed instead. If the last expression is false or null, nothing is output.
 
 Sometimes output is never desired. In those cases either make sure the last expression is false or
-null (by appending a literal "`;null`"), or an empty statement (by appending a literal "`;;`").
+null, or wrap the expression in curly braces to make it a block statement.
 
 ## Implicit Imports
 
@@ -123,6 +123,12 @@ Using any built-in NodeJS module (eg: `fs`) will automatically import it with `r
 Assigning to an undeclared variable will automatically insert a variable declaration. The initial
 value of these implicit variables is always 0. For other values or types, declare them explicitly in
 `--before`.
+
+## Before/After Labels
+
+The JavaScript loop labels `BEFORE:` and `AFTER:` can be used to mark expressions that should be run
+as if they were passed separately to `--before` or `--after`. This can be useful in combination with
+`--file` to keep everything in one script file, or if you just prefer awk-like syntax.
 
 # EXAMPLES
 
@@ -197,7 +203,7 @@ cat document.txt | pjs 'COUNT % 2 == 1'
 Manually count the lines in the input (like `wc -l`):
 
 ```sh
-cat filenames.txt | pjs 'count++ ;;' --after 'count'
+cat filenames.txt | pjs '{ count++ }' --after 'count'
 ```
 
 Same as above, but using the built-in `COUNT` variable:
@@ -209,13 +215,13 @@ cat filenames.txt | pjs --after 'COUNT'
 Count the *unique* lines in the input:
 
 ```sh
-cat filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' --after 's.size'
+cat filenames.txt | pjs --before 'let s = new Set()' '{ s.add(_) }' --after 's.size'
 ```
 
 Manually sort the lines of the input (like `sort`)
 
 ```sh
-cat filenames.txt | pjs --before 'let lines = []' 'lines.push(_) ;;' \
+cat filenames.txt | pjs --before 'let lines = []' '{ lines.push(_) }' \
     --after 'lines.sort().join("\n")'
 ```
 
@@ -243,7 +249,7 @@ cat document.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' --after
 Count the words in the input:
 
 ```sh
-cat document.txt | pjs 'words += $.length ;;' --after 'words'
+cat document.txt | pjs '{ words += $.length }' --after 'words'
 ```
 
 Count the *unique* words in the input:
@@ -251,6 +257,29 @@ Count the *unique* words in the input:
 ```sh
 cat document.txt | pjs --before 'let words = new Set()' \
     'for (let word of $) words.add(word)' --after 'words.size'
+```
+
+Using a script file instead of command-line arguments:
+
+```
+echo '
+    BEFORE: {
+        print("Starting up!")
+    }
+    _.toUpperCase()
+    AFTER: "Total lines: "+COUNT
+' > my-uppercase.js
+
+cat document.txt | pjs -f my-uppercase.js
+```
+
+Adding a shebang to the above script to make it self-executable:
+
+```
+echo "#!/usr/bin/env -S pjs -f"
+chmod +x my-uppercase.js
+
+./my-uppercase.js document.txt
 ```
 
 ## CSV Examples
@@ -287,7 +316,7 @@ cat grades.csv | pjs --csv-header '_.subject == "biology" && _.name'
 Print the average grade across all courses:
 
 ```sh
-cat grades.csv | pjs --csv-header 'sum += Number(_.grade) ;;' --after 'sum/COUNT'
+cat grades.csv | pjs --csv-header '{ sum += Number(_.grade) }' --after 'sum/COUNT'
 ```
 
 ## JSON Examples

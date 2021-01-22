@@ -49,7 +49,7 @@ cat data/lorem.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' \
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar, odio
 '
 
-cat data/lorem.txt | pjs 'count++ ;;' --after 'count' | equals '
+cat data/lorem.txt | pjs '{ count++ }' --after 'count' | equals '
 6
 '
 
@@ -58,7 +58,7 @@ cat data/lorem.txt | pjs --after 'COUNT' | equals '
 '
 
 # Not technically correct because empty lines are counted as words
-cat data/lorem.txt | pjs 'words += $.length ;;' --after 'words' | equals '
+cat data/lorem.txt | pjs '{ words += $.length }' --after 'words' | equals '
 62
 '
 
@@ -70,6 +70,7 @@ cat data/lorem.txt | pjs --before 'let words = new Set()' \
 
 echo "Hello" | ./standalone | equals '
 HELLO
+Done!
 '
 
 ./standalone data/lorem.txt | equals '
@@ -79,6 +80,7 @@ ALIQUAM PHARETRA MAXIMUS JUSTO, AC VESTIBULUM MASSA MOLESTIE NON. FUSCE EGET
 QUAM ALIQUAM, VIVERRA QUAM QUIS, MAXIMUS NULLA. MAURIS TINCIDUNT UT TELLUS AT
 TINCIDUNT. PROIN NEC EST MI. FUSCE SOLLICITUDIN ELIT ET CONSEQUAT VOLUTPAT. IN
 AC VEHICULA ENIM.
+Done!
 '
 
 cat standalone | pjs -f - data/lorem.txt | equals '
@@ -88,6 +90,7 @@ ALIQUAM PHARETRA MAXIMUS JUSTO, AC VESTIBULUM MASSA MOLESTIE NON. FUSCE EGET
 QUAM ALIQUAM, VIVERRA QUAM QUIS, MAXIMUS NULLA. MAURIS TINCIDUNT UT TELLUS AT
 TINCIDUNT. PROIN NEC EST MI. FUSCE SOLLICITUDIN ELIT ET CONSEQUAT VOLUTPAT. IN
 AC VEHICULA ENIM.
+Done!
 '
 
 cat data/whitespace.txt | pjs '_.replace(/\s*$/, "")' - | equals '
@@ -129,7 +132,7 @@ run
 data/users.json
 '
 
-cat data/filenames.txt | pjs --before 'let s = new Set()' 's.add(_) ;;' \
+cat data/filenames.txt | pjs --before 'let s = new Set()' '{ s.add(_) }' \
     --after 's.size' | equals '
 4
 '
@@ -197,6 +200,9 @@ https://aduros.com/blog/access-recent-files-from-the-command-line/
 echo | pjs --after 'require("./local-import").method()' | equals '
 123
 '
+
+# This file should have exactly one line different due to the timestamp
+[ `./rss2html data/jwz.xml | diff - data/jwz-rss2html.html | grep '^>' | wc -l` = 1 ]
 
 set +v
 echo "All tests passed."
