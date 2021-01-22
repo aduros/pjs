@@ -168,5 +168,9 @@ https://aduros.com/blog/media-companies-are-complicit/
 https://aduros.com/blog/access-recent-files-from-the-command-line/
 '
 
+echo | pjs --after 'require("./local-import").method()' | equals '
+123
+'
+
 set +v
 echo "All tests passed."

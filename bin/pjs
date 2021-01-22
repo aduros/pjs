@@ -53,7 +53,6 @@ const program = new commander.Command()
                 beforeJs: options.before ? options.before.join("\n;") : null,
                 lineJs: script.join("\n;"),
                 afterJs: options.after ? options.after.join("\n;") : null,
-                pjsModule: !options.explain ? ".." : null,
 
                 textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
                 csvHeader: options.csvHeader,
@@ -75,8 +74,27 @@ const program = new commander.Command()
             process.stdout.on("error", error => {
                 // Ignore errors about closed pipes
             });
+
+            const pjsModule = require("..");
             try {
-                await eval(generated);
+                const fn = new Function("require", "return " + generated);
+                await fn(name => {
+                    // Override require() in order to always locate pjs-tool
+                    if (name == "pjs-tool") {
+                        return pjsModule;
+                    }
+
+                    // The original untouched require()
+                    const requireFn = (typeof __non_webpack_require__ != "undefined")
+                        ? __non_webpack_require__
+                        : require;
+
+                    // Transform to resolve relative to the current directory
+                    name = requireFn.resolve(name, {paths: [process.cwd()]});
+
+                    return requireFn(name);
+                });
+
             } catch (error) {
                 console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
                 console.error(error);
