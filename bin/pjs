@@ -19,8 +19,9 @@ const program = new commander.Command()
     .arguments("[script-text]")
     .arguments("[file...]")
     .option("-x, --explain", "Print generated program instead of running it")
-    .option("-b, --before <script>", "Run script before parsing", collect)
-    .option("-a, --after <script>", "Run script after parsing", collect)
+    .option("-b, --before <script-text>", "Run script before parsing", collect)
+    .option("-a, --after <script-text>", "Run script after parsing", collect)
+    .option("-f, --file <script-file>", "Load script from a file")
     .option("-d, --delimiter <delimiter>", "The delimiter for text parsing", "\\s+")
     .option("--csv", "Parse input as CSV")
     .option("--csv-header", "Parse input as CSV with a column header")
@@ -29,6 +30,20 @@ const program = new commander.Command()
     .option("--xml <selector>", "Parse input as XML")
     .version(pkg.version)
     .action(async (script, files, options, command) => {
+        if (options.file != null) {
+            if (script != null) {
+                // When using -f, assume script was an input file name
+                files.unshift(script);
+            }
+            script = fs.readFileSync(options.file == "-" ? 0 : options.file, "utf8");
+
+            // Trim shebang
+            if (script.charAt(0) == "#") {
+                const idx = script.indexOf("\n");
+                script = script.substr(idx);
+            }
+        }
+
         // Must include at least one script
         if (options.before == null && script == null && options.after == null) {
             program.help({error: true});

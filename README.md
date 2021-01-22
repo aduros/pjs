@@ -4,7 +4,8 @@ pjs - pipe to JavaScript
 
 # SYNOPSIS
 
-**pjs** [*options*] [\--] *script*...
+**pjs** [*options*] [\--] '*script text*' [file ...]  
+**pjs** [*options*] **-f** *script-file* [\--] [file ...]
 
 # DESCRIPTION
 
@@ -32,13 +33,16 @@ not yet have mastered all the intricacies of GNU coreutils.
 : Print the generated JS program instead of running it. This is useful for debugging or simply
 understanding what pjs is doing. The outputted program can be run directly in NodeJS.
 
-`-b, --before <script>`
+`-b, --before <script-text>`
 : Run a script before the input data is read. This can be used to initialize variables, or do
 anything else that should be done on startup. Can be specified multiple times.
 
-`-a, --after <script>`
+`-a, --after <script-text>`
 : Run a script after all the input data is read. This can be used to aggregate a summary, or
 perform anything else that should be done on completion. Can be specified multiple times.
+
+`-f, --file <script-file>`
+: Load script text from a file instead of the command line.
 
 `-d, --delimiter <delimiter>`
 : The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
@@ -94,6 +98,9 @@ otherwise it is a string.
 
 `LINES`
 : An array containing all the lines that were processed.
+
+`FILENAME`
+: The name of the current input file, or null if reading from stdin.
 
 `print()`
 : Prints a value to standard output. Objects are converted to JSON.
@@ -177,6 +184,12 @@ Print the last 10 lines of a file (like `tail`):
 
 ```sh
 cat document.txt | pjs --after 'LINES.slice(-10).join("\n")'
+```
+
+Print every other line of a file:
+
+```sh
+cat document.txt | pjs 'COUNT % 2 == 1'
 ```
 
 ## Summarizing Examples

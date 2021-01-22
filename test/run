@@ -2,10 +2,6 @@
 #
 # pjs unit tests.
 
-pjs () {
-    ../bin/pjs "$@"
-}
-
 equals () {
     tmp="/tmp/test-pjs"
     echo -n "$1" | tail -n +2 > "$tmp"
@@ -14,6 +10,7 @@ equals () {
 }
 
 cd `dirname $(realpath "$0")`
+export PATH="`realpath ../bin`:$PATH"
 set -v
 
 seq 1 10 | pjs '_ > 5' | equals '
@@ -69,6 +66,28 @@ cat data/lorem.txt | pjs 'words += $.length ;;' --after 'words' | equals '
 cat data/lorem.txt | pjs --before 'let words = new Set()' \
     'for (let word of $) words.add(word)' --after 'words.size' | equals '
 55
+'
+
+echo "Hello" | ./standalone | equals '
+HELLO
+'
+
+./standalone data/lorem.txt | equals '
+LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. QUISQUE PULVINAR, ODIO
+A ULTRICES FACILISIS, NISI LOREM TEMPUS LECTUS, VEL RUTRUM DOLOR ODIO A VELIT.
+ALIQUAM PHARETRA MAXIMUS JUSTO, AC VESTIBULUM MASSA MOLESTIE NON. FUSCE EGET
+QUAM ALIQUAM, VIVERRA QUAM QUIS, MAXIMUS NULLA. MAURIS TINCIDUNT UT TELLUS AT
+TINCIDUNT. PROIN NEC EST MI. FUSCE SOLLICITUDIN ELIT ET CONSEQUAT VOLUTPAT. IN
+AC VEHICULA ENIM.
+'
+
+cat standalone | pjs -f - data/lorem.txt | equals '
+LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. QUISQUE PULVINAR, ODIO
+A ULTRICES FACILISIS, NISI LOREM TEMPUS LECTUS, VEL RUTRUM DOLOR ODIO A VELIT.
+ALIQUAM PHARETRA MAXIMUS JUSTO, AC VESTIBULUM MASSA MOLESTIE NON. FUSCE EGET
+QUAM ALIQUAM, VIVERRA QUAM QUIS, MAXIMUS NULLA. MAURIS TINCIDUNT UT TELLUS AT
+TINCIDUNT. PROIN NEC EST MI. FUSCE SOLLICITUDIN ELIT ET CONSEQUAT VOLUTPAT. IN
+AC VEHICULA ENIM.
 '
 
 cat data/whitespace.txt | pjs '_.replace(/\s*$/, "")' - | equals '

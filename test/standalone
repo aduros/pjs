@@ -1,0 +1,8 @@
+#!/usr/bin/env -S pjs -f
+
+BEFORE: {
+    let x = 4;
+}
+
+// This is a standalone script!
+_.toUpperCase();
