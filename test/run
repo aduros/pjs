@@ -71,25 +71,32 @@ cat data/lorem.txt | pjs --before 'let words = new Set()' \
 55
 '
 
-cat data/whitespace.txt | pjs '_.replace(/\s*$/, "")' | equals '
+cat data/whitespace.txt | pjs '_.replace(/\s*$/, "")' - | equals '
 This
   file has
     trailing
 WHITESPACE !
 '
 
-cat data/passwd.txt | pjs -d : '$5' | equals '
+pjs -d : '$5' data/passwd.txt | equals '
 /root
 /usr/sbin
 /bin
 /dev
 '
 
-cat data/passwd.txt | pjs -d : '$.slice(0, 2)' | equals '
+pjs -d : '$.slice(0, 2)' data/passwd.txt | equals '
 ["root","x"]
 ["daemon","x"]
 ["bin","x"]
 ["sys","x"]
+'
+
+pjs "" --after 'FILENAME+": "+COUNT' data/*.txt | equals '
+data/filenames.txt: 5
+data/lorem.txt: 6
+data/passwd.txt: 4
+data/whitespace.txt: 4
 '
 
 cat data/filenames.txt | pjs 'fs.existsSync(_)' | equals '

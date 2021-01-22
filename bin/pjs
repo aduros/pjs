@@ -4,6 +4,7 @@
 // "use strict";
 
 const commander = require("commander");
+const fs = require("fs");
 const pkg = require("../package.json");
 
 function collect (value, previous) {
@@ -15,7 +16,8 @@ function collect (value, previous) {
 
 const program = new commander.Command()
     .description(pkg.description+"\n\nFor complete documentation, run `man pjs` or visit https://github.com/aduros/pjs")
-    .arguments("[script...]")
+    .arguments("[script-text]")
+    .arguments("[file...]")
     .option("-x, --explain", "Print generated program instead of running it")
     .option("-b, --before <script>", "Run script before parsing", collect)
     .option("-a, --after <script>", "Run script after parsing", collect)
@@ -26,9 +28,9 @@ const program = new commander.Command()
     .option("--html <selector>", "Parse input as HTML")
     .option("--xml <selector>", "Parse input as XML")
     .version(pkg.version)
-    .action(async (script, options, command) => {
+    .action(async (script, files, options, command) => {
         // Must include at least one script
-        if (options.before == null && script.length == 0 && options.after == null) {
+        if (options.before == null && script == null && options.after == null) {
             program.help({error: true});
         }
 
@@ -51,8 +53,9 @@ const program = new commander.Command()
             generated = generate({
                 mode,
                 beforeJs: options.before ? options.before.join("\n;") : null,
-                lineJs: script.join("\n;"),
+                lineJs: script,
                 afterJs: options.after ? options.after.join("\n;") : null,
+                inputStream: options.explain ? null : "__inputStream",
 
                 textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
                 csvHeader: options.csvHeader,
@@ -76,29 +79,47 @@ const program = new commander.Command()
             });
 
             const pjsModule = require("..");
-            try {
-                const fn = new Function("require", "return " + generated);
-                await fn(name => {
-                    // Override require() in order to always locate pjs-tool
-                    if (name == "pjs-tool") {
-                        return pjsModule;
+            function customRequire (name) {
+                // Override require() in order to always locate pjs-tool
+                if (name == "pjs-tool") {
+                    return pjsModule;
+                }
+
+                // The original untouched require()
+                const requireFn = (typeof __non_webpack_require__ != "undefined")
+                    ? __non_webpack_require__
+                    : require;
+
+                // Transform to resolve relative to the current directory
+                name = requireFn.resolve(name, {paths: [process.cwd()]});
+
+                return requireFn(name);
+            }
+
+            const fn = new Function("__inputStream", "FILENAME", "require", "return " + generated);
+            async function invokeFn (inputStream, filename) {
+                try {
+                    await fn(inputStream, filename, customRequire);
+                } catch (error) {
+                    console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
+                    console.error(error);
+                    process.exit(1);
+                }
+            }
+
+            if (files.length > 0) {
+                // Run on each file sequentially
+                for (const file of files) {
+                    if (file == "-") {
+                        // Special case where passed filename was "-"
+                        await invokeFn(process.stdin, null);
+                    } else {
+                        await invokeFn(fs.createReadStream(file), file);
                     }
-
-                    // The original untouched require()
-                    const requireFn = (typeof __non_webpack_require__ != "undefined")
-                        ? __non_webpack_require__
-                        : require;
-
-                    // Transform to resolve relative to the current directory
-                    name = requireFn.resolve(name, {paths: [process.cwd()]});
-
-                    return requireFn(name);
-                });
-
-            } catch (error) {
-                console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
-                console.error(error);
-                process.exit(1);
+                }
+            } else {
+                // Run on stdin
+                await invokeFn(process.stdin, null);
             }
         }
     });
