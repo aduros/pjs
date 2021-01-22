@@ -20,6 +20,9 @@ The latest version of `pjs` can be installed by running:
 npm install -g pjs-tool
 ```
 
+If `npm` is not available on your system, you can download a standalone executable from
+https://aduros.com/pjs/pjs-latest.tar.bz2 (You will still need `node` installed)
+
 pjs is not meant to replace awk/sed/grep, but aims to be useful to seasoned JS developers who may
 not yet have mastered all the intricacies of GNU coreutils.
 
