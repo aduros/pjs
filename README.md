@@ -61,17 +61,17 @@ built-in variable is unavailable, and the `_` built-in variable is a mapping of 
 row's values.
 
 `--json <filter>`
-: Parse the input data as JSON (JavaScript object notation). When using this option the `_`
-built-in variable contains a JSON object. The filter defines which objects will be iterated over.
-The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
-example: `--json 'rows.*'`. The full filter format is specified by
-[JSONStream](https://www.npmjs.com/package/JSONStream).
+: Parse the input data as JSON, iterating over objects that match the given `jq`-like filter. When
+using this option the `_` built-in variable contains a JSON object. For a list of implemented filter
+syntax, see https://www.npmjs.com/package/jq-in-the-browser#supported-features
 
 `--html <selector>`
 : Parse the input data as HTML, iterating over elements that match the given CSS selector. The
 parser is forgiving with malformed HTML. The `_` built-in variable will contain an object with the
 keys: `type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
-`querySelector()` and `querySelectorAll()` for further querying using another CSS selector.
+`querySelector()` and `querySelectorAll()` for further querying using another CSS selector.  For a
+list of implemented selector syntax, see
+https://www.npmjs.com/package/css-select#supported-selectors
 
 `--xml <selector>`
 : Same as `--html`, but tags and attributes are considered case-sensitive.
@@ -341,19 +341,25 @@ Given a `users.json` file that looks like this:
 Print the value of the "version" field:
 
 ```sh
-cat users.json | pjs --json 'version' _
+cat users.json | pjs --json '.version' _
 ```
 
 Print the full name of each user:
 
 ```sh
-cat users.json | pjs --json 'items.*.name' '_.first+" "+_.last'
+cat users.json | pjs --json '.items[].name' '_.first+" "+_.last'
 ```
 
 Print the users that are older than 21:
 
 ```sh
-cat users.json | pjs --json 'items.*' '_.age >= 21'
+cat users.json | pjs --json '.items[]' '_.age >= 21'
+```
+
+Print the ages of the first 3 users only:
+
+```sh
+cat users.json | pjs --json '.items[0:3]' '_.age'
 ```
 
 ## HTML/XML Examples

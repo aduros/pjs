@@ -197,6 +197,30 @@ https://aduros.com/blog/media-companies-are-complicit/
 https://aduros.com/blog/access-recent-files-from-the-command-line/
 '
 
+cat data/users.json | pjs --json '.version' _ | equals '
+123
+'
+
+cat data/users.json | pjs --json '.items[].name' '_.first+" "+_.last' | equals '
+Winifred Frost
+Miles Fernandez
+Kennard Floyd
+Lonnie Davis
+Duncan Poole
+'
+
+cat data/users.json | pjs --json '.items[]' '_.age >= 21' | equals '
+{"name":{"first":"Winifred","last":"Frost"},"age":42}
+{"name":{"first":"Lonnie","last":"Davis"},"age":78}
+{"name":{"first":"Duncan","last":"Poole"},"age":36}
+'
+
+cat data/users.json | pjs --json '.items[0:3]' '_.age' | equals '
+42
+15
+20
+'
+
 echo | pjs --after 'require("./local-import").method()' | equals '
 123
 '
