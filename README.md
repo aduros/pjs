@@ -1,6 +1,6 @@
 # NAME
 
-pjs - pipe to JavaScript
+pjs - pipe using explainable JavaScript
 
 # SYNOPSIS
 
@@ -12,8 +12,9 @@ pjs - pipe to JavaScript
 **pjs** is a tool for processing text, CSV, JSON, HTML, and XML.
 
 pjs lets you write small and powerful JavaScript programs, similar to awk/sed/grep. It works by
-generating a complete JS program from the provided script(s), and feeding it each line of standard
-input. See the EXAMPLES section below to see what pjs can do.
+generating a complete JS program from the provided script, and feeding it each line of standard
+input. The generated program can be reviewed with `--explain`. See the EXAMPLES section below to see
+what pjs can do.
 
 The latest version of `pjs` can be installed by running:
 
@@ -21,11 +22,12 @@ The latest version of `pjs` can be installed by running:
 npm install -g pjs-tool
 ```
 
-If `npm` is not available on your system, you can download a standalone executable from
+If `npm` is not available on your environment, you can download a standalone executable from
 https://aduros.com/pjs/pjs-latest.tar.bz2 (You will still need `node` installed)
 
 pjs is not meant to replace awk/sed/grep, but aims to be useful to seasoned JS developers who may
-not yet have mastered all the intricacies of GNU coreutils.
+not yet have mastered all the intricacies of GNU coreutils, or wish to use advanced features like
+HTML and JSON parsing.
 
 # OPTIONS
 
@@ -50,25 +52,25 @@ used to split each line of input data into fields. The fields can be accessed by
 variable. Defaults to `\w+`.
 
 `--csv`
-: Parse the input data as CSV (comma separated values). This correctly parses quoting and escaping
-in the input. When using this option, the `_` built-in variable is unavailable.
+: Parse the input data as CSV (comma separated values). Quotes and escape sequences in the input are
+correctly handled. When using this option the `_` built-in variable is unavailable.
 
 `--csv-header`
-: Like `--csv`, but the first row is considered a column header. When using this option, the `$`
+: Like `--csv`, but the first row is considered a column header. When using this option the `$`
 built-in variable is unavailable, and the `_` built-in variable is a mapping of column names to the
 row's values.
 
 `--json <filter>`
-: Parse the input data as JSON (JavaScript object notation). When using this option, the `_`
+: Parse the input data as JSON (JavaScript object notation). When using this option the `_`
 built-in variable contains a JSON object. The filter defines which objects will be iterated over.
 The filter is a list of JSON fields, separated by a period, and can contain wildcard characters. For
 example: `--json 'rows.*'`. The full filter format is specified by
 [JSONStream](https://www.npmjs.com/package/JSONStream).
 
 `--html <selector>`
-: Parse the input data as HTML, picking elements using the given CSS3 selector. The parser is
-forgiving with malformed documents. The `_` built-in variable will contain an object with the keys:
-`type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
+: Parse the input data as HTML, iterating over elements that match the given CSS selector. The
+parser is forgiving with malformed HTML. The `_` built-in variable will contain an object with the
+keys: `type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
 `querySelector()` and `querySelectorAll()` for further querying using another CSS selector.
 
 `--xml <selector>`
@@ -126,7 +128,7 @@ value of these implicit variables is always 0. For other values or types, declar
 
 ## Before/After Labels
 
-The JavaScript loop labels `BEFORE:` and `AFTER:` can be used to mark expressions that should be run
+The JavaScript loop labels `BEFORE:` and `AFTER:` can be used to mark expressions that will be run
 as if they were passed separately to `--before` or `--after`. This can be useful in combination with
 `--file` to keep everything in one script file, or if you just prefer awk-like syntax.
 
@@ -276,10 +278,10 @@ cat document.txt | pjs -f my-uppercase.js
 Adding a shebang to the above script to make it self-executable:
 
 ```
-echo "#!/usr/bin/env -S pjs -f"
-chmod +x my-uppercase.js
+echo "#!/usr/bin/env -S pjs -f" | cat - my-uppercase.js > my-uppercase
+chmod +x my-uppercase
 
-./my-uppercase.js document.txt
+./my-uppercase document.txt
 ```
 
 ## CSV Examples
@@ -368,10 +370,11 @@ Print the URLs of all images on a web page:
 curl https://aduros.com | pjs --html 'img' '_.attr.src'
 ```
 
-Scrape links off a news site:
+Scrape headlines off a news site using a complex CSS selector:
 
 ```sh
-curl https://news.ycombinator.com | pjs --html 'a.storylink' '_.text+": "+_.attr.href'
+curl https://news.ycombinator.com | pjs '_.text' \
+    --html 'table table tr:nth-last-of-type(n+2) td:nth-child(3)'
 ```
 
 Print a count of all external links:
