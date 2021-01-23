@@ -13,8 +13,8 @@ pjs - pipe using explainable JavaScript
 
 pjs lets you write small and powerful JavaScript programs, similar to awk/sed/grep. It works by
 generating a complete JS program from the provided script, and feeding it each line of standard
-input. The generated program can be reviewed with `--explain`. See the EXAMPLES section below to see
-what pjs can do.
+input. The statically generated program can be reviewed with `--explain`. See the EXAMPLES section
+below to see what pjs can do.
 
 The latest version of `pjs` can be installed by running:
 
@@ -135,6 +135,7 @@ as if they were passed separately to `--before` or `--after`. This can be useful
 # EXAMPLES
 
 **Remember**: You can run any of these examples with `--explain` to inspect the generated program.
+`pjs` syntax is meant to be powerful, but never mysterious.
 
 ## Transforming Examples
 
