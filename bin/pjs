@@ -36,12 +36,6 @@ const program = new commander.Command()
                 files.unshift(script);
             }
             script = fs.readFileSync(options.file == "-" ? 0 : options.file, "utf8");
-
-            // Trim shebang
-            if (script.charAt(0) == "#") {
-                const idx = script.indexOf("\n");
-                script = script.substr(idx);
-            }
         }
 
         // Must include at least one script
