@@ -235,57 +235,6 @@ Same as above, but using the built-in `LINES` variable:
 cat filenames.txt | pjs --after 'LINES.sort().join("\n")'
 ```
 
-## Advanced Examples
-
-Bulk rename \*.jpeg files to \*.jpg:
-
-```sh
-find -name '*.jpeg' | pjs 'let f = path.parse(_);
-    fs.renameSync(_, path.join(f.dir, f.name+".jpg"))'
-```
-
-Print the longest line in the input:
-
-```sh
-cat document.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' --after 'longest'
-```
-
-Count the words in the input:
-
-```sh
-cat document.txt | pjs '{ words += $.length }' --after 'words'
-```
-
-Count the *unique* words in the input:
-
-```sh
-cat document.txt | pjs --before 'let words = new Set()' \
-    'for (let word of $) words.add(word)' --after 'words.size'
-```
-
-Using a script file instead of command-line arguments:
-
-```
-echo '
-    BEFORE: {
-        print("Starting up!")
-    }
-    _.toUpperCase()
-    AFTER: "Total lines: "+COUNT
-' > my-uppercase.js
-
-cat document.txt | pjs -f my-uppercase.js
-```
-
-Adding a shebang to the above script to make it self-executable:
-
-```
-echo "#!/usr/bin/env -S pjs -f" | cat - my-uppercase.js > my-uppercase
-chmod +x my-uppercase
-
-./my-uppercase document.txt
-```
-
 ## CSV Examples
 
 Given a `grades.csv` file that looks like this:
@@ -409,6 +358,57 @@ Print a readable summary of an RSS feed:
 ```sh
 curl https://aduros.com/index.xml | pjs --xml 'item' \
     '_.querySelector("title").text + " --> " + _.querySelector("link").text'
+```
+
+## Advanced Examples
+
+Bulk rename \*.jpeg files to \*.jpg:
+
+```sh
+find -name '*.jpeg' | pjs 'let f = path.parse(_);
+    fs.renameSync(_, path.join(f.dir, f.name+".jpg"))'
+```
+
+Print the longest line in the input:
+
+```sh
+cat document.txt | pjs 'if (_.length > m) { m = _.length; longest = _ }' --after 'longest'
+```
+
+Count the words in the input:
+
+```sh
+cat document.txt | pjs '{ words += $.length }' --after 'words'
+```
+
+Count the *unique* words in the input:
+
+```sh
+cat document.txt | pjs --before 'let words = new Set()' \
+    'for (let word of $) words.add(word)' --after 'words.size'
+```
+
+Using a script file instead of command-line arguments:
+
+```sh
+echo '
+    BEFORE: {
+        print("Starting up!")
+    }
+    _.toUpperCase()
+    AFTER: "Total lines: "+COUNT
+' > my-uppercase.js
+
+cat document.txt | pjs -f my-uppercase.js
+```
+
+Adding a shebang to the above script to make it self-executable:
+
+```sh
+echo "#!/usr/bin/env -S pjs -f" | cat - my-uppercase.js > my-uppercase
+chmod +x my-uppercase
+
+./my-uppercase document.txt
 ```
 
 # BUGS
