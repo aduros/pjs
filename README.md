@@ -49,7 +49,7 @@ perform anything else that should be done on completion. Can be specified multip
 `-d, --delimiter <delimiter>`
 : The delimiter for text parsing. This is a regular expression passed to `String.prototype.split()`
 used to split each line of input data into fields. The fields can be accessed by the `$` array
-variable. Defaults to `\w+`.
+variable. Defaults to `\s+`.
 
 `--csv`
 : Parse the input data as CSV (comma separated values). Quotes and escape sequences in the input are
@@ -87,8 +87,8 @@ https://www.npmjs.com/package/css-select#supported-selectors
 ## Built-in Variables
 
 `_` (underscore)
-: The current line or object being processed. With `--json` or `--csv-header`, this is an object,
-otherwise it is a string.
+: The current line or object being processed. With `--json`, `--html`, or `--csv-header` this is an
+object, otherwise it is a string.
 
 `$` (dollar)
 : An array containing the fields of the current line. The field delimiter can be set with
@@ -110,8 +110,9 @@ otherwise it is a string.
 ## Last Expression Handling
 
 If the last statement in the script is an expression, it will be used to filter or transform the
-output. If the last expression is `true`, the line is printed unmodified. If the last expression is
-a value, that value is printed instead. If the last expression is false or null, nothing is output.
+output. If the last expression evaluates to `true`, the line is printed unmodified. If the last
+expression is a value, that value is printed instead. If the last expression evaluates to false or
+null, nothing is output.
 
 Sometimes output is never desired. In those cases either make sure the last expression is false or
 null, or wrap the expression in curly braces to make it a block statement.
@@ -129,7 +130,7 @@ value of these implicit variables is always 0. For other values or types, declar
 ## Before/After Labels
 
 The JavaScript loop labels `BEFORE:` and `AFTER:` can be used to mark expressions that will be run
-as if they were passed separately to `--before` or `--after`. This can be useful in combination with
+as if they were passed separately to `--before` or `--after`. This can be useful in conjunction with
 `--file` to keep everything in one script file, or if you just prefer awk-like syntax.
 
 # EXAMPLES
