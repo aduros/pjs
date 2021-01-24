@@ -251,6 +251,19 @@ cat data/users.json | pjs --json '.items[0:3]' '_.age' | equals '
 20
 '
 
+# Test concatenated JSON streams
+cat data/users.json data/users.json data/users.json | pjs --json '.items[0:3]' '_.age' | equals '
+42
+15
+20
+42
+15
+20
+42
+15
+20
+'
+
 echo | pjs --after 'require("./local-import").method()' | equals '
 123
 '
