@@ -1,6 +1,6 @@
 # NAME
 
-pjs - pipe using explainable JavaScript
+pjs - pipe using explainable, vanilla JavaScript
 
 # SYNOPSIS
 
@@ -61,17 +61,17 @@ built-in variable is unavailable, and the `_` built-in variable is a mapping of 
 row's values.
 
 `--json <filter>`
-: Parse the input data as JSON, iterating over objects that match the given `jq`-like filter. When
-using this option the `_` built-in variable contains a JSON object. For a list of implemented filter
-syntax, see https://www.npmjs.com/package/jq-in-the-browser#supported-features
+: Parse the input data as JSON, iterating over objects that match the given `jq`-like filter. The
+input may contain one or multiple concatenated JSON objects. When using this option the `_` built-in
+variable contains a JSON object. For a list of implemented filter syntax, see
+https://www.npmjs.com/package/jq-in-the-browser#supported-features
 
 `--html <selector>`
 : Parse the input data as HTML, iterating over elements that match the given CSS selector. The
 parser is forgiving with malformed HTML. The `_` built-in variable will contain an object with the
 keys: `type`, `name`, `attr`, `children`, `text`, and `innerHTML`. It also contains methods
-`querySelector()` and `querySelectorAll()` for further querying using another CSS selector.  For a
-list of implemented selector syntax, see
-https://www.npmjs.com/package/css-select#supported-selectors
+`querySelector()` and `querySelectorAll()` for further querying using CSS selectors. For a list of
+implemented selector syntax, see https://www.npmjs.com/package/css-select#supported-selectors
 
 `--xml <selector>`
 : Same as `--html`, but tags and attributes are considered case-sensitive.
@@ -409,6 +409,24 @@ echo "#!/usr/bin/env -S pjs -f" | cat - my-uppercase.js > my-uppercase
 chmod +x my-uppercase
 
 ./my-uppercase document.txt
+```
+
+Completely scrape an entire online store, outputting a JSON stream for later processing:
+
+```sh
+for page in `seq 1 50`; do
+
+    >&2 echo "Scraping page $page..."
+    curl -s "http://books.toscrape.com/catalogue/page-$page.html" |
+        pjs --html '.product_pod h3 a' '"http://books.toscrape.com/catalogue/"+_.attr.href' |
+
+        while read url; do
+            >&2 echo "Scraping item details from $url"
+            curl -s "$url" | pjs --html '.product_page' 'JSON.stringify({
+                title: _.querySelector(".product_main h1").text,
+                description: _.querySelector("#product_description + p").text})'
+        done
+done
 ```
 
 # BUGS
