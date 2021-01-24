@@ -108,10 +108,22 @@ pjs -d : '$5' data/passwd.txt | equals '
 '
 
 pjs -d : '$.slice(0, 2)' data/passwd.txt | equals '
-["root","x"]
-["daemon","x"]
-["bin","x"]
-["sys","x"]
+[
+  "root",
+  "x"
+]
+[
+  "daemon",
+  "x"
+]
+[
+  "bin",
+  "x"
+]
+[
+  "sys",
+  "x"
+]
 '
 
 pjs "" --after 'FILENAME+": "+COUNT' data/*.txt | equals '
@@ -210,9 +222,27 @@ Duncan Poole
 '
 
 cat data/users.json | pjs --json '.items[]' '_.age >= 21' | equals '
-{"name":{"first":"Winifred","last":"Frost"},"age":42}
-{"name":{"first":"Lonnie","last":"Davis"},"age":78}
-{"name":{"first":"Duncan","last":"Poole"},"age":36}
+{
+  "name": {
+    "first": "Winifred",
+    "last": "Frost"
+  },
+  "age": 42
+}
+{
+  "name": {
+    "first": "Lonnie",
+    "last": "Davis"
+  },
+  "age": 78
+}
+{
+  "name": {
+    "first": "Duncan",
+    "last": "Poole"
+  },
+  "age": 36
+}
 '
 
 cat data/users.json | pjs --json '.items[0:3]' '_.age' | equals '
