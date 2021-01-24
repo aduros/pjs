@@ -105,7 +105,7 @@ object, otherwise it is a string.
 : The name of the current input file, or null if reading from stdin.
 
 `print()`
-: Prints a value to standard output. Objects are converted to JSON.
+: Prints arguments to standard output. Objects are converted to JSON.
 
 ## Last Expression Handling
 
