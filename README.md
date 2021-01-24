@@ -364,6 +364,13 @@ Print the ages of the first 3 users only:
 cat users.json | pjs --json '.items[0:3]' '_.age'
 ```
 
+Query a web API for users:
+
+```sh
+curl -A "" 'https://www.instagram.com/web/search/topsearch/?query=John' |
+    pjs --json '.users[].user' '`@${_.username} (${_.full_name})`'
+```
+
 ## HTML/XML Examples
 
 Print the text of all `<h1>` and `<h2>` elements on a web page:
