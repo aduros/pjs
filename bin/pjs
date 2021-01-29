@@ -3,140 +3,117 @@
 // Disable strict mode
 // "use strict";
 
-const commander = require("commander");
 const fs = require("fs");
-const pkg = require("../package.json");
+const cli = require("../lib/cli");
 
-function collect (value, previous) {
-    if (previous == null) {
-        previous = [];
+const program = cli().action(async (script, files, options) => {
+    if (options.file != null) {
+        if (script != null) {
+            // When using -f, assume script was an input file name
+            files.unshift(script);
+        }
+        script = fs.readFileSync(options.file == "-" ? 0 : options.file, "utf8");
+
+        // Trim shebang
+        if (script.charAt(0) == "#") {
+            const idx = script.indexOf("\n");
+            script = script.substring(idx);
+        }
     }
-    return previous.concat([value]);
-}
 
-const program = new commander.Command()
-    .description(pkg.description+"\n\nFor complete documentation, run `man pjs` or visit https://github.com/aduros/pjs")
-    .arguments("[script-text]")
-    .arguments("[file...]")
-    .option("-x, --explain", "Print generated program instead of running it")
-    .option("-b, --before <script-text>", "Run script before parsing", collect)
-    .option("-a, --after <script-text>", "Run script after parsing", collect)
-    .option("-f, --file <script-file>", "Load script from a file")
-    .option("-d, --delimiter <delimiter>", "The delimiter for text parsing", "\\s+")
-    .option("--csv", "Parse input as CSV")
-    .option("--csv-header", "Parse input as CSV with a column header")
-    .option("--json <filter>", "Parse input as JSON")
-    .option("--html <selector>", "Parse input as HTML")
-    .option("--xml <selector>", "Parse input as XML")
-    .version(pkg.version)
-    .action(async (script, files, options, command) => {
-        if (options.file != null) {
-            if (script != null) {
-                // When using -f, assume script was an input file name
-                files.unshift(script);
-            }
-            script = fs.readFileSync(options.file == "-" ? 0 : options.file, "utf8");
+    // Must include at least one script
+    if (options.before == null && script == null && options.after == null) {
+        program.help({error: true});
+    }
 
-            // Trim shebang
-            if (script.charAt(0) == "#") {
-                const idx = script.indexOf("\n");
-                script = script.substring(idx);
-            }
+    const generate = require("../lib/generate");
+    var generated;
+    try {
+        let mode, markupSelector;
+        if (options.csv || options.csvHeader) {
+            mode = "csv";
+        } else if (options.json != null) {
+            mode = "json";
+        } else if (options.html != null) {
+            mode = "html";
+            markupSelector = options.html;
+        } else if (options.xml != null) {
+            mode = "xml";
+            markupSelector = options.xml;
         }
 
-        // Must include at least one script
-        if (options.before == null && script == null && options.after == null) {
-            program.help({error: true});
-        }
+        generated = generate({
+            mode,
+            beforeJs: options.before ? options.before.join("\n;") : null,
+            lineJs: script,
+            afterJs: options.after ? options.after.join("\n;") : null,
+            inputStream: options.explain ? null : "__inputStream",
 
-        const generate = require("../lib/generate");
-        var generated;
-        try {
-            let mode, markupSelector;
-            if (options.csv || options.csvHeader) {
-                mode = "csv";
-            } else if (options.json != null) {
-                mode = "json";
-            } else if (options.html != null) {
-                mode = "html";
-                markupSelector = options.html;
-            } else if (options.xml != null) {
-                mode = "xml";
-                markupSelector = options.xml;
-            }
+            textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
+            csvHeader: options.csvHeader,
+            jsonFilter: options.json,
+            markupSelector: markupSelector,
+        });
 
-            generated = generate({
-                mode,
-                beforeJs: options.before ? options.before.join("\n;") : null,
-                lineJs: script,
-                afterJs: options.after ? options.after.join("\n;") : null,
-                inputStream: options.explain ? null : "__inputStream",
-
-                textDelimiter: (options.delimiter != null) ? new RegExp(options.delimiter) : null,
-                csvHeader: options.csvHeader,
-                jsonFilter: options.json,
-                markupSelector: markupSelector,
-            });
-
-        } catch (error) {
-            if (process.env.PJS_DEBUG) {
-                console.error(error);
-            } else {
-                console.error("Parse error: "+error.message);
-            }
-            process.exit(1);
-        }
-        if (options.explain) {
-            console.log(generated);
+    } catch (error) {
+        if (process.env.PJS_DEBUG) {
+            console.error(error);
         } else {
-            process.stdout.on("error", error => {
-                // Ignore errors about closed pipes
-            });
+            console.error("Parse error: "+error.message);
+        }
+        process.exit(1);
+    }
+    if (options.explain) {
+        process.stdout.write(generated);
+    } else {
+        process.stdout.on("error", error => {
+            // Ignore errors about closed pipes
+        });
 
-            const pjsModule = require("..");
-            function customRequire (name) {
-                // Override require() in order to always locate pjs-tool
-                if (name == "pjs-tool") {
-                    return pjsModule;
-                }
-
-                // The original untouched require()
-                const requireFn = (typeof __non_webpack_require__ != "undefined")
-                    ? __non_webpack_require__
-                    : require;
-
-                // Transform to resolve relative to the current directory
-                name = requireFn.resolve(name, {paths: [process.cwd()]});
-
-                return requireFn(name);
+        const pjsModule = require("..");
+        function customRequire (name) {
+            // Override require() in order to always locate pjs-tool
+            if (name == "pjs-tool") {
+                return pjsModule;
             }
 
-            const fn = new Function("__inputStream", "FILENAME", "require", "return " + generated);
-            async function invokeFn (inputStream, filename) {
-                try {
-                    await fn(inputStream, filename, customRequire);
-                } catch (error) {
-                    console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
-                    console.error(error);
-                    process.exit(1);
-                }
-            }
+            // The original untouched require()
+            const requireFn = (typeof __non_webpack_require__ != "undefined")
+                ? __non_webpack_require__
+                : require;
 
-            if (files.length > 0) {
-                // Run on each file sequentially
-                for (const file of files) {
-                    if (file == "-") {
-                        // Special case where passed filename was "-"
-                        await invokeFn(process.stdin, null);
-                    } else {
-                        await invokeFn(fs.createReadStream(file), file);
-                    }
-                }
-            } else {
-                // Run on stdin
-                await invokeFn(process.stdin, null);
+            // Transform to resolve relative to the current directory
+            name = requireFn.resolve(name, {paths: [process.cwd()]});
+
+            return requireFn(name);
+        }
+
+        const fn = new Function("__inputStream", "FILENAME", "require", "return " + generated);
+        async function invokeFn (inputStream, filename) {
+            try {
+                await fn(inputStream, filename, customRequire);
+            } catch (error) {
+                console.error("An error occurred when running your script. Consider using --explain to help debug.\n");
+                console.error(error);
+                process.exit(1);
             }
         }
-    });
+
+        if (files.length > 0) {
+            // Run on each file sequentially
+            for (const file of files) {
+                if (file == "-") {
+                    // Special case where passed filename was "-"
+                    await invokeFn(process.stdin, null);
+                } else {
+                    await invokeFn(fs.createReadStream(file), file);
+                }
+            }
+        } else {
+            // Run on stdin
+            await invokeFn(process.stdin, null);
+        }
+    }
+});
 
 program.parse();
