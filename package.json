@@ -4,6 +4,7 @@
   "description": "An awk-like command-line tool for processing text, CSV, JSON, HTML, and XML.",
   "directories": {
     "bin": "./bin",
+    "doc": "./doc",
     "lib": "./lib",
     "man": "./man",
     "test": "./test"

@@ -2,7 +2,7 @@ all: man/pjs.1
 
 .PHONY: all
 
-man/pjs.1: README.md
+man/pjs.1: doc/manual.md
 	mkdir -p man
 	echo " \n\
 --- \n\
